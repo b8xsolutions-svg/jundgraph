@@ -1,0 +1,437 @@
+<!-- ============================================================
+  JUNDGRAPH — LANDING PAGE (widget HTML do Elementor)
+  Cole este bloco inteiro em um widget "HTML" do Elementor.
+  IMPORTANTE: substitua o número do WhatsApp na constante
+  data-whats abaixo (busque por "5511999999999").
+============================================================ -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Archivo:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+<style>
+/* ---------- Escopo isolado: tudo vive dentro de #jg-lp ---------- */
+#jg-lp{
+  --jg-orange:#E84A1B;
+  --jg-black:#1A1A1A;
+  --jg-dark:#111111;
+  --jg-gray:#F4F3F1;
+  --jg-gray-2:#E7E5E1;
+  --jg-white:#FFFFFF;
+  --jg-head:'Oswald','Archivo',Arial,sans-serif;
+  --jg-body:'Archivo',Helvetica,Arial,sans-serif;
+  font-family:var(--jg-body);
+  color:var(--jg-black);
+  background:var(--jg-white);
+  line-height:1.6;
+  font-size:17px;
+  margin:0;
+  overflow-x:hidden;
+}
+#jg-lp *,#jg-lp *::before,#jg-lp *::after{box-sizing:border-box;margin:0;padding:0;border-radius:0!important;}
+#jg-lp img{max-width:100%;display:block;}
+#jg-lp a{text-decoration:none;color:inherit;}
+
+#jg-lp .jg-wrap{max-width:1200px;margin:0 auto;padding:0 24px;}
+
+/* ---------- Tipografia ---------- */
+#jg-lp h1,#jg-lp h2,#jg-lp h3{
+  font-family:var(--jg-head);
+  text-transform:uppercase;
+  line-height:1.12;
+  letter-spacing:.01em;
+  font-weight:600;
+}
+#jg-lp .jg-eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--jg-head);font-size:13px;font-weight:600;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--jg-orange);
+  margin-bottom:18px;
+}
+#jg-lp .jg-eyebrow::before{content:"";width:12px;height:12px;background:var(--jg-orange);flex:none;}
+#jg-lp .jg-eyebrow.jg-on-dark{color:var(--jg-orange);}
+
+/* ---------- Botões ---------- */
+#jg-lp .jg-btn{
+  display:inline-flex;align-items:center;gap:14px;
+  background:var(--jg-orange);color:var(--jg-white);
+  font-family:var(--jg-head);font-weight:600;font-size:15px;
+  text-transform:uppercase;letter-spacing:.14em;
+  padding:19px 34px;border:2px solid var(--jg-orange);
+  transition:background .2s ease,color .2s ease,transform .2s ease;
+  cursor:pointer;white-space:nowrap;
+}
+#jg-lp .jg-btn .jg-arr{font-family:var(--jg-body);font-size:18px;line-height:1;transition:transform .2s ease;}
+#jg-lp .jg-btn:hover{background:var(--jg-black);border-color:var(--jg-black);color:var(--jg-white);}
+#jg-lp .jg-btn:hover .jg-arr{transform:translate(3px,3px);}
+#jg-lp .jg-btn.jg-btn-inverse:hover{background:var(--jg-white);border-color:var(--jg-white);color:var(--jg-black);}
+#jg-lp .jg-btn.jg-btn-ghost{background:transparent;color:var(--jg-black);border-color:var(--jg-black);}
+#jg-lp .jg-btn.jg-btn-ghost:hover{background:var(--jg-black);color:var(--jg-white);}
+
+/* ---------- Topbar ---------- */
+#jg-lp .jg-topbar{background:var(--jg-white);border-bottom:1px solid var(--jg-gray-2);}
+#jg-lp .jg-topbar .jg-wrap{display:flex;align-items:center;justify-content:space-between;padding-top:14px;padding-bottom:14px;}
+#jg-lp .jg-logo{height:54px;width:auto;}
+#jg-lp .jg-topbar .jg-btn{padding:13px 22px;font-size:13px;}
+
+/* ---------- Hero ---------- */
+#jg-lp .jg-hero{
+  position:relative;background:var(--jg-black);color:var(--jg-white);
+  padding:110px 0 130px;overflow:hidden;
+}
+#jg-lp .jg-hero::after{ /* recorte diagonal laranja */
+  content:"";position:absolute;right:-140px;top:0;bottom:0;width:420px;
+  background:var(--jg-orange);
+  clip-path:polygon(55% 0,100% 0,100% 100%,0 100%);
+  opacity:.95;
+}
+#jg-lp .jg-hero::before{ /* linhas técnicas de fundo */
+  content:"";position:absolute;inset:0;
+  background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);
+  background-size:72px 72px;
+}
+#jg-lp .jg-hero .jg-wrap{position:relative;z-index:2;}
+#jg-lp .jg-hero h1{font-size:clamp(34px,5.2vw,64px);max-width:19ch;}
+#jg-lp .jg-hero h1 .jg-hl{color:var(--jg-orange);}
+#jg-lp .jg-hero p{max-width:56ch;margin:26px 0 38px;font-size:clamp(17px,1.6vw,20px);color:rgba(255,255,255,.82);}
+
+/* ---------- Faixa marquee ---------- */
+#jg-lp .jg-marquee{background:var(--jg-orange);color:var(--jg-black);overflow:hidden;padding:16px 0;border-top:4px solid var(--jg-black);border-bottom:4px solid var(--jg-black);}
+#jg-lp .jg-marquee-track{display:flex;width:max-content;animation:jg-scroll 30s linear infinite;}
+#jg-lp .jg-marquee span{
+  font-family:var(--jg-head);font-weight:600;font-size:16px;
+  text-transform:uppercase;letter-spacing:.16em;white-space:nowrap;
+  display:inline-flex;align-items:center;
+}
+#jg-lp .jg-marquee span::after{content:"▪";margin:0 26px;font-size:12px;}
+@keyframes jg-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){#jg-lp .jg-marquee-track{animation:none;flex-wrap:wrap;}}
+
+/* ---------- Seções ---------- */
+#jg-lp .jg-section{padding:96px 0;}
+#jg-lp .jg-section-head{max-width:760px;margin-bottom:56px;}
+#jg-lp .jg-section-head h2{font-size:clamp(28px,3.8vw,44px);}
+#jg-lp .jg-section-head p{margin-top:18px;font-size:18px;color:#444;}
+
+/* ---------- Cards de categorias ---------- */
+#jg-lp .jg-cats{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:2px solid var(--jg-black);}
+#jg-lp .jg-cat{
+  position:relative;padding:44px 32px 36px;border:1px solid var(--jg-black);
+  background:var(--jg-white);transition:background .2s ease,color .2s ease;min-height:190px;
+  display:flex;flex-direction:column;justify-content:flex-end;
+}
+#jg-lp .jg-cat .jg-num{
+  position:absolute;top:18px;left:32px;
+  font-family:var(--jg-head);font-weight:700;font-size:15px;letter-spacing:.1em;color:var(--jg-orange);
+}
+#jg-lp .jg-cat h3{font-size:21px;letter-spacing:.04em;}
+#jg-lp .jg-cat .jg-arr{position:absolute;top:14px;right:22px;font-size:20px;color:var(--jg-black);opacity:.35;transition:opacity .2s,color .2s,transform .2s;}
+#jg-lp .jg-cat:hover{background:var(--jg-black);color:var(--jg-white);}
+#jg-lp .jg-cat:hover .jg-arr{opacity:1;color:var(--jg-orange);transform:translate(2px,2px);}
+#jg-lp .jg-quote{
+  margin-top:56px;border-left:6px solid var(--jg-orange);padding:8px 0 8px 28px;
+  font-family:var(--jg-head);font-size:clamp(20px,2.6vw,28px);font-weight:500;
+  text-transform:uppercase;line-height:1.35;max-width:820px;
+}
+#jg-lp .jg-quote b{color:var(--jg-orange);font-weight:600;}
+
+/* ---------- Por que escolher ---------- */
+#jg-lp .jg-why{background:var(--jg-gray);position:relative;}
+#jg-lp .jg-why::before{content:"";position:absolute;top:0;left:0;right:0;height:56px;background:var(--jg-white);clip-path:polygon(0 0,100% 0,0 100%);}
+#jg-lp .jg-why-feature{
+  background:var(--jg-orange);color:var(--jg-white);padding:44px 40px;margin-bottom:2px;
+  display:flex;flex-wrap:wrap;align-items:center;gap:12px 40px;justify-content:space-between;
+}
+#jg-lp .jg-why-feature h3{font-size:clamp(22px,3vw,30px);}
+#jg-lp .jg-why-feature p{font-size:17px;max-width:46ch;color:rgba(255,255,255,.92);}
+#jg-lp .jg-why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--jg-black);border:2px solid var(--jg-black);}
+#jg-lp .jg-why-item{background:var(--jg-white);padding:34px 26px 30px;}
+#jg-lp .jg-why-item .jg-tick{
+  width:34px;height:34px;background:var(--jg-black);color:var(--jg-orange);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--jg-head);font-weight:700;font-size:16px;margin-bottom:20px;
+}
+#jg-lp .jg-why-item h3{font-size:18px;margin-bottom:10px;letter-spacing:.03em;}
+#jg-lp .jg-why-item p{font-size:15.5px;color:#4a4a4a;}
+
+/* ---------- Sob medida ---------- */
+#jg-lp .jg-custom .jg-wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:64px;align-items:center;}
+#jg-lp .jg-custom h2{font-size:clamp(28px,3.8vw,44px);margin-bottom:8px;}
+#jg-lp .jg-custom .jg-lead{font-family:var(--jg-head);text-transform:uppercase;font-size:20px;color:var(--jg-orange);font-weight:500;margin:14px 0 20px;}
+#jg-lp .jg-custom p{margin-bottom:16px;color:#3d3d3d;}
+#jg-lp .jg-custom p.jg-strong{font-weight:600;color:var(--jg-black);}
+#jg-lp .jg-custom-art{
+  position:relative;min-height:380px;background:var(--jg-black);
+  background-image:repeating-linear-gradient(-45deg,transparent 0 26px,rgba(232,74,27,.16) 26px 28px);
+  display:flex;align-items:flex-end;
+}
+#jg-lp .jg-custom-art::before{content:"";position:absolute;top:0;right:0;width:46%;height:46%;background:var(--jg-orange);clip-path:polygon(100% 0,0 0,100% 100%);}
+#jg-lp .jg-custom-art .jg-stat{padding:34px;color:var(--jg-white);}
+#jg-lp .jg-custom-art .jg-stat strong{display:block;font-family:var(--jg-head);font-size:64px;font-weight:700;line-height:1;color:var(--jg-orange);}
+#jg-lp .jg-custom-art .jg-stat span{font-family:var(--jg-head);text-transform:uppercase;letter-spacing:.14em;font-size:14px;}
+
+/* ---------- Percepção (dark) ---------- */
+#jg-lp .jg-percep{background:var(--jg-black);color:var(--jg-white);position:relative;overflow:hidden;padding-bottom:170px;}
+#jg-lp .jg-percep::after{content:"";position:absolute;bottom:-90px;left:-90px;width:280px;height:280px;background:var(--jg-orange);clip-path:polygon(0 100%,0 0,100% 100%);opacity:.9;}
+#jg-lp .jg-percep .jg-wrap{position:relative;z-index:2;}
+#jg-lp .jg-percep h2{font-size:clamp(28px,3.8vw,44px);margin-bottom:40px;max-width:640px;}
+#jg-lp .jg-before{display:grid;gap:0;border-left:6px solid var(--jg-orange);margin-bottom:48px;}
+#jg-lp .jg-before p{
+  font-family:var(--jg-head);text-transform:uppercase;font-weight:500;
+  font-size:clamp(19px,2.4vw,26px);padding:14px 0 14px 28px;color:rgba(255,255,255,.9);
+}
+#jg-lp .jg-before p b{color:var(--jg-orange);font-weight:600;}
+#jg-lp .jg-percep .jg-sub{font-size:18px;color:rgba(255,255,255,.75);margin-bottom:26px;}
+#jg-lp .jg-pills{display:flex;flex-wrap:wrap;gap:12px;}
+#jg-lp .jg-pills span{
+  border:2px solid var(--jg-orange);padding:12px 22px;
+  font-family:var(--jg-head);font-weight:500;font-size:15px;
+  text-transform:uppercase;letter-spacing:.12em;
+}
+
+/* ---------- Sobre ---------- */
+#jg-lp .jg-about{background:var(--jg-gray);}
+#jg-lp .jg-about .jg-wrap{max-width:900px;text-align:center;}
+#jg-lp .jg-about .jg-eyebrow{justify-content:center;}
+#jg-lp .jg-about h2{font-size:clamp(28px,3.6vw,42px);margin-bottom:28px;}
+#jg-lp .jg-about p{font-size:19px;color:#3d3d3d;margin-bottom:18px;}
+#jg-lp .jg-about .jg-focus{
+  margin-top:34px;display:inline-block;background:var(--jg-black);color:var(--jg-white);
+  padding:26px 36px;font-family:var(--jg-head);text-transform:uppercase;
+  font-size:clamp(18px,2.2vw,24px);font-weight:500;line-height:1.4;
+}
+#jg-lp .jg-about .jg-focus b{color:var(--jg-orange);font-weight:600;}
+
+/* ---------- Como funciona ---------- */
+#jg-lp .jg-steps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--jg-black);border:2px solid var(--jg-black);}
+#jg-lp .jg-step{background:var(--jg-white);padding:38px 28px 34px;position:relative;}
+#jg-lp .jg-step .jg-step-num{
+  font-family:var(--jg-head);font-weight:700;font-size:56px;line-height:1;
+  color:transparent;-webkit-text-stroke:2px var(--jg-orange);margin-bottom:22px;display:block;
+}
+#jg-lp .jg-step h3{font-size:18px;margin-bottom:10px;letter-spacing:.03em;}
+#jg-lp .jg-step p{font-size:15.5px;color:#4a4a4a;}
+
+/* ---------- CTA final ---------- */
+#jg-lp .jg-cta{background:var(--jg-black);color:var(--jg-white);position:relative;overflow:hidden;padding:110px 0;}
+#jg-lp .jg-cta::before{content:"";position:absolute;top:0;right:-160px;width:360px;height:100%;background:var(--jg-orange);clip-path:polygon(50% 0,100% 0,100% 100%,0 100%);opacity:.95;}
+#jg-lp .jg-cta::after{content:"";position:absolute;bottom:0;left:-160px;width:300px;height:200px;background:var(--jg-orange);clip-path:polygon(0 100%,0 0,100% 100%);opacity:.95;}
+#jg-lp .jg-cta .jg-wrap{position:relative;z-index:2;max-width:820px;margin-left:auto;margin-right:auto;text-align:center;}
+#jg-lp .jg-cta h2{font-size:clamp(30px,4.4vw,52px);margin-bottom:24px;}
+#jg-lp .jg-cta h2 .jg-hl{color:var(--jg-orange);}
+#jg-lp .jg-cta p{font-size:19px;color:rgba(255,255,255,.82);margin-bottom:40px;}
+#jg-lp .jg-cta .jg-btn{font-size:16px;padding:22px 40px;}
+#jg-lp .jg-cta .jg-btn svg{width:22px;height:22px;flex:none;}
+
+/* ---------- Footer ---------- */
+#jg-lp .jg-footer{background:var(--jg-dark);color:rgba(255,255,255,.65);border-top:6px solid var(--jg-orange);}
+#jg-lp .jg-footer .jg-wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;padding-top:34px;padding-bottom:34px;}
+#jg-lp .jg-footer img{height:44px;width:auto;background:var(--jg-white);padding:4px;}
+#jg-lp .jg-footer p{font-size:14px;letter-spacing:.04em;}
+
+/* ---------- Responsivo ---------- */
+@media (max-width:1100px){
+  #jg-lp .jg-cta::before,#jg-lp .jg-cta::after{display:none;}
+}
+@media (max-width:980px){
+  #jg-lp .jg-cats{grid-template-columns:repeat(2,1fr);}
+  #jg-lp .jg-why-grid{grid-template-columns:repeat(2,1fr);}
+  #jg-lp .jg-steps-grid{grid-template-columns:repeat(2,1fr);}
+  #jg-lp .jg-custom .jg-wrap{grid-template-columns:1fr;gap:44px;}
+  #jg-lp .jg-hero{padding:80px 0 100px;}
+  #jg-lp .jg-hero::after{width:260px;right:-160px;}
+}
+@media (max-width:600px){
+  #jg-lp .jg-section{padding:68px 0;}
+  #jg-lp .jg-cats{grid-template-columns:1fr;}
+  #jg-lp .jg-why-grid{grid-template-columns:1fr;}
+  #jg-lp .jg-steps-grid{grid-template-columns:1fr;}
+  #jg-lp .jg-hero::after{display:none;}
+  #jg-lp .jg-cta::before{display:none;}
+  #jg-lp .jg-topbar .jg-btn{display:none;}
+  #jg-lp .jg-btn{white-space:normal;text-align:left;}
+  #jg-lp .jg-custom-art{min-height:280px;}
+}
+</style>
+
+<div id="jg-lp">
+
+  <!-- ===== TOPBAR ===== -->
+  <div class="jg-topbar">
+    <div class="jg-wrap">
+      <img class="jg-logo" src="https://b8x.com.br/wp-content/uploads/2026/07/333674980_732302818337005_8266414627535438737_n.jpg" alt="Jundgraph — Indústria de Embalagens Personalizadas">
+      <a class="jg-btn" href="https://wa.me/5511999999999?text=Ol%C3%A1!%20Quero%20um%20or%C3%A7amento%20de%20embalagens%20personalizadas." target="_blank" rel="noopener">Solicitar orçamento <span class="jg-arr">↘</span></a>
+    </div>
+  </div>
+
+  <!-- ===== HERO ===== -->
+  <section class="jg-hero">
+    <div class="jg-wrap">
+      <span class="jg-eyebrow jg-on-dark">Indústria de embalagens personalizadas</span>
+      <h1>Sua embalagem não precisa ser só bonita. <span class="jg-hl">Precisa fazer o cliente sentir valor antes de abrir.</span></h1>
+      <p>Projetos complexos e sob medida, em papel, para empresas que precisam de uma apresentação mais bonita, sofisticada, estratégica e profissional.</p>
+      <a class="jg-btn jg-btn-inverse" href="https://wa.me/5511999999999?text=Ol%C3%A1!%20Quero%20um%20or%C3%A7amento%20de%20embalagens%20personalizadas." target="_blank" rel="noopener">Solicite seu orçamento <span class="jg-arr">↘</span></a>
+    </div>
+  </section>
+
+  <!-- ===== MARQUEE ===== -->
+  <div class="jg-marquee" aria-hidden="true">
+    <div class="jg-marquee-track">
+      <span>Embalagens em papel cartão</span><span>Cartonagem personalizada</span><span>Tags personalizadas</span><span>Cintas e amarrações</span><span>Papel para cestas</span><span>Embalagens fast-food</span><span>Projetos especiais sob medida</span>
+      <span>Embalagens em papel cartão</span><span>Cartonagem personalizada</span><span>Tags personalizadas</span><span>Cintas e amarrações</span><span>Papel para cestas</span><span>Embalagens fast-food</span><span>Projetos especiais sob medida</span>
+    </div>
+  </div>
+
+  <!-- ===== SOLUÇÕES ===== -->
+  <section class="jg-section">
+    <div class="jg-wrap">
+      <div class="jg-section-head">
+        <span class="jg-eyebrow">O que produzimos</span>
+        <h2>Embalagens personalizadas de alto padrão</h2>
+        <p>Produzimos soluções em papel para marcas que querem sair do comum e valorizar cada detalhe do produto e da experiência do cliente.</p>
+      </div>
+      <div class="jg-cats">
+        <div class="jg-cat"><span class="jg-num">01</span><span class="jg-arr">↘</span><h3>Embalagens</h3></div>
+        <div class="jg-cat"><span class="jg-num">02</span><span class="jg-arr">↘</span><h3>Rótulos, etiquetas e tags</h3></div>
+        <div class="jg-cat"><span class="jg-num">03</span><span class="jg-arr">↘</span><h3>Materiais impressos</h3></div>
+        <div class="jg-cat"><span class="jg-num">04</span><span class="jg-arr">↘</span><h3>Papelaria personalizada</h3></div>
+        <div class="jg-cat"><span class="jg-num">05</span><span class="jg-arr">↘</span><h3>Materiais para PDV</h3></div>
+        <div class="jg-cat"><span class="jg-num">06</span><span class="jg-arr">↘</span><h3>Acabamentos especiais</h3></div>
+      </div>
+      <p class="jg-quote">Porque uma boa embalagem protege. <b>Uma embalagem bem pensada vende valor.</b></p>
+    </div>
+  </section>
+
+  <!-- ===== POR QUE ESCOLHER ===== -->
+  <section class="jg-section jg-why">
+    <div class="jg-wrap">
+      <div class="jg-section-head">
+        <span class="jg-eyebrow">Diferenciais</span>
+        <h2>Por que escolher a Jundgraph?</h2>
+      </div>
+      <div class="jg-why-feature">
+        <h3>Especialistas em embalagem de papel há +20 anos</h3>
+        <p>Foco em soluções gráficas e embalagens personalizadas em papel cartão.</p>
+      </div>
+      <div class="jg-why-grid">
+        <div class="jg-why-item">
+          <span class="jg-tick">✓</span>
+          <h3>Produção sob demanda</h3>
+          <p>Cada projeto é feito de acordo com a necessidade da sua empresa.</p>
+        </div>
+        <div class="jg-why-item">
+          <span class="jg-tick">✓</span>
+          <h3>Impressão offset</h3>
+          <p>Mais qualidade, padrão de cor e acabamento profissional.</p>
+        </div>
+        <div class="jg-why-item">
+          <span class="jg-tick">✓</span>
+          <h3>Consultoria gráfica</h3>
+          <p>Ajudamos na escolha do papel, formato, estrutura e acabamento.</p>
+        </div>
+        <div class="jg-why-item">
+          <span class="jg-tick">✓</span>
+          <h3>Acabamento profissional</h3>
+          <p>Detalhes que fazem sua embalagem parecer mais sofisticada e valorizada.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SOB MEDIDA ===== -->
+  <section class="jg-section jg-custom">
+    <div class="jg-wrap">
+      <div>
+        <span class="jg-eyebrow">Projetos personalizados</span>
+        <h2>Projetos de embalagem sob medida</h2>
+        <p class="jg-lead">Sua marca não precisa se adaptar a uma embalagem pronta.</p>
+        <p>A Jundgraph desenvolve projetos personalizados para produtos que exigem mais sofisticação, estrutura e atenção aos detalhes. Criamos soluções em papel pensadas para valorizar a apresentação, fortalecer a identidade da marca e atender demandas mais complexas de formato, acabamento e experiência.</p>
+        <p class="jg-strong">Embalagens feitas para marcas que querem sair do comum e entregar mais valor desde o primeiro contato.</p>
+        <a class="jg-btn jg-btn-ghost" style="margin-top:18px" href="https://wa.me/5511999999999?text=Ol%C3%A1!%20Tenho%20um%20projeto%20de%20embalagem%20sob%20medida." target="_blank" rel="noopener">Falar sobre meu projeto <span class="jg-arr">↘</span></a>
+      </div>
+      <div class="jg-custom-art" aria-hidden="true">
+        <div class="jg-stat"><strong>+20</strong><span>anos de especialização em papel</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PERCEPÇÃO ===== -->
+  <section class="jg-section jg-percep">
+    <div class="jg-wrap">
+      <span class="jg-eyebrow jg-on-dark">Percepção de valor</span>
+      <h2>Para marcas que cuidam da apresentação</h2>
+      <div class="jg-before">
+        <p>Antes do cliente abrir, <b>ele percebe.</b></p>
+        <p>Antes de experimentar, <b>ele julga.</b></p>
+        <p>Antes de comprar de novo, <b>ele lembra.</b></p>
+      </div>
+      <p class="jg-sub">Por isso, cada projeto é pensado para unir:</p>
+      <div class="jg-pills">
+        <span>Estética</span><span>Funcionalidade</span><span>Acabamento</span><span>Resistência</span><span>Identidade visual</span><span>Percepção de valor</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SOBRE ===== -->
+  <section class="jg-section jg-about">
+    <div class="jg-wrap">
+      <span class="jg-eyebrow">Quem somos</span>
+      <h2>Sobre a Jundgraph</h2>
+      <p>A Jundgraph começou como uma pequena copiadora e evoluiu para uma indústria gráfica especializada em impressão offset e embalagens personalizadas.</p>
+      <p>Hoje, desenvolvemos embalagens de papel para empresas que querem melhorar a apresentação dos seus produtos e fortalecer a percepção da marca.</p>
+      <div class="jg-focus">Nosso foco é simples: <b>fazer seu produto ser melhor percebido antes mesmo de ser aberto.</b></div>
+    </div>
+  </section>
+
+  <!-- ===== COMO FUNCIONA ===== -->
+  <section class="jg-section">
+    <div class="jg-wrap">
+      <div class="jg-section-head">
+        <span class="jg-eyebrow">Processo</span>
+        <h2>Como funciona</h2>
+      </div>
+      <div class="jg-steps-grid">
+        <div class="jg-step">
+          <span class="jg-step-num">01</span>
+          <h3>Você apresenta o produto</h3>
+          <p>Entendemos o que será embalado, vendido ou entregue.</p>
+        </div>
+        <div class="jg-step">
+          <span class="jg-step-num">02</span>
+          <h3>Criamos a melhor solução</h3>
+          <p>Avaliamos papel, formato, acabamento e viabilidade.</p>
+        </div>
+        <div class="jg-step">
+          <span class="jg-step-num">03</span>
+          <h3>Produzimos com qualidade</h3>
+          <p>Seu projeto entra em produção com atenção aos detalhes.</p>
+        </div>
+        <div class="jg-step">
+          <span class="jg-step-num">04</span>
+          <h3>Sua embalagem chega pronta</h3>
+          <p>Personalizada, bem acabada e alinhada ao padrão da sua marca.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA FINAL ===== -->
+  <section class="jg-cta">
+    <div class="jg-wrap">
+      <h2>Seu produto pode ser excelente. <span class="jg-hl">Mas a embalagem define como ele será percebido.</span></h2>
+      <p>Se a sua marca quer encantar mais, vender com mais valor e fugir do comum, comece pela apresentação.</p>
+      <a class="jg-btn jg-btn-inverse" href="https://wa.me/5511999999999?text=Ol%C3%A1!%20Quero%20um%20or%C3%A7amento%20de%20embalagens%20personalizadas." target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23Zm4.52-6.16c-.25-.13-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.14.16-.29.18-.54.06-.25-.13-1.05-.39-2-1.23-.73-.66-1.23-1.47-1.38-1.72-.14-.24-.01-.38.11-.5.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.13-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.39 1.01 2.56.12.16 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.1-.23-.16-.48-.29Z"/></svg>
+        Solicitar orçamento pelo WhatsApp <span class="jg-arr">↘</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <div class="jg-footer">
+    <div class="jg-wrap">
+      <img src="https://b8x.com.br/wp-content/uploads/2026/07/333674980_732302818337005_8266414627535438737_n.jpg" alt="Jundgraph">
+      <p>JUNDGRAPH — INDÚSTRIA DE EMBALAGENS PERSONALIZADAS EM PAPEL</p>
+    </div>
+  </div>
+
+</div>
