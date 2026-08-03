@@ -1,0 +1,458 @@
+<!-- ============================================================
+  B8X — QUIZ / JORNADA "MÉTODO AGENDA ELÉTRICA"
+  Cole este bloco inteiro em um widget "HTML" do Elementor
+  (ou em um bloco "HTML personalizado" do editor do WordPress).
+
+  ➜ Para GRAVAR os leads no WordPress, instale também o snippet
+    PHP do arquivo  b8x-lead-storage.php  (instruções lá dentro).
+
+  ➜ CONFIGURE ABAIXO (procure por "CONFIG"):
+     • B8X_VIDEO   -> URL do vídeo (YouTube) da tela final
+     • B8X_AJAX    -> normalmente "/wp-admin/admin-ajax.php" (não mexa)
+============================================================ -->
+<style>
+/* ---------- Escopo isolado: tudo vive dentro de #b8x-quiz ---------- */
+#b8x-quiz{
+  --bx-black:#111111;
+  --bx-text:#1a1a1a;
+  --bx-muted:#8a8a8a;
+  --bx-line:#d9d9d9;
+  --bx-white:#ffffff;
+  --bx-green:#25D366;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  color:var(--bx-text);
+  background:var(--bx-white);
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+  position:relative;
+}
+#b8x-quiz *,#b8x-quiz *::before,#b8x-quiz *::after{box-sizing:border-box;margin:0;padding:0;}
+#b8x-quiz img{max-width:100%;display:block;}
+
+/* ---------- Palco / telas ---------- */
+#b8x-quiz .bx-stage{
+  position:relative;
+  min-height:560px;
+  background:var(--bx-white);
+  overflow:hidden;
+}
+#b8x-quiz .bx-screen{
+  display:none;
+  padding:64px 28px 48px;
+  max-width:660px;
+  margin:0 auto;
+  min-height:560px;
+  flex-direction:column;
+  justify-content:center;
+}
+#b8x-quiz .bx-screen.is-active{
+  display:flex;
+  animation:bx-in .45s cubic-bezier(.22,.61,.36,1) both;
+}
+@keyframes bx-in{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+@media (prefers-reduced-motion:reduce){#b8x-quiz .bx-screen.is-active{animation:none;}}
+
+/* ---------- Tipografia ---------- */
+#b8x-quiz .bx-lead{font-size:19px;line-height:1.55;margin:0 0 16px;}
+#b8x-quiz .bx-lead strong{font-weight:700;}
+#b8x-quiz .bx-lead.bx-gap{margin-bottom:22px;}
+#b8x-quiz .bx-q{
+  font-size:22px;font-weight:600;line-height:1.4;margin-bottom:26px;
+  display:flex;align-items:flex-start;gap:10px;
+}
+#b8x-quiz .bx-q .bx-req{color:var(--bx-muted);font-weight:400;font-size:18px;margin-left:auto;}
+
+/* ---------- Inputs ---------- */
+#b8x-quiz .bx-field{margin-bottom:26px;}
+#b8x-quiz .bx-input{
+  width:100%;border:0;border-bottom:2px solid var(--bx-line);
+  background:transparent;font-size:26px;color:var(--bx-text);
+  padding:8px 2px;font-family:inherit;
+}
+#b8x-quiz .bx-input::placeholder{color:#c4c4c4;}
+#b8x-quiz .bx-input:focus{outline:none;border-bottom-color:var(--bx-black);}
+
+#b8x-quiz .bx-phone{display:flex;align-items:center;gap:12px;border-bottom:2px solid var(--bx-line);padding-bottom:2px;}
+#b8x-quiz .bx-phone:focus-within{border-bottom-color:var(--bx-black);}
+#b8x-quiz .bx-phone .bx-flag{display:flex;align-items:center;gap:6px;font-size:22px;white-space:nowrap;padding:8px 0;}
+#b8x-quiz .bx-phone .bx-flag b{font-weight:600;font-size:22px;}
+#b8x-quiz .bx-phone .bx-input{border-bottom:0;flex:1;}
+
+/* ---------- Botões ---------- */
+#b8x-quiz .bx-actions{display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+#b8x-quiz .bx-btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  background:var(--bx-black);color:var(--bx-white);
+  font-family:inherit;font-weight:700;font-size:16px;
+  padding:15px 26px;border:0;cursor:pointer;
+  transition:opacity .18s ease,transform .12s ease;
+}
+#b8x-quiz .bx-btn:hover{opacity:.86;}
+#b8x-quiz .bx-btn:active{transform:translateY(1px);}
+#b8x-quiz .bx-btn:disabled{opacity:.4;cursor:not-allowed;}
+#b8x-quiz .bx-btn.bx-ok{padding:13px 22px;}
+#b8x-quiz .bx-hint{font-size:14px;color:var(--bx-muted);}
+#b8x-quiz .bx-hint b{color:var(--bx-text);font-weight:600;}
+#b8x-quiz .bx-err{color:#d13b3b;font-size:14px;margin-top:10px;min-height:18px;}
+
+/* ---------- Progresso ---------- */
+#b8x-quiz .bx-progress{position:absolute;top:0;left:0;height:4px;background:var(--bx-black);width:0;transition:width .4s ease;z-index:5;}
+
+/* ---------- Simulador ---------- */
+#b8x-quiz .bx-sim-input{
+  display:flex;align-items:baseline;gap:6px;border-bottom:2px solid var(--bx-line);padding-bottom:4px;margin-bottom:8px;
+}
+#b8x-quiz .bx-sim-input:focus-within{border-bottom-color:var(--bx-black);}
+#b8x-quiz .bx-sim-input .bx-cur{font-size:24px;font-weight:600;color:var(--bx-muted);}
+#b8x-quiz .bx-sim-input .bx-input{border-bottom:0;font-size:34px;font-weight:700;}
+#b8x-quiz .bx-slider{width:100%;margin:18px 0 8px;accent-color:var(--bx-black);height:4px;}
+#b8x-quiz .bx-slider-scale{display:flex;justify-content:space-between;font-size:12px;color:var(--bx-muted);margin-bottom:26px;}
+
+#b8x-quiz .bx-results{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--bx-line);border:1px solid var(--bx-line);margin-bottom:14px;}
+#b8x-quiz .bx-res{background:var(--bx-white);padding:18px 14px;text-align:center;}
+#b8x-quiz .bx-res .bx-res-num{font-size:26px;font-weight:800;line-height:1.1;}
+#b8x-quiz .bx-res .bx-res-lbl{font-size:12px;color:var(--bx-muted);text-transform:uppercase;letter-spacing:.04em;margin-top:6px;}
+#b8x-quiz .bx-highlight{
+  background:var(--bx-black);color:var(--bx-white);padding:22px 20px;text-align:center;margin-bottom:22px;
+}
+#b8x-quiz .bx-highlight .bx-hl-lbl{font-size:13px;text-transform:uppercase;letter-spacing:.08em;opacity:.7;}
+#b8x-quiz .bx-highlight .bx-hl-num{font-size:40px;font-weight:800;line-height:1.15;margin-top:4px;}
+#b8x-quiz .bx-highlight .bx-hl-sub{font-size:13px;opacity:.7;margin-top:6px;}
+#b8x-quiz .bx-disclaimer{font-size:12px;color:var(--bx-muted);margin-bottom:24px;line-height:1.5;}
+
+/* ---------- Tela final (obrigado) ---------- */
+#b8x-quiz .bx-thanks{text-align:center;}
+#b8x-quiz .bx-thanks .bx-tick{
+  width:64px;height:64px;border-radius:50%;background:var(--bx-black);color:#fff;
+  display:flex;align-items:center;justify-content:center;font-size:32px;margin:0 auto 22px;
+}
+#b8x-quiz .bx-thanks h2{font-size:28px;font-weight:800;margin-bottom:12px;line-height:1.25;}
+#b8x-quiz .bx-thanks p{font-size:17px;color:#444;margin-bottom:26px;}
+#b8x-quiz .bx-video{position:relative;width:100%;padding-top:56.25%;background:#000;margin-bottom:26px;}
+#b8x-quiz .bx-video iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
+#b8x-quiz .bx-video-fallback{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;padding:20px;text-align:center;}
+#b8x-quiz .bx-btn-wa{background:var(--bx-green);}
+#b8x-quiz .bx-btn-wa:hover{opacity:.9;}
+
+/* ---------- Responsivo ---------- */
+@media (max-width:560px){
+  #b8x-quiz .bx-screen{padding:48px 20px 40px;min-height:520px;}
+  #b8x-quiz .bx-q{font-size:20px;}
+  #b8x-quiz .bx-input{font-size:22px;}
+  #b8x-quiz .bx-results{grid-template-columns:1fr;}
+  #b8x-quiz .bx-highlight .bx-hl-num{font-size:34px;}
+  #b8x-quiz .bx-thanks h2{font-size:23px;}
+}
+</style>
+
+<div id="b8x-quiz">
+  <div class="bx-progress" id="bx-progress"></div>
+  <div class="bx-stage">
+
+    <!-- ===== TELA 1 — APRESENTAÇÃO ===== -->
+    <section class="bx-screen is-active" data-step="0">
+      <p class="bx-lead">⚡ Método Agenda Elétrica, <strong>tráfego pago validado para eletricistas desde 2015.</strong></p>
+      <p class="bx-lead bx-gap"><strong>Tenha de 5 a 20 pedidos extras por dia!</strong></p>
+      <p class="bx-lead">🔥 Pare de queimar dinheiro profissional inexperiente.</p>
+      <p class="bx-lead">🥷 Não fique refém do Get Ninja e indicações.</p>
+      <p class="bx-lead">🏢 Clientes de alto padrão e instalação de carregadores elétricos.</p>
+      <p class="bx-lead bx-gap">🚀 Anúncios e páginas validados com dezenas de eletricistas. Não começamos do zero.</p>
+      <p class="bx-lead bx-gap">↪️ Exclusivo para eletricistas com faturamento mensal acima de R$ 20.000,00 e que investem ou pretendem investir mais de R$ 1.000,00 em anúncios mais o valor dos nossos serviços.</p>
+      <div class="bx-actions">
+        <button type="button" class="bx-btn" data-next>Quero Mais Pedidos</button>
+        <span class="bx-hint">Pressione <b>Enter ↵</b></span>
+      </div>
+    </section>
+
+    <!-- ===== TELA 2 — NOME ===== -->
+    <section class="bx-screen" data-step="1">
+      <div class="bx-q">Qual seu nome? <span class="bx-req">*</span></div>
+      <div class="bx-field">
+        <input type="text" class="bx-input" id="bx-nome" placeholder="Jose" autocomplete="given-name" />
+      </div>
+      <div class="bx-actions">
+        <button type="button" class="bx-btn bx-ok" data-next>OK</button>
+        <span class="bx-hint">Pressione <b>Enter ↵</b></span>
+      </div>
+      <div class="bx-err" data-err></div>
+    </section>
+
+    <!-- ===== TELA 3 — WHATSAPP ===== -->
+    <section class="bx-screen" data-step="2">
+      <div class="bx-q"><span data-nome>Jose</span>, qual seu WhatsApp por gentileza? <span class="bx-req">*</span></div>
+      <div class="bx-field">
+        <div class="bx-phone">
+          <span class="bx-flag">🇧🇷 <b>+55</b> ▾</span>
+          <input type="tel" class="bx-input" id="bx-whats" placeholder="(31) 99711-1122" inputmode="numeric" autocomplete="tel" />
+        </div>
+      </div>
+      <div class="bx-actions">
+        <button type="button" class="bx-btn bx-ok" data-next>OK</button>
+        <span class="bx-hint">Pressione <b>Enter ↵</b></span>
+      </div>
+      <div class="bx-err" data-err></div>
+    </section>
+
+    <!-- ===== TELA 4 — EMPRESA ===== -->
+    <section class="bx-screen" data-step="3">
+      <div class="bx-q"><span data-nome>Jose</span>, qual o nome da sua empresa de elétrica?</div>
+      <div class="bx-field">
+        <input type="text" class="bx-input" id="bx-empresa" placeholder="Jose Eletrica" autocomplete="organization" />
+      </div>
+      <div class="bx-actions">
+        <button type="button" class="bx-btn bx-ok" data-next>OK</button>
+        <span class="bx-hint">Pressione <b>Enter ↵</b></span>
+      </div>
+      <div class="bx-err" data-err></div>
+    </section>
+
+    <!-- ===== TELA 5 — SIMULADOR ===== -->
+    <section class="bx-screen" data-step="4">
+      <div class="bx-q"><span data-nome>Jose</span>, quanto você quer investir por mês em anúncios no Google?</div>
+      <div class="bx-field">
+        <div class="bx-sim-input">
+          <span class="bx-cur">R$</span>
+          <input type="text" class="bx-input" id="bx-invest" value="2.000" inputmode="numeric" />
+        </div>
+        <input type="range" class="bx-slider" id="bx-slider" min="1000" max="20000" step="500" value="2000" />
+        <div class="bx-slider-scale"><span>R$ 1.000</span><span>R$ 20.000</span></div>
+      </div>
+
+      <div class="bx-results">
+        <div class="bx-res"><div class="bx-res-num" id="bx-r-leads">200</div><div class="bx-res-lbl">Leads / mês</div></div>
+        <div class="bx-res"><div class="bx-res-num" id="bx-r-serv">100</div><div class="bx-res-lbl">Serviços fechados</div></div>
+        <div class="bx-res"><div class="bx-res-num" id="bx-r-ticket">R$ 400</div><div class="bx-res-lbl">Ticket médio</div></div>
+      </div>
+
+      <div class="bx-highlight">
+        <div class="bx-hl-lbl">Faturamento estimado por mês</div>
+        <div class="bx-hl-num" id="bx-r-fat">R$ 40.000</div>
+        <div class="bx-hl-sub" id="bx-r-roi">Retorno de 20x sobre o valor investido</div>
+      </div>
+
+      <p class="bx-disclaimer">Estimativa baseada no histórico de clientes da B8X: custo médio de R$ 10 por lead, a cada 2 leads 1 serviço de elétrica é fechado e ticket médio de R$ 400. Os resultados podem variar conforme região, ticket e execução.</p>
+
+      <div class="bx-actions">
+        <button type="button" class="bx-btn" data-next>Quero esses resultados</button>
+        <span class="bx-hint">Pressione <b>Enter ↵</b></span>
+      </div>
+    </section>
+
+    <!-- ===== TELA 6 — OBRIGADO / VÍDEO ===== -->
+    <section class="bx-screen" data-step="5">
+      <div class="bx-thanks">
+        <div class="bx-tick">✓</div>
+        <h2>Obrigado! Recebemos suas informações.</h2>
+        <p>Assista ao vídeo abaixo com o próximo passo. Nossa equipe entrará em contato pelo WhatsApp.</p>
+        <div class="bx-video" id="bx-video"></div>
+        <div class="bx-actions" style="justify-content:center">
+          <a class="bx-btn bx-btn-wa" id="bx-wa" href="#" target="_blank" rel="noopener">Chamar no WhatsApp</a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ============================================================
+     CONFIG — edite aqui
+  ============================================================ */
+  var B8X = {
+    // Endpoint do WordPress (admin-ajax). Deixe assim na maioria dos casos.
+    AJAX: "/wp-admin/admin-ajax.php",
+    // URL do vídeo da tela final (YouTube). Cole o link do vídeo da B8X:
+    VIDEO: "https://www.youtube.com/embed/VIDEO_ID_AQUI",
+    // WhatsApp da B8X para o botão final (só números, com DDI):
+    WHATS_B8X: "5511999999999",
+    // Parâmetros do simulador (histórico de clientes da B8X):
+    CUSTO_LEAD: 10,        // R$ por lead
+    LEADS_POR_SERVICO: 2,  // a cada 2 leads, 1 serviço fechado
+    TICKET: 400            // ticket médio R$
+  };
+
+  var root   = document.getElementById('b8x-quiz');
+  if(!root) return;
+  var screens = Array.prototype.slice.call(root.querySelectorAll('.bx-screen'));
+  var progress = document.getElementById('bx-progress');
+  var step = 0;
+  var TOTAL = screens.length;
+  var sent = false;
+
+  var data = { nome:'', whatsapp:'', empresa:'', investimento:0, leads:0, servicos:0, faturamento:0 };
+
+  var brl = function(n){ return 'R$ ' + Math.round(n).toLocaleString('pt-BR'); };
+  var digits = function(s){ return (s||'').replace(/\D/g,''); };
+
+  /* ---------- Navegação ---------- */
+  function show(i){
+    if(i<0) i=0; if(i>TOTAL-1) i=TOTAL-1;
+    screens[step].classList.remove('is-active');
+    step = i;
+    screens[step].classList.add('is-active');
+    progress.style.width = ((step)/(TOTAL-1)*100) + '%';
+    // foca o primeiro input da tela
+    var inp = screens[step].querySelector('.bx-input');
+    if(inp){ setTimeout(function(){ try{inp.focus();}catch(e){} }, 120); }
+    // atualiza nome nas telas
+    if(data.nome){
+      Array.prototype.forEach.call(root.querySelectorAll('[data-nome]'), function(el){ el.textContent = data.nome; });
+    }
+    // ao chegar na tela final, monta vídeo + envia dados
+    if(step === TOTAL-1){ mountVideo(); submit(); }
+  }
+
+  function setErr(msg){
+    var el = screens[step].querySelector('[data-err]');
+    if(el) el.textContent = msg || '';
+  }
+
+  /* ---------- Validação por passo ---------- */
+  function validateCurrent(){
+    setErr('');
+    var s = screens[step].getAttribute('data-step');
+    if(s === '1'){
+      var v = document.getElementById('bx-nome').value.trim();
+      if(v.length < 2){ setErr('Por favor, digite seu nome.'); return false; }
+      data.nome = v; return true;
+    }
+    if(s === '2'){
+      var d = digits(document.getElementById('bx-whats').value);
+      if(d.length < 10){ setErr('Digite um WhatsApp válido com DDD.'); return false; }
+      data.whatsapp = '+55 ' + document.getElementById('bx-whats').value.trim(); return true;
+    }
+    if(s === '3'){
+      data.empresa = document.getElementById('bx-empresa').value.trim();
+      return true; // opcional
+    }
+    if(s === '4'){
+      calc(); return true;
+    }
+    return true;
+  }
+
+  function next(){
+    if(!validateCurrent()) return;
+    show(step+1);
+  }
+
+  /* ---------- Máscara de telefone BR ---------- */
+  function maskPhone(v){
+    var d = digits(v).slice(0,11);
+    if(d.length === 0) return '';
+    if(d.length <= 2) return '(' + d;
+    if(d.length <= 6) return '(' + d.slice(0,2) + ') ' + d.slice(2);
+    if(d.length <= 10) return '(' + d.slice(0,2) + ') ' + d.slice(2,6) + '-' + d.slice(6);
+    return '(' + d.slice(0,2) + ') ' + d.slice(2,7) + '-' + d.slice(7);
+  }
+
+  /* ---------- Simulador ---------- */
+  function calc(){
+    var invest = parseInt(digits(document.getElementById('bx-invest').value) || '0', 10);
+    if(invest < 0) invest = 0;
+    var leads = Math.floor(invest / B8X.CUSTO_LEAD);
+    var servicos = Math.floor(leads / B8X.LEADS_POR_SERVICO);
+    var faturamento = servicos * B8X.TICKET;
+    var roi = invest > 0 ? (faturamento / invest) : 0;
+
+    data.investimento = invest;
+    data.leads = leads;
+    data.servicos = servicos;
+    data.faturamento = faturamento;
+
+    document.getElementById('bx-r-leads').textContent  = leads.toLocaleString('pt-BR');
+    document.getElementById('bx-r-serv').textContent   = servicos.toLocaleString('pt-BR');
+    document.getElementById('bx-r-ticket').textContent = brl(B8X.TICKET);
+    document.getElementById('bx-r-fat').textContent    = brl(faturamento);
+    document.getElementById('bx-r-roi').textContent    = roi ? ('Retorno de ' + (Math.round(roi*10)/10) + 'x sobre o valor investido') : '';
+  }
+
+  /* ---------- Vídeo tela final ---------- */
+  function mountVideo(){
+    var box = document.getElementById('bx-video');
+    if(!box || box.getAttribute('data-done')) return;
+    box.setAttribute('data-done','1');
+    if(B8X.VIDEO && B8X.VIDEO.indexOf('VIDEO_ID_AQUI') === -1){
+      var f = document.createElement('iframe');
+      f.src = B8X.VIDEO;
+      f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+      f.setAttribute('allowfullscreen','');
+      box.appendChild(f);
+    } else {
+      box.innerHTML = '<div class="bx-video-fallback">Configure a URL do vídeo na constante <b>B8X.VIDEO</b> no código.</div>';
+    }
+    var wa = document.getElementById('bx-wa');
+    if(wa){
+      var msg = 'Olá! Sou ' + (data.nome||'') + ' da ' + (data.empresa||'minha empresa') + ' e quero mais pedidos com o Método Agenda Elétrica.';
+      wa.href = 'https://wa.me/' + B8X.WHATS_B8X + '?text=' + encodeURIComponent(msg);
+    }
+  }
+
+  /* ---------- Envio para o WordPress ---------- */
+  function submit(){
+    if(sent) return; sent = true;
+    // backup local (caso o endpoint não esteja instalado)
+    try{ localStorage.setItem('b8x_lead_'+Date.now(), JSON.stringify(data)); }catch(e){}
+
+    var fd = new FormData();
+    fd.append('action', 'b8x_save_lead');
+    fd.append('nome', data.nome);
+    fd.append('whatsapp', data.whatsapp);
+    fd.append('empresa', data.empresa);
+    fd.append('investimento', data.investimento);
+    fd.append('leads', data.leads);
+    fd.append('servicos', data.servicos);
+    fd.append('faturamento', data.faturamento);
+    fd.append('origem', (window.location && window.location.href) || '');
+
+    try{
+      fetch(B8X.AJAX, { method:'POST', body:fd, credentials:'same-origin' })
+        .then(function(r){ return r.text(); })
+        .catch(function(){ /* silencioso: não bloqueia a experiência do lead */ });
+    }catch(e){}
+  }
+
+  /* ---------- Eventos ---------- */
+  root.addEventListener('click', function(e){
+    var b = e.target.closest('[data-next]');
+    if(b){ e.preventDefault(); next(); }
+  });
+
+  root.addEventListener('keydown', function(e){
+    if(e.key === 'Enter'){
+      // não avança enquanto o usuário estiver no textarea (não há), então segue
+      if(step < TOTAL-1){ e.preventDefault(); next(); }
+    }
+  });
+
+  // máscara de telefone ao digitar
+  var whats = document.getElementById('bx-whats');
+  if(whats){ whats.addEventListener('input', function(){ this.value = maskPhone(this.value); }); }
+
+  // simulador: input <-> slider
+  var invest = document.getElementById('bx-invest');
+  var slider = document.getElementById('bx-slider');
+  if(invest){
+    invest.addEventListener('input', function(){
+      var d = digits(this.value);
+      this.value = d ? parseInt(d,10).toLocaleString('pt-BR') : '';
+      var n = parseInt(d||'0',10);
+      if(slider && n>=slider.min && n<=slider.max) slider.value = n;
+      calc();
+    });
+  }
+  if(slider){
+    slider.addEventListener('input', function(){
+      invest.value = parseInt(this.value,10).toLocaleString('pt-BR');
+      calc();
+    });
+  }
+
+  // estado inicial
+  progress.style.width = '0%';
+  calc();
+})();
+</script>
