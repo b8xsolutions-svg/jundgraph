@@ -33,7 +33,7 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
  *  Deixe vazio ('') para NÃO enviar e-mail.
  * ============================================================ */
 if ( ! defined( 'B8X_NOTIFY_EMAIL' ) ) {
-	define( 'B8X_NOTIFY_EMAIL', 'b8xsolutions@gmail.com' );
+	define( 'B8X_NOTIFY_EMAIL', 'blaneckpaloma@gmail.com, leandro@b8x.com.br' );
 }
 
 /* 1) Registra o tipo de conteúdo (Custom Post Type) dos leads */
