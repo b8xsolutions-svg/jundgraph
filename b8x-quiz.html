@@ -19,6 +19,7 @@
   --bx-muted:#8a8a8a;
   --bx-line:#d9d9d9;
   --bx-white:#ffffff;
+  --bx-soft:#f4f4f2;
   --bx-green:#25D366;
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   color:var(--bx-text);
@@ -129,6 +130,18 @@
 #b8x-quiz .bx-highlight-split > div{flex:1;}
 #b8x-quiz .bx-highlight-split .bx-hl-num{font-size:32px;margin-top:2px;}
 
+/* ---------- Caixa de investimento (destacada) ---------- */
+#b8x-quiz .bx-cost{background:var(--bx-soft);border:1px solid var(--bx-line);padding:16px 18px;margin-bottom:16px;}
+#b8x-quiz .bx-cost-title{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--bx-muted);margin-bottom:8px;}
+#b8x-quiz .bx-cost-row{display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:6px 0;font-size:15px;}
+#b8x-quiz .bx-cost-row b{font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap;}
+#b8x-quiz .bx-cost-total{border-top:2px solid var(--bx-black);margin-top:6px;padding-top:12px;font-size:16px;font-weight:700;}
+#b8x-quiz .bx-cost-total b{font-size:19px;}
+
+/* ---------- Linha de confirmação do investimento ---------- */
+#b8x-quiz .bx-invest-line{font-size:16px;margin-bottom:14px;line-height:1.45;}
+#b8x-quiz .bx-invest-line b{font-weight:800;}
+
 /* ---------- Responsivo ---------- */
 @media (max-width:560px){
   #b8x-quiz .bx-screen{padding:48px 20px 40px;min-height:520px;}
@@ -163,7 +176,7 @@
     <section class="bx-screen" data-step="1">
       <div class="bx-q">Qual seu nome? <span class="bx-req">*</span></div>
       <div class="bx-field">
-        <input type="text" class="bx-input" id="bx-nome" placeholder="Jose" autocomplete="given-name" />
+        <input type="text" class="bx-input" id="bx-nome" placeholder="José" autocomplete="given-name" />
       </div>
       <div class="bx-actions">
         <button type="button" class="bx-btn bx-ok" data-next>OK</button>
@@ -174,7 +187,7 @@
 
     <!-- ===== TELA 3 — WHATSAPP ===== -->
     <section class="bx-screen" data-step="2">
-      <div class="bx-q"><span data-nome>Jose</span>, qual seu WhatsApp por gentileza? <span class="bx-req">*</span></div>
+      <div class="bx-q"><span data-nome>José</span>, qual seu WhatsApp por gentileza? <span class="bx-req">*</span></div>
       <div class="bx-field">
         <div class="bx-phone">
           <span class="bx-flag">🇧🇷 <b>+55</b> ▾</span>
@@ -190,9 +203,9 @@
 
     <!-- ===== TELA 4 — EMPRESA ===== -->
     <section class="bx-screen" data-step="3">
-      <div class="bx-q"><span data-nome>Jose</span>, qual o nome da sua empresa de elétrica?</div>
+      <div class="bx-q"><span data-nome>José</span>, qual o nome da sua empresa de elétrica?</div>
       <div class="bx-field">
-        <input type="text" class="bx-input" id="bx-empresa" placeholder="Jose Eletrica" autocomplete="organization" />
+        <input type="text" class="bx-input" id="bx-empresa" placeholder="Marins Elétrica Ltda" autocomplete="organization" />
       </div>
       <div class="bx-actions">
         <button type="button" class="bx-btn bx-ok" data-next>OK</button>
@@ -203,41 +216,48 @@
 
     <!-- ===== TELA 5 — SIMULADOR / ROI ===== -->
     <section class="bx-screen" data-step="4">
-      <div class="bx-q"><span data-nome>Jose</span>, quanto você quer investir por mês em anúncios no Google?</div>
+      <div class="bx-q"><span data-nome>José</span>, quanto você quer investir por mês em anúncios no Google?</div>
       <div class="bx-field">
         <div class="bx-sim-input">
           <span class="bx-cur">R$</span>
-          <input type="text" class="bx-input" id="bx-invest" value="2.000" inputmode="numeric" />
+          <input type="text" class="bx-input" id="bx-invest" value="1.000" inputmode="numeric" />
         </div>
-        <input type="range" class="bx-slider" id="bx-slider" min="1000" max="20000" step="500" value="2000" />
+        <input type="range" class="bx-slider" id="bx-slider" min="1000" max="20000" step="500" value="1000" />
         <div class="bx-slider-scale"><span>Mínimo R$ 1.000</span><span>R$ 20.000</span></div>
       </div>
 
       <table class="bx-table">
         <tbody>
-          <tr><td>Investimento no Google Ads</td><td id="bx-r-invest">R$ 2.000</td></tr>
           <tr><td>Custo por lead</td><td id="bx-r-custo">R$ 13</td></tr>
-          <tr><td>Leads no mês</td><td id="bx-r-leads">153</td></tr>
-          <tr><td>Vendas fechadas <span class="bx-note-inline">(1 a cada 3 leads)</span></td><td id="bx-r-serv">51</td></tr>
+          <tr><td>Leads no mês</td><td id="bx-r-leads">76</td></tr>
+          <tr><td>Vendas fechadas <span class="bx-note-inline">(1 a cada 3 leads)</span></td><td id="bx-r-serv">25</td></tr>
           <tr><td>Ticket médio</td><td id="bx-r-ticket">R$ 350</td></tr>
-          <tr><td>Serviço B8X <span class="bx-note-inline">(a partir de)</span></td><td id="bx-r-servico">R$ 790</td></tr>
-          <tr class="bx-table-sub"><td>Investimento total <span class="bx-note-inline">(Ads + B8X)</span></td><td id="bx-r-total">R$ 2.790</td></tr>
         </tbody>
       </table>
+
+      <!-- Caixa destacada com o investimento mensal -->
+      <div class="bx-cost">
+        <div class="bx-cost-title">Seu investimento por mês</div>
+        <div class="bx-cost-row"><span>Google Ads</span><b id="bx-c-ads">R$ 1.000/mês</b></div>
+        <div class="bx-cost-row"><span>Serviço B8X <span class="bx-note-inline">(a partir de)</span></span><b id="bx-c-b8x">R$ 790/mês</b></div>
+        <div class="bx-cost-row bx-cost-total"><span>Total</span><b id="bx-c-total">R$ 1.790/mês</b></div>
+      </div>
 
       <div class="bx-highlight bx-highlight-split">
         <div>
           <div class="bx-hl-lbl">Faturamento estimado / mês</div>
-          <div class="bx-hl-num" id="bx-r-fat">R$ 17.850</div>
+          <div class="bx-hl-num" id="bx-r-fat">R$ 8.750</div>
         </div>
         <div>
           <div class="bx-hl-lbl">Retorno (ROI)</div>
-          <div class="bx-hl-num" id="bx-r-roi">6,4x</div>
+          <div class="bx-hl-num" id="bx-r-roi">4,9x</div>
         </div>
       </div>
 
+      <p class="bx-invest-line">Estou disposto a investir <b id="bx-confirm">R$ 1.790,00</b> por mês.</p>
+
       <div class="bx-actions">
-        <button type="button" class="bx-btn" data-finish>Quero esses resultados</button>
+        <button type="button" class="bx-btn" data-finish>Quero Esses Resultados</button>
         <span class="bx-hint">Pressione <b>Enter ↵</b></span>
       </div>
 
@@ -278,6 +298,7 @@
   var data = { nome:'', whatsapp:'', empresa:'', investimento:0, leads:0, servicos:0, faturamento:0 };
 
   var brl = function(n){ return 'R$ ' + Math.round(n).toLocaleString('pt-BR'); };
+  var brlFull = function(n){ return 'R$ ' + Number(n).toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2}); };
   var digits = function(s){ return (s||'').replace(/\D/g,''); };
 
   /* ---------- Navegação ---------- */
@@ -356,15 +377,16 @@
     data.faturamento = faturamento;
     data.investimentoTotal = investTotal;
 
-    document.getElementById('bx-r-invest').textContent = brl(invest);
     document.getElementById('bx-r-custo').textContent  = brl(B8X.CUSTO_LEAD);
     document.getElementById('bx-r-leads').textContent  = leads.toLocaleString('pt-BR');
     document.getElementById('bx-r-serv').textContent   = vendas.toLocaleString('pt-BR');
     document.getElementById('bx-r-ticket').textContent = brl(B8X.TICKET);
-    document.getElementById('bx-r-servico').textContent= brl(B8X.SERVICO_B8X);
-    document.getElementById('bx-r-total').textContent  = brl(investTotal);
+    document.getElementById('bx-c-ads').textContent    = brl(invest) + '/mês';
+    document.getElementById('bx-c-b8x').textContent    = brl(B8X.SERVICO_B8X) + '/mês';
+    document.getElementById('bx-c-total').textContent  = brl(investTotal) + '/mês';
     document.getElementById('bx-r-fat').textContent    = brl(faturamento);
     document.getElementById('bx-r-roi').textContent    = roi ? ((Math.round(roi*10)/10).toLocaleString('pt-BR') + 'x') : '—';
+    document.getElementById('bx-confirm').textContent  = brlFull(investTotal);
   }
 
   /* ---------- Conclusão: grava lead e redireciona ---------- */
