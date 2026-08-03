@@ -242,11 +242,11 @@
     <section class="bx-screen" data-step="5">
       <div class="bx-thanks">
         <div class="bx-tick">✓</div>
-        <h2>Obrigado! Recebemos suas informações.</h2>
-        <p>Assista ao vídeo abaixo com o próximo passo. Nossa equipe entrará em contato pelo WhatsApp.</p>
+        <h2>Parabéns por dar os primeiros passos para elevar o nível do seu negócio.</h2>
+        <p>Clique abaixo e fale com um dos nossos especialistas para saber mais detalhes da nossa proposta comercial.</p>
         <div class="bx-video" id="bx-video"></div>
         <div class="bx-actions" style="justify-content:center">
-          <a class="bx-btn bx-btn-wa" id="bx-wa" href="#" target="_blank" rel="noopener">Chamar no WhatsApp</a>
+          <a class="bx-btn bx-btn-wa" id="bx-wa" href="#" target="_blank" rel="noopener">Falar com um especialista no WhatsApp</a>
         </div>
       </div>
     </section>
@@ -265,9 +265,9 @@
     // Endpoint do WordPress (admin-ajax). Deixe assim na maioria dos casos.
     AJAX: "/wp-admin/admin-ajax.php",
     // URL do vídeo da tela final (YouTube). Cole o link do vídeo da B8X:
-    VIDEO: "https://www.youtube.com/embed/VIDEO_ID_AQUI",
+    VIDEO: "https://www.youtube.com/embed/tWe7uD19rX0",
     // WhatsApp da B8X para o botão final (só números, com DDI):
-    WHATS_B8X: "5511999999999",
+    WHATS_B8X: "551151787180",
     // Parâmetros do simulador (histórico de clientes da B8X):
     CUSTO_LEAD: 10,        // R$ por lead
     LEADS_POR_SERVICO: 2,  // a cada 2 leads, 1 serviço fechado
@@ -386,7 +386,8 @@
     }
     var wa = document.getElementById('bx-wa');
     if(wa){
-      var msg = 'Olá! Sou ' + (data.nome||'') + ' da ' + (data.empresa||'minha empresa') + ' e quero mais pedidos com o Método Agenda Elétrica.';
+      var msg = 'Olá, quero saber mais sobre a proposta comercial da B8X.'
+              + (data.nome ? ' Meu nome é ' + data.nome + (data.empresa ? ' da ' + data.empresa : '') + '.' : '');
       wa.href = 'https://wa.me/' + B8X.WHATS_B8X + '?text=' + encodeURIComponent(msg);
     }
   }
