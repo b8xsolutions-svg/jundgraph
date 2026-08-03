@@ -7,8 +7,9 @@
     PHP do arquivo  b8x-lead-storage.php  (instruções lá dentro).
 
   ➜ CONFIGURE ABAIXO (procure por "CONFIG"):
-     • B8X_VIDEO   -> URL do vídeo (YouTube) da tela final
-     • B8X_AJAX    -> normalmente "/wp-admin/admin-ajax.php" (não mexa)
+     • THANKYOU_URL -> página para onde o lead é levado ao concluir
+     • AJAX         -> normalmente "/wp-admin/admin-ajax.php" (não mexa)
+     • Parâmetros do funil (custo por lead, ticket, etc.)
 ============================================================ -->
 <style>
 /* ---------- Escopo isolado: tudo vive dentro de #b8x-quiz ---------- */
@@ -108,40 +109,34 @@
 #b8x-quiz .bx-slider{width:100%;margin:18px 0 8px;accent-color:var(--bx-black);height:4px;}
 #b8x-quiz .bx-slider-scale{display:flex;justify-content:space-between;font-size:12px;color:var(--bx-muted);margin-bottom:26px;}
 
-#b8x-quiz .bx-results{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--bx-line);border:1px solid var(--bx-line);margin-bottom:14px;}
-#b8x-quiz .bx-res{background:var(--bx-white);padding:18px 14px;text-align:center;}
-#b8x-quiz .bx-res .bx-res-num{font-size:26px;font-weight:800;line-height:1.1;}
-#b8x-quiz .bx-res .bx-res-lbl{font-size:12px;color:var(--bx-muted);text-transform:uppercase;letter-spacing:.04em;margin-top:6px;}
 #b8x-quiz .bx-highlight{
   background:var(--bx-black);color:var(--bx-white);padding:22px 20px;text-align:center;margin-bottom:22px;
 }
 #b8x-quiz .bx-highlight .bx-hl-lbl{font-size:13px;text-transform:uppercase;letter-spacing:.08em;opacity:.7;}
 #b8x-quiz .bx-highlight .bx-hl-num{font-size:40px;font-weight:800;line-height:1.15;margin-top:4px;}
 #b8x-quiz .bx-highlight .bx-hl-sub{font-size:13px;opacity:.7;margin-top:6px;}
-#b8x-quiz .bx-disclaimer{font-size:12px;color:var(--bx-muted);margin-bottom:24px;line-height:1.5;}
+#b8x-quiz .bx-disclaimer{font-size:12px;color:var(--bx-muted);margin-top:16px;line-height:1.5;}
+#b8x-quiz .bx-disclaimer b{color:var(--bx-text);font-weight:700;}
 
-/* ---------- Tela final (obrigado) ---------- */
-#b8x-quiz .bx-thanks{text-align:center;}
-#b8x-quiz .bx-thanks .bx-tick{
-  width:64px;height:64px;border-radius:50%;background:var(--bx-black);color:#fff;
-  display:flex;align-items:center;justify-content:center;font-size:32px;margin:0 auto 22px;
-}
-#b8x-quiz .bx-thanks h2{font-size:28px;font-weight:800;margin-bottom:12px;line-height:1.25;}
-#b8x-quiz .bx-thanks p{font-size:17px;color:#444;margin-bottom:26px;}
-#b8x-quiz .bx-video{position:relative;width:100%;padding-top:56.25%;background:#000;margin-bottom:26px;}
-#b8x-quiz .bx-video iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
-#b8x-quiz .bx-video-fallback{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;padding:20px;text-align:center;}
-#b8x-quiz .bx-btn-wa{background:var(--bx-green);}
-#b8x-quiz .bx-btn-wa:hover{opacity:.9;}
+/* ---------- Tabela do ROI ---------- */
+#b8x-quiz .bx-table{width:100%;border-collapse:collapse;margin-bottom:16px;font-size:15px;}
+#b8x-quiz .bx-table td{padding:11px 2px;border-bottom:1px solid var(--bx-line);vertical-align:baseline;}
+#b8x-quiz .bx-table td:last-child{text-align:right;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap;padding-left:14px;}
+#b8x-quiz .bx-table tr:last-child td{border-bottom:0;}
+#b8x-quiz .bx-table .bx-table-sub td{border-top:2px solid var(--bx-black);border-bottom:0;padding-top:13px;font-weight:700;}
+#b8x-quiz .bx-note-inline{color:var(--bx-muted);font-weight:400;font-size:12.5px;}
+#b8x-quiz .bx-highlight-split{display:flex;gap:20px;text-align:left;}
+#b8x-quiz .bx-highlight-split > div{flex:1;}
+#b8x-quiz .bx-highlight-split .bx-hl-num{font-size:32px;margin-top:2px;}
 
 /* ---------- Responsivo ---------- */
 @media (max-width:560px){
   #b8x-quiz .bx-screen{padding:48px 20px 40px;min-height:520px;}
   #b8x-quiz .bx-q{font-size:20px;}
   #b8x-quiz .bx-input{font-size:22px;}
-  #b8x-quiz .bx-results{grid-template-columns:1fr;}
   #b8x-quiz .bx-highlight .bx-hl-num{font-size:34px;}
-  #b8x-quiz .bx-thanks h2{font-size:23px;}
+  #b8x-quiz .bx-highlight-split{flex-direction:column;gap:14px;}
+  #b8x-quiz .bx-highlight-split .bx-hl-num{font-size:28px;}
 }
 </style>
 
@@ -206,7 +201,7 @@
       <div class="bx-err" data-err></div>
     </section>
 
-    <!-- ===== TELA 5 — SIMULADOR ===== -->
+    <!-- ===== TELA 5 — SIMULADOR / ROI ===== -->
     <section class="bx-screen" data-step="4">
       <div class="bx-q"><span data-nome>Jose</span>, quanto você quer investir por mês em anúncios no Google?</div>
       <div class="bx-field">
@@ -215,40 +210,38 @@
           <input type="text" class="bx-input" id="bx-invest" value="2.000" inputmode="numeric" />
         </div>
         <input type="range" class="bx-slider" id="bx-slider" min="1000" max="20000" step="500" value="2000" />
-        <div class="bx-slider-scale"><span>R$ 1.000</span><span>R$ 20.000</span></div>
+        <div class="bx-slider-scale"><span>Mínimo R$ 1.000</span><span>R$ 20.000</span></div>
       </div>
 
-      <div class="bx-results">
-        <div class="bx-res"><div class="bx-res-num" id="bx-r-leads">200</div><div class="bx-res-lbl">Leads / mês</div></div>
-        <div class="bx-res"><div class="bx-res-num" id="bx-r-serv">100</div><div class="bx-res-lbl">Serviços fechados</div></div>
-        <div class="bx-res"><div class="bx-res-num" id="bx-r-ticket">R$ 400</div><div class="bx-res-lbl">Ticket médio</div></div>
-      </div>
+      <table class="bx-table">
+        <tbody>
+          <tr><td>Investimento no Google Ads</td><td id="bx-r-invest">R$ 2.000</td></tr>
+          <tr><td>Custo por lead</td><td id="bx-r-custo">R$ 13</td></tr>
+          <tr><td>Leads no mês</td><td id="bx-r-leads">153</td></tr>
+          <tr><td>Vendas fechadas <span class="bx-note-inline">(1 a cada 3 leads)</span></td><td id="bx-r-serv">51</td></tr>
+          <tr><td>Ticket médio</td><td id="bx-r-ticket">R$ 350</td></tr>
+          <tr><td>Serviço B8X <span class="bx-note-inline">(a partir de)</span></td><td id="bx-r-servico">R$ 790</td></tr>
+          <tr class="bx-table-sub"><td>Investimento total <span class="bx-note-inline">(Ads + B8X)</span></td><td id="bx-r-total">R$ 2.790</td></tr>
+        </tbody>
+      </table>
 
-      <div class="bx-highlight">
-        <div class="bx-hl-lbl">Faturamento estimado por mês</div>
-        <div class="bx-hl-num" id="bx-r-fat">R$ 40.000</div>
-        <div class="bx-hl-sub" id="bx-r-roi">Retorno de 20x sobre o valor investido</div>
-      </div>
-
-      <p class="bx-disclaimer">Estimativa baseada no histórico de clientes da B8X: custo médio de R$ 10 por lead, a cada 2 leads 1 serviço de elétrica é fechado e ticket médio de R$ 400. Os resultados podem variar conforme região, ticket e execução.</p>
-
-      <div class="bx-actions">
-        <button type="button" class="bx-btn" data-next>Quero esses resultados</button>
-        <span class="bx-hint">Pressione <b>Enter ↵</b></span>
-      </div>
-    </section>
-
-    <!-- ===== TELA 6 — OBRIGADO / VÍDEO ===== -->
-    <section class="bx-screen" data-step="5">
-      <div class="bx-thanks">
-        <div class="bx-tick">✓</div>
-        <h2>Parabéns por dar os primeiros passos para elevar o nível do seu negócio.</h2>
-        <p>Clique abaixo e fale com um dos nossos especialistas para saber mais detalhes da nossa proposta comercial.</p>
-        <div class="bx-video" id="bx-video"></div>
-        <div class="bx-actions" style="justify-content:center">
-          <a class="bx-btn bx-btn-wa" id="bx-wa" href="#" target="_blank" rel="noopener">Falar com um especialista no WhatsApp</a>
+      <div class="bx-highlight bx-highlight-split">
+        <div>
+          <div class="bx-hl-lbl">Faturamento estimado / mês</div>
+          <div class="bx-hl-num" id="bx-r-fat">R$ 17.850</div>
+        </div>
+        <div>
+          <div class="bx-hl-lbl">Retorno (ROI)</div>
+          <div class="bx-hl-num" id="bx-r-roi">6,4x</div>
         </div>
       </div>
+
+      <div class="bx-actions">
+        <button type="button" class="bx-btn" data-finish>Quero esses resultados</button>
+        <span class="bx-hint">Pressione <b>Enter ↵</b></span>
+      </div>
+
+      <p class="bx-disclaimer">* Estes valores <b>não são garantia</b> da B8X. O trabalho de vendas e fechamento é feito pela sua própria empresa — a B8X é responsável pelo tráfego e pela geração de leads. Os números representam apenas uma <b>média dos clientes atuais</b> da B8X (custo por lead de R$ 13, 1 venda a cada 3 leads e ticket médio de R$ 350) e podem variar conforme região, ticket e execução.</p>
     </section>
 
   </div>
@@ -264,14 +257,14 @@
   var B8X = {
     // Endpoint do WordPress (admin-ajax). Deixe assim na maioria dos casos.
     AJAX: "/wp-admin/admin-ajax.php",
-    // URL do vídeo da tela final (YouTube). Cole o link do vídeo da B8X:
-    VIDEO: "https://www.youtube.com/embed/tWe7uD19rX0",
-    // WhatsApp da B8X para o botão final (só números, com DDI):
-    WHATS_B8X: "551151787180",
-    // Parâmetros do simulador (histórico de clientes da B8X):
-    CUSTO_LEAD: 10,        // R$ por lead
-    LEADS_POR_SERVICO: 2,  // a cada 2 leads, 1 serviço fechado
-    TICKET: 400            // ticket médio R$
+    // Para onde o lead é levado ao concluir (página de obrigado da B8X):
+    THANKYOU_URL: "https://b8x.com.br/thank-you/",
+    // Parâmetros do simulador (média dos clientes atuais da B8X):
+    CUSTO_LEAD: 13,        // R$ por lead
+    LEADS_POR_SERVICO: 3,  // a cada 3 leads, 1 venda
+    TICKET: 350,           // ticket médio R$
+    SERVICO_B8X: 790,      // valor do serviço da B8X (a partir de)
+    INVEST_MIN: 1000       // investimento mínimo no Google Ads
   };
 
   var root   = document.getElementById('b8x-quiz');
@@ -301,8 +294,6 @@
     if(data.nome){
       Array.prototype.forEach.call(root.querySelectorAll('[data-nome]'), function(el){ el.textContent = data.nome; });
     }
-    // ao chegar na tela final, monta vídeo + envia dados
-    if(step === TOTAL-1){ mountVideo(); submit(); }
   }
 
   function setErr(msg){
@@ -354,42 +345,35 @@
     var invest = parseInt(digits(document.getElementById('bx-invest').value) || '0', 10);
     if(invest < 0) invest = 0;
     var leads = Math.floor(invest / B8X.CUSTO_LEAD);
-    var servicos = Math.floor(leads / B8X.LEADS_POR_SERVICO);
-    var faturamento = servicos * B8X.TICKET;
-    var roi = invest > 0 ? (faturamento / invest) : 0;
+    var vendas = Math.floor(leads / B8X.LEADS_POR_SERVICO);
+    var faturamento = vendas * B8X.TICKET;
+    var investTotal = invest + B8X.SERVICO_B8X;
+    var roi = investTotal > 0 ? (faturamento / investTotal) : 0;
 
     data.investimento = invest;
     data.leads = leads;
-    data.servicos = servicos;
+    data.servicos = vendas;
     data.faturamento = faturamento;
+    data.investimentoTotal = investTotal;
 
+    document.getElementById('bx-r-invest').textContent = brl(invest);
+    document.getElementById('bx-r-custo').textContent  = brl(B8X.CUSTO_LEAD);
     document.getElementById('bx-r-leads').textContent  = leads.toLocaleString('pt-BR');
-    document.getElementById('bx-r-serv').textContent   = servicos.toLocaleString('pt-BR');
+    document.getElementById('bx-r-serv').textContent   = vendas.toLocaleString('pt-BR');
     document.getElementById('bx-r-ticket').textContent = brl(B8X.TICKET);
+    document.getElementById('bx-r-servico').textContent= brl(B8X.SERVICO_B8X);
+    document.getElementById('bx-r-total').textContent  = brl(investTotal);
     document.getElementById('bx-r-fat').textContent    = brl(faturamento);
-    document.getElementById('bx-r-roi').textContent    = roi ? ('Retorno de ' + (Math.round(roi*10)/10) + 'x sobre o valor investido') : '';
+    document.getElementById('bx-r-roi').textContent    = roi ? ((Math.round(roi*10)/10).toLocaleString('pt-BR') + 'x') : '—';
   }
 
-  /* ---------- Vídeo tela final ---------- */
-  function mountVideo(){
-    var box = document.getElementById('bx-video');
-    if(!box || box.getAttribute('data-done')) return;
-    box.setAttribute('data-done','1');
-    if(B8X.VIDEO && B8X.VIDEO.indexOf('VIDEO_ID_AQUI') === -1){
-      var f = document.createElement('iframe');
-      f.src = B8X.VIDEO;
-      f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
-      f.setAttribute('allowfullscreen','');
-      box.appendChild(f);
-    } else {
-      box.innerHTML = '<div class="bx-video-fallback">Configure a URL do vídeo na constante <b>B8X.VIDEO</b> no código.</div>';
-    }
-    var wa = document.getElementById('bx-wa');
-    if(wa){
-      var msg = 'Olá, quero saber mais sobre a proposta comercial da B8X.'
-              + (data.nome ? ' Meu nome é ' + data.nome + (data.empresa ? ' da ' + data.empresa : '') + '.' : '');
-      wa.href = 'https://wa.me/' + B8X.WHATS_B8X + '?text=' + encodeURIComponent(msg);
-    }
+  /* ---------- Conclusão: grava lead e redireciona ---------- */
+  function finish(btn){
+    calc();
+    if(btn){ btn.disabled = true; btn.textContent = 'Enviando...'; }
+    submit();
+    // pequeno atraso para o envio sair antes do redirecionamento
+    setTimeout(function(){ window.location.href = B8X.THANKYOU_URL; }, 350);
   }
 
   /* ---------- Envio para o WordPress ---------- */
@@ -407,10 +391,13 @@
     fd.append('leads', data.leads);
     fd.append('servicos', data.servicos);
     fd.append('faturamento', data.faturamento);
+    fd.append('servico_b8x', B8X.SERVICO_B8X);
+    fd.append('investimento_total', data.investimentoTotal || (data.investimento + B8X.SERVICO_B8X));
     fd.append('origem', (window.location && window.location.href) || '');
 
     try{
-      fetch(B8X.AJAX, { method:'POST', body:fd, credentials:'same-origin' })
+      // keepalive garante o envio mesmo com o redirecionamento em seguida
+      fetch(B8X.AJAX, { method:'POST', body:fd, credentials:'same-origin', keepalive:true })
         .then(function(r){ return r.text(); })
         .catch(function(){ /* silencioso: não bloqueia a experiência do lead */ });
     }catch(e){}
@@ -418,14 +405,20 @@
 
   /* ---------- Eventos ---------- */
   root.addEventListener('click', function(e){
+    var f = e.target.closest('[data-finish]');
+    if(f){ e.preventDefault(); finish(f); return; }
     var b = e.target.closest('[data-next]');
     if(b){ e.preventDefault(); next(); }
   });
 
   root.addEventListener('keydown', function(e){
     if(e.key === 'Enter'){
-      // não avança enquanto o usuário estiver no textarea (não há), então segue
-      if(step < TOTAL-1){ e.preventDefault(); next(); }
+      e.preventDefault();
+      if(step === TOTAL-1){
+        finish(screens[step].querySelector('[data-finish]'));
+      } else {
+        next();
+      }
     }
   });
 

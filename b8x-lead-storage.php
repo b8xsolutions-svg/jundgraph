@@ -54,10 +54,12 @@ function b8x_save_lead() {
 	$empresa  = isset( $_POST['empresa'] )  ? sanitize_text_field( wp_unslash( $_POST['empresa'] ) )  : '';
 	$origem   = isset( $_POST['origem'] )   ? esc_url_raw( wp_unslash( $_POST['origem'] ) )            : '';
 
-	$investimento = isset( $_POST['investimento'] ) ? intval( $_POST['investimento'] ) : 0;
-	$leads        = isset( $_POST['leads'] )        ? intval( $_POST['leads'] )        : 0;
-	$servicos     = isset( $_POST['servicos'] )     ? intval( $_POST['servicos'] )     : 0;
-	$faturamento  = isset( $_POST['faturamento'] )  ? intval( $_POST['faturamento'] )  : 0;
+	$investimento = isset( $_POST['investimento'] )       ? intval( $_POST['investimento'] )       : 0;
+	$leads        = isset( $_POST['leads'] )              ? intval( $_POST['leads'] )              : 0;
+	$servicos     = isset( $_POST['servicos'] )           ? intval( $_POST['servicos'] )           : 0;
+	$faturamento  = isset( $_POST['faturamento'] )        ? intval( $_POST['faturamento'] )        : 0;
+	$servico_b8x  = isset( $_POST['servico_b8x'] )        ? intval( $_POST['servico_b8x'] )        : 0;
+	$invest_total = isset( $_POST['investimento_total'] ) ? intval( $_POST['investimento_total'] ) : 0;
 
 	// Precisa ter ao menos nome ou whatsapp para gravar
 	if ( '' === $nome && '' === $whatsapp ) {
@@ -80,11 +82,13 @@ function b8x_save_lead() {
 	update_post_meta( $post_id, 'b8x_nome',         $nome );
 	update_post_meta( $post_id, 'b8x_whatsapp',     $whatsapp );
 	update_post_meta( $post_id, 'b8x_empresa',      $empresa );
-	update_post_meta( $post_id, 'b8x_investimento', $investimento );
-	update_post_meta( $post_id, 'b8x_leads',        $leads );
-	update_post_meta( $post_id, 'b8x_servicos',     $servicos );
-	update_post_meta( $post_id, 'b8x_faturamento',  $faturamento );
-	update_post_meta( $post_id, 'b8x_origem',       $origem );
+	update_post_meta( $post_id, 'b8x_investimento',       $investimento );
+	update_post_meta( $post_id, 'b8x_leads',              $leads );
+	update_post_meta( $post_id, 'b8x_servicos',           $servicos );
+	update_post_meta( $post_id, 'b8x_faturamento',        $faturamento );
+	update_post_meta( $post_id, 'b8x_servico_b8x',        $servico_b8x );
+	update_post_meta( $post_id, 'b8x_investimento_total', $invest_total );
+	update_post_meta( $post_id, 'b8x_origem',             $origem );
 
 	wp_send_json_success( array( 'id' => $post_id ) );
 }
@@ -128,11 +132,13 @@ add_action( 'add_meta_boxes', function () {
 			'b8x_nome'         => 'Nome',
 			'b8x_whatsapp'     => 'WhatsApp',
 			'b8x_empresa'      => 'Empresa de elétrica',
-			'b8x_investimento' => 'Investimento pretendido (R$)',
-			'b8x_leads'        => 'Leads estimados',
-			'b8x_servicos'     => 'Serviços estimados',
-			'b8x_faturamento'  => 'Faturamento estimado (R$)',
-			'b8x_origem'       => 'Página de origem',
+			'b8x_investimento'       => 'Investimento em Ads (R$)',
+			'b8x_servico_b8x'        => 'Serviço B8X (R$)',
+			'b8x_investimento_total' => 'Investimento total (R$)',
+			'b8x_leads'              => 'Leads estimados',
+			'b8x_servicos'           => 'Vendas estimadas',
+			'b8x_faturamento'        => 'Faturamento estimado (R$)',
+			'b8x_origem'             => 'Página de origem',
 		);
 		echo '<table class="widefat striped"><tbody>';
 		foreach ( $fields as $key => $label ) {
