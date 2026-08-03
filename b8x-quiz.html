@@ -116,8 +116,30 @@
 #b8x-quiz .bx-highlight .bx-hl-lbl{font-size:13px;text-transform:uppercase;letter-spacing:.08em;opacity:.7;}
 #b8x-quiz .bx-highlight .bx-hl-num{font-size:40px;font-weight:800;line-height:1.15;margin-top:4px;}
 #b8x-quiz .bx-highlight .bx-hl-sub{font-size:13px;opacity:.7;margin-top:6px;}
-#b8x-quiz .bx-disclaimer{font-size:12px;color:var(--bx-muted);margin-top:16px;line-height:1.5;}
-#b8x-quiz .bx-disclaimer b{color:var(--bx-text);font-weight:700;}
+/* legenda dos termos */
+#b8x-quiz .bx-legend{font-size:12.5px;color:var(--bx-muted);line-height:1.55;margin:-6px 0 20px;}
+#b8x-quiz .bx-legend b{color:var(--bx-text);font-weight:700;}
+
+/* aviso em destaque */
+#b8x-quiz .bx-notice{
+  border:2px solid var(--bx-black);background:var(--bx-soft);
+  padding:16px 18px;margin-top:18px;
+  font-size:13.5px;line-height:1.6;color:var(--bx-text);
+}
+#b8x-quiz .bx-notice b{font-weight:800;}
+
+/* caixa de caso real */
+#b8x-quiz .bx-case{
+  border:1px solid var(--bx-line);border-left:4px solid var(--bx-black);
+  background:var(--bx-white);padding:14px 16px;margin-top:12px;
+  font-size:13.5px;line-height:1.6;color:var(--bx-text);
+}
+#b8x-quiz .bx-case-tag{
+  display:inline-block;background:var(--bx-black);color:#fff;
+  font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;
+  padding:3px 9px;margin-bottom:9px;
+}
+#b8x-quiz .bx-case b{font-weight:800;}
 
 /* ---------- Tabela do ROI ---------- */
 #b8x-quiz .bx-table{width:100%;border-collapse:collapse;margin-bottom:16px;font-size:15px;}
@@ -235,6 +257,8 @@
         </tbody>
       </table>
 
+      <p class="bx-legend"><b>Lead</b> = pessoa interessada no serviço chamando no WhatsApp. &nbsp;·&nbsp; <b>Ticket médio</b> = valor médio dos serviços prestados.</p>
+
       <!-- Caixa destacada com o investimento mensal -->
       <div class="bx-cost">
         <div class="bx-cost-title">Seu investimento por mês</div>
@@ -261,7 +285,14 @@
         <span class="bx-hint">Pressione <b>Enter ↵</b></span>
       </div>
 
-      <p class="bx-disclaimer">* Estes valores <b>não são garantia</b> da B8X. O trabalho de vendas e fechamento é feito pela sua própria empresa — a B8X é responsável pelo tráfego e pela geração de leads. Os números representam apenas uma <b>média dos clientes atuais</b> da B8X (custo por lead de R$ 13, 1 venda a cada 3 leads e ticket médio de R$ 350) e podem variar conforme região, ticket e execução.</p>
+      <div class="bx-notice">
+        <p><b>Estes valores não são garantia da B8X.</b> O trabalho de vendas e fechamento é feito pela sua própria empresa — a B8X é responsável pelo tráfego e pela geração de leads. Os números representam apenas uma <b>média dos clientes atuais</b> da B8X para <b>serviços elétricos residenciais</b> (não para carro elétrico), com custo por lead de R$ 13, 1 venda a cada 3 leads e ticket médio de R$ 350 — e podem variar conforme região, ticket e execução.</p>
+      </div>
+
+      <div class="bx-case">
+        <span class="bx-case-tag">Caso real</span>
+        <p>Na prática, temos clientes — como a <b>Malben</b> — que fecham valores ainda maiores: <b>ticket médio de R$ 450,00</b> e <b>1 venda a cada 2 leads</b>, além de serviços de <b>carro elétrico por cerca de R$ 2.000,00</b>.</p>
+      </div>
     </section>
 
   </div>
