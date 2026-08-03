@@ -10,6 +10,8 @@
  *     cada resposta como um lead.
  *   • Mostra Nome, WhatsApp, Empresa, Investimento e Faturamento
  *     estimado direto na lista do admin.
+ *   • Envia um e-mail avisando cada vez que alguém preenche o
+ *     formulário (configure o destinatário em B8X_NOTIFY_EMAIL abaixo).
  *
  *  COMO INSTALAR (escolha 1 das opções):
  *   A) Plugin "Code Snippets": crie um novo snippet, cole TODO
@@ -23,6 +25,16 @@
  */
 
 if ( ! defined( 'ABSPATH' ) ) { exit; }
+
+/* ============================================================
+ *  CONFIG — para quem vai o aviso por e-mail de novo lead.
+ *  Troque pelo(s) e-mail(s) desejado(s). Para mais de um,
+ *  separe por vírgula: 'a@x.com, b@y.com'.
+ *  Deixe vazio ('') para NÃO enviar e-mail.
+ * ============================================================ */
+if ( ! defined( 'B8X_NOTIFY_EMAIL' ) ) {
+	define( 'B8X_NOTIFY_EMAIL', 'b8xsolutions@gmail.com' );
+}
 
 /* 1) Registra o tipo de conteúdo (Custom Post Type) dos leads */
 add_action( 'init', function () {
@@ -89,6 +101,20 @@ function b8x_save_lead() {
 	update_post_meta( $post_id, 'b8x_servico_b8x',        $servico_b8x );
 	update_post_meta( $post_id, 'b8x_investimento_total', $invest_total );
 	update_post_meta( $post_id, 'b8x_origem',             $origem );
+
+	/* Notificação por e-mail: avisa que alguém preencheu o formulário */
+	if ( B8X_NOTIFY_EMAIL ) {
+		$assunto = 'Novo lead do Quiz B8X' . ( $nome ? ' — ' . $nome : '' );
+		$corpo   = "Alguém preencheu o formulário do Método Agenda Elétrica.\n\n";
+		$corpo  .= 'Nome: '     . ( $nome     ? $nome     : '—' ) . "\n";
+		$corpo  .= 'WhatsApp: ' . ( $whatsapp ? $whatsapp : '—' ) . "\n";
+		$corpo  .= 'Empresa: '  . ( $empresa  ? $empresa  : '—' ) . "\n";
+		$corpo  .= 'Investimento pretendido: R$ ' . number_format_i18n( $investimento ) . "/mês\n\n";
+		$corpo  .= 'Ver o lead completo no painel: ' . admin_url( 'post.php?post=' . $post_id . '&action=edit' ) . "\n";
+
+		$destinatarios = array_filter( array_map( 'trim', explode( ',', B8X_NOTIFY_EMAIL ) ) );
+		wp_mail( $destinatarios, $assunto, $corpo );
+	}
 
 	wp_send_json_success( array( 'id' => $post_id ) );
 }
