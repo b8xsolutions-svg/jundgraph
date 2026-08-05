@@ -1,0 +1,2457 @@
+<!--
+  SENEGAL INDÚSTRIA GRÁFICA
+  Landing page: impressos para campanha, divulgação e eventos (alta tiragem)
+  Bloco único pronto para o widget HTML do Elementor (WordPress).
+
+  Mesma identidade visual e cores da marca Senegal (verde + laranja),
+  com PRODUTOS NOVOS (santinho, panfleto, impresso A4, jornal e botão adesivo).
+
+  ====================  COMO COLOCAR AS SUAS FOTOS  ====================
+  1) Suba as imagens na Biblioteca de Mídia do WordPress.
+  2) Copie o link (URL) de cada uma e cole abaixo, entre as aspas.
+  3) Pronto! Enquanto a URL estiver vazia, aparece a arte vetorial (SVG),
+     então o site nunca fica com "imagem quebrada".
+  =====================================================================
+-->
+
+<script>
+/* >>> COLE AQUI AS URLs DAS SUAS IMAGENS (deixe vazio para usar a arte padrão) <<< */
+var GPX_BASE = "https://senegal.impressao.site/wp-content/uploads/2026/08/";
+window.GPX_IMAGENS = {
+  produto1:  GPX_BASE + "ChatGPT-Image-5-de-ago.-de-2026-11_39_01.png", /* 01 · Santinho 7x10 */
+  produto2:  GPX_BASE + "ChatGPT-Image-5-de-ago.-de-2026-11_37_47.png", /* 02 · Santão        */
+  produto3:  GPX_BASE + "ChatGPT-Image-5-de-ago.-de-2026-11_37_50.png", /* 03 · Panfleto A5   */
+  produto4:  GPX_BASE + "ChatGPT-Image-5-de-ago.-de-2026-11_37_37.png", /* 04 · Impresso A4   */
+  produto5:  GPX_BASE + "ChatGPT-Image-5-de-ago.-de-2026-11_37_42.png", /* 05 · Jornal        */
+  produto6:  GPX_BASE + "ChatGPT-Image-5-de-ago.-de-2026-11_37_55.png", /* 06 · Botões        */
+  hero:      GPX_BASE + "ChatGPT-Image-5-de-ago.-de-2026-14_18_13.png", /* TOPO (grande)      */
+  heroInset: GPX_BASE + "ChatGPT-Image-5-de-ago.-de-2026-11_37_55.png"  /* TOPO (pequena) · botões */
+};
+</script>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow-x: hidden;
+}
+
+.senegal-impressos-shell,
+.senegal-impressos-shell * {
+  box-sizing: border-box;
+}
+
+.senegal-impressos-shell {
+  --gpx-blue: #1f5c3d;
+  --gpx-blue-2: #2d8659;
+  --gpx-blue-dark: #123d29;
+  --gpx-accent: #e8833a;
+  --gpx-accent-dark: #d4742e;
+  --gpx-ink: #171b18;
+  --gpx-muted: #667069;
+  --gpx-line: #dfe5e0;
+  --gpx-paper: #f7f5ef;
+  --gpx-white: #ffffff;
+  position: relative;
+  top: 0;
+  left: 50%;
+  width: 100vw;
+  max-width: 100vw;
+  margin-top: 0;
+  margin-left: -50vw;
+  overflow: hidden;
+  background: var(--gpx-white);
+  color: var(--gpx-ink);
+  font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.senegal-impressos-shell img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+}
+
+.senegal-impressos-shell svg {
+  display: block;
+}
+
+.senegal-impressos-shell a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.senegal-impressos-shell button,
+.senegal-impressos-shell a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.senegal-impressos-shell .gpx-container {
+  width: min(1180px, calc(100% - 48px));
+  margin: 0 auto;
+}
+
+.senegal-impressos-shell .gpx-kicker {
+  display: inline-flex;
+  flex-wrap: wrap;
+  max-width: 100%;
+  align-items: center;
+  gap: 6px 10px;
+  margin: 0 0 18px;
+  color: var(--gpx-accent);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+
+.senegal-impressos-shell .gpx-kicker::before {
+  width: 34px;
+  height: 3px;
+  background: currentColor;
+  content: '';
+}
+
+.senegal-impressos-shell .gpx-section-title {
+  max-width: 780px;
+  margin: 0;
+  color: var(--gpx-ink);
+  font-size: clamp(34px, 4.2vw, 58px);
+  font-weight: 800;
+  letter-spacing: -2px;
+  line-height: 1.08;
+}
+
+.senegal-impressos-shell .gpx-section-title span {
+  color: var(--gpx-blue);
+}
+
+.senegal-impressos-shell .gpx-section-copy {
+  max-width: 650px;
+  margin: 20px 0 0;
+  color: var(--gpx-muted);
+  font-size: 17px;
+  line-height: 1.8;
+}
+
+.senegal-impressos-shell .gpx-btn {
+  display: inline-flex;
+  min-height: 52px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 24px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  background: var(--gpx-accent);
+  box-shadow: 0 12px 28px rgba(232, 131, 58, .23);
+  color: var(--gpx-white);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+  transition: transform .25s ease, background .25s ease, box-shadow .25s ease;
+}
+
+.senegal-impressos-shell .gpx-btn:hover {
+  background: var(--gpx-accent-dark);
+  box-shadow: 0 15px 34px rgba(232, 131, 58, .32);
+  transform: translateY(-2px);
+}
+
+.senegal-impressos-shell .gpx-btn svg {
+  width: 19px;
+  height: 19px;
+  flex: 0 0 19px;
+  fill: currentColor;
+}
+
+.senegal-impressos-shell .gpx-btn-outline {
+  border-color: rgba(31, 92, 61, .24);
+  background: transparent;
+  box-shadow: none;
+  color: var(--gpx-blue);
+}
+
+.senegal-impressos-shell .gpx-btn-outline:hover {
+  border-color: var(--gpx-blue);
+  background: var(--gpx-blue);
+  box-shadow: none;
+  color: var(--gpx-white);
+}
+
+/* Header */
+.senegal-impressos-shell .gpx-header {
+  position: relative;
+  z-index: 50;
+  width: 100vw;
+  margin: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, .12);
+  background: var(--gpx-blue-dark);
+}
+
+.senegal-impressos-shell .gpx-header-inner {
+  display: flex;
+  min-height: 82px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+}
+
+/* Logo em texto (adapta-se a qualquer tema) */
+.senegal-impressos-shell .gpx-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.senegal-impressos-shell .gpx-logo-img {
+  width: auto;
+  height: 52px;
+  object-fit: contain;
+}
+
+.senegal-impressos-shell .gpx-footer .gpx-logo-img {
+  height: 50px;
+}
+
+.senegal-impressos-shell .gpx-logo-mark {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  border-radius: 9px;
+  background: var(--gpx-white);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, .28);
+}
+
+.senegal-impressos-shell .gpx-logo-mark span {
+  position: relative;
+  display: block;
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  background:
+    linear-gradient(135deg, #2d8659 0 50%, transparent 50% 100%),
+    linear-gradient(315deg, #ffc721 0 50%, transparent 50% 100%),
+    var(--gpx-accent);
+}
+
+.senegal-impressos-shell .gpx-logo-text strong {
+  display: block;
+  color: var(--gpx-white);
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  line-height: 1;
+}
+
+.senegal-impressos-shell .gpx-logo-text small {
+  display: block;
+  margin-top: 4px;
+  color: rgba(255, 255, 255, .6);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 2.4px;
+  text-transform: uppercase;
+}
+
+.senegal-impressos-shell .gpx-nav {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.senegal-impressos-shell .gpx-nav a:not(.gpx-btn) {
+  position: relative;
+  color: rgba(255, 255, 255, .84);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.senegal-impressos-shell .gpx-nav a:not(.gpx-btn)::after {
+  position: absolute;
+  right: 0;
+  bottom: -8px;
+  left: 0;
+  height: 2px;
+  background: var(--gpx-accent);
+  content: '';
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform .25s ease;
+}
+
+.senegal-impressos-shell .gpx-nav a:not(.gpx-btn):hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.senegal-impressos-shell .gpx-header .gpx-btn {
+  min-height: 44px;
+  padding: 11px 18px;
+}
+
+.senegal-impressos-shell .gpx-menu-toggle {
+  display: none;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, .18);
+  border-radius: 4px;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+}
+
+.senegal-impressos-shell .gpx-menu-toggle svg {
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-width: 2;
+}
+
+/* Hero */
+.senegal-impressos-shell .gpx-hero {
+  position: relative;
+  background: var(--gpx-paper);
+}
+
+.senegal-impressos-shell .gpx-hero::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 35%;
+  background: var(--gpx-blue);
+  content: '';
+}
+
+.senegal-impressos-shell .gpx-hero-grid {
+  position: relative;
+  display: grid;
+  min-height: 690px;
+  grid-template-columns: minmax(0, .93fr) minmax(440px, .87fr);
+  align-items: center;
+  gap: 76px;
+  padding-top: 72px;
+  padding-bottom: 72px;
+}
+
+.senegal-impressos-shell .gpx-hero-copy {
+  position: relative;
+  z-index: 2;
+  min-width: 0;
+  padding: 28px 0;
+}
+
+.senegal-impressos-shell .gpx-hero h1 {
+  max-width: 680px;
+  margin: 0;
+  color: var(--gpx-ink);
+  font-size: clamp(43px, 5.2vw, 72px);
+  font-weight: 800;
+  letter-spacing: -3px;
+  line-height: 1.02;
+}
+
+.senegal-impressos-shell .gpx-hero h1 span {
+  color: var(--gpx-blue);
+}
+
+.senegal-impressos-shell .gpx-hero-copy > p {
+  max-width: 650px;
+  margin: 24px 0 0;
+  color: #59625d;
+  font-size: 17px;
+  line-height: 1.8;
+}
+
+.senegal-impressos-shell .gpx-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 32px;
+}
+
+.senegal-impressos-shell .gpx-hero-proof {
+  display: grid;
+  max-width: 610px;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 42px;
+  border-top: 1px solid #d5dbd6;
+}
+
+.senegal-impressos-shell .gpx-hero-proof div {
+  padding: 18px 18px 0 0;
+}
+
+.senegal-impressos-shell .gpx-hero-proof strong {
+  display: block;
+  color: var(--gpx-blue);
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.senegal-impressos-shell .gpx-hero-proof span {
+  display: block;
+  margin-top: 3px;
+  color: var(--gpx-muted);
+  font-size: 12px;
+}
+
+.senegal-impressos-shell .gpx-hero-media {
+  position: relative;
+  z-index: 2;
+  min-width: 0;
+}
+
+.senegal-impressos-shell .gpx-hero-main {
+  position: relative;
+  aspect-ratio: .94 / 1;
+  overflow: hidden;
+  border: 10px solid var(--gpx-white);
+  border-radius: 8px;
+  box-shadow: 0 30px 65px rgba(15, 52, 34, .26);
+}
+
+.senegal-impressos-shell .gpx-hero-main img,
+.senegal-impressos-shell .gpx-hero-main svg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.senegal-impressos-shell .gpx-price-stamp {
+  position: absolute;
+  top: 34px;
+  left: -42px;
+  width: 178px;
+  padding: 17px 18px;
+  border-left: 5px solid #f9b887;
+  background: var(--gpx-accent);
+  box-shadow: 0 16px 30px rgba(0, 0, 0, .18);
+  color: var(--gpx-white);
+  text-transform: uppercase;
+}
+
+.senegal-impressos-shell .gpx-price-stamp small {
+  display: block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+}
+
+.senegal-impressos-shell .gpx-price-stamp strong {
+  display: block;
+  margin-top: 3px;
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 1.05;
+}
+
+.senegal-impressos-shell .gpx-hero-inset {
+  position: absolute;
+  right: -42px;
+  bottom: -38px;
+  width: 45%;
+  aspect-ratio: .82 / 1;
+  overflow: hidden;
+  border: 8px solid var(--gpx-white);
+  border-radius: 6px;
+  box-shadow: 0 22px 45px rgba(0, 0, 0, .28);
+}
+
+.senegal-impressos-shell .gpx-hero-inset img,
+.senegal-impressos-shell .gpx-hero-inset svg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Barra de posicionamento */
+.senegal-impressos-shell .gpx-assurance {
+  position: relative;
+  z-index: 4;
+  background: var(--gpx-ink);
+  color: var(--gpx-white);
+}
+
+.senegal-impressos-shell .gpx-assurance-grid {
+  display: grid;
+  grid-template-columns: 1.15fr repeat(3, 1fr);
+}
+
+.senegal-impressos-shell .gpx-assurance-lead,
+.senegal-impressos-shell .gpx-assurance-item {
+  min-height: 138px;
+  padding: 30px 28px;
+  border-right: 1px solid rgba(255, 255, 255, .12);
+}
+
+.senegal-impressos-shell .gpx-assurance-lead {
+  display: flex;
+  align-items: center;
+  background: var(--gpx-accent);
+}
+
+.senegal-impressos-shell .gpx-assurance-lead strong {
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.senegal-impressos-shell .gpx-assurance-item strong {
+  display: block;
+  color: var(--gpx-white);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.senegal-impressos-shell .gpx-assurance-item span {
+  display: block;
+  margin-top: 7px;
+  color: rgba(255, 255, 255, .65);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+/* Cabecalho de produtos */
+.senegal-impressos-shell .gpx-products-head {
+  padding: 110px 0 68px;
+}
+
+.senegal-impressos-shell .gpx-products-head-inner {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 48px;
+}
+
+.senegal-impressos-shell .gpx-products-note {
+  max-width: 340px;
+  padding: 20px 0 4px 24px;
+  border-left: 4px solid var(--gpx-accent);
+  color: var(--gpx-muted);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.senegal-impressos-shell .gpx-products-note strong {
+  color: var(--gpx-blue);
+}
+
+/* Produto */
+.senegal-impressos-shell .gpx-product {
+  padding: 86px 0;
+  border-top: 1px solid var(--gpx-line);
+}
+
+.senegal-impressos-shell .gpx-product:nth-of-type(even) {
+  background: var(--gpx-paper);
+}
+
+.senegal-impressos-shell .gpx-product-grid {
+  display: grid;
+  grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr);
+  align-items: center;
+  gap: 76px;
+}
+
+.senegal-impressos-shell .gpx-product-copy {
+  min-width: 0;
+}
+
+.senegal-impressos-shell .gpx-product.gpx-reverse .gpx-product-media {
+  order: 2;
+}
+
+.senegal-impressos-shell .gpx-product-media {
+  position: relative;
+  min-width: 0;
+}
+
+.senegal-impressos-shell .gpx-product-photo {
+  position: relative;
+  aspect-ratio: 1 / .9;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 24px 50px rgba(23, 27, 24, .14);
+}
+
+.senegal-impressos-shell .gpx-product-photo img,
+.senegal-impressos-shell .gpx-product-photo svg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .7s cubic-bezier(.2, .7, .2, 1);
+}
+
+.senegal-impressos-shell .gpx-product:hover .gpx-product-photo img,
+.senegal-impressos-shell .gpx-product:hover .gpx-product-photo svg {
+  transform: scale(1.035);
+}
+
+.senegal-impressos-shell .gpx-photo-index {
+  position: absolute;
+  right: -18px;
+  bottom: -18px;
+  display: grid;
+  width: 86px;
+  height: 86px;
+  place-items: center;
+  border: 8px solid var(--gpx-white);
+  background: var(--gpx-blue);
+  color: var(--gpx-white);
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.senegal-impressos-shell .gpx-product.gpx-reverse .gpx-photo-index {
+  right: auto;
+  left: -18px;
+}
+
+.senegal-impressos-shell .gpx-product-labels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-bottom: 22px;
+}
+
+.senegal-impressos-shell .gpx-product-labels span {
+  padding: 6px 9px;
+  border: 1px solid #d7ddd8;
+  border-radius: 3px;
+  color: var(--gpx-blue);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .45px;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.senegal-impressos-shell .gpx-product-copy h3 {
+  max-width: 620px;
+  margin: 0;
+  color: var(--gpx-ink);
+  font-size: clamp(31px, 3.4vw, 47px);
+  font-weight: 800;
+  letter-spacing: -1.6px;
+  line-height: 1.08;
+}
+
+.senegal-impressos-shell .gpx-product-copy > p {
+  max-width: 610px;
+  margin: 18px 0 0;
+  color: var(--gpx-muted);
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.senegal-impressos-shell .gpx-specs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 22px;
+  margin: 28px 0 30px;
+  border-top: 1px solid var(--gpx-line);
+}
+
+.senegal-impressos-shell .gpx-spec {
+  display: flex;
+  min-height: 62px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--gpx-line);
+}
+
+.senegal-impressos-shell .gpx-spec span {
+  color: var(--gpx-muted);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+}
+
+.senegal-impressos-shell .gpx-spec strong {
+  color: var(--gpx-ink);
+  font-size: 13px;
+  font-weight: 700;
+  text-align: right;
+}
+
+/* Tabelas de preços */
+.senegal-impressos-shell .gpx-price-box {
+  margin: 30px 0;
+  overflow: hidden;
+  border: 1px solid var(--gpx-line);
+  border-radius: 6px;
+  background: var(--gpx-white);
+  box-shadow: 0 14px 32px rgba(23, 27, 24, .07);
+}
+
+.senegal-impressos-shell .gpx-price-box-head {
+  display: flex;
+  min-height: 62px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 14px 18px;
+  background: var(--gpx-blue);
+  color: var(--gpx-white);
+}
+
+.senegal-impressos-shell .gpx-price-box-head strong {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.senegal-impressos-shell .gpx-price-box-head span {
+  flex: 0 0 auto;
+  padding: 6px 9px;
+  border: 1px solid rgba(255, 255, 255, .32);
+  border-radius: 3px;
+  color: rgba(255, 255, 255, .9);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .6px;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.senegal-impressos-shell .gpx-price-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.senegal-impressos-shell .gpx-price-table th,
+.senegal-impressos-shell .gpx-price-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--gpx-line);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.senegal-impressos-shell .gpx-price-table th:first-child,
+.senegal-impressos-shell .gpx-price-table td:first-child {
+  width: 28%;
+  text-align: left;
+}
+
+.senegal-impressos-shell .gpx-price-table th {
+  background: #eef3ef;
+  color: var(--gpx-blue-dark);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .45px;
+  text-transform: uppercase;
+}
+
+.senegal-impressos-shell .gpx-price-table td {
+  color: var(--gpx-ink);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.senegal-impressos-shell .gpx-price-table tbody tr:last-child td {
+  border-bottom: 0;
+  background: #fff6ef;
+  color: var(--gpx-accent-dark);
+  font-weight: 800;
+}
+
+.senegal-impressos-shell .gpx-price-note {
+  margin: 0;
+  padding: 11px 14px;
+  border-top: 1px solid var(--gpx-line);
+  background: #fafbf9;
+  color: var(--gpx-muted);
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+/* Destaque "A partir de" (substitui a tabela) */
+.senegal-impressos-shell .gpx-price-from {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 14px;
+  margin: 30px 0;
+  padding: 20px 24px;
+  border: 1px solid var(--gpx-line);
+  border-left: 5px solid var(--gpx-accent);
+  border-radius: 6px;
+  background: var(--gpx-white);
+  box-shadow: 0 14px 32px rgba(23, 27, 24, .07);
+}
+
+.senegal-impressos-shell .gpx-price-from-label {
+  color: var(--gpx-muted);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+}
+
+.senegal-impressos-shell .gpx-price-from-value {
+  color: var(--gpx-blue);
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -1px;
+  line-height: 1;
+}
+
+.senegal-impressos-shell .gpx-price-from-tag {
+  flex: 1 1 auto;
+  min-width: 120px;
+  text-align: right;
+  color: var(--gpx-muted);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .3px;
+  text-transform: uppercase;
+}
+
+.senegal-impressos-shell .gpx-product-bottom {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.senegal-impressos-shell .gpx-product-bottom small {
+  max-width: 220px;
+  color: var(--gpx-muted);
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+/* Volumes */
+.senegal-impressos-shell .gpx-volumes {
+  position: relative;
+  padding: 110px 0;
+  overflow: hidden;
+  background: var(--gpx-blue-dark);
+  color: var(--gpx-white);
+}
+
+.senegal-impressos-shell .gpx-volumes::before {
+  position: absolute;
+  top: -80px;
+  right: -60px;
+  width: 330px;
+  height: 330px;
+  border: 55px solid rgba(255, 255, 255, .04);
+  border-radius: 50%;
+  content: '';
+}
+
+.senegal-impressos-shell .gpx-volumes-head {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr .72fr;
+  align-items: end;
+  gap: 70px;
+}
+
+.senegal-impressos-shell .gpx-volumes .gpx-section-title {
+  color: var(--gpx-white);
+}
+
+.senegal-impressos-shell .gpx-volumes .gpx-section-title span {
+  color: #f4aa73;
+}
+
+.senegal-impressos-shell .gpx-volumes-intro {
+  margin: 0 0 5px;
+  color: rgba(255, 255, 255, .7);
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.senegal-impressos-shell .gpx-volume-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-top: 54px;
+}
+
+.senegal-impressos-shell .gpx-volume-card {
+  min-height: 260px;
+  padding: 30px;
+  border: 1px solid rgba(255, 255, 255, .14);
+  background: rgba(255, 255, 255, .055);
+  transition: background .25s ease, transform .25s ease;
+}
+
+.senegal-impressos-shell .gpx-volume-card:hover {
+  background: rgba(255, 255, 255, .09);
+  transform: translateY(-5px);
+}
+
+.senegal-impressos-shell .gpx-volume-number {
+  color: var(--gpx-accent);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.senegal-impressos-shell .gpx-volume-card h3 {
+  margin: 42px 0 0;
+  color: var(--gpx-white);
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.senegal-impressos-shell .gpx-volume-card p {
+  margin: 12px 0 0;
+  color: rgba(255, 255, 255, .64);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.senegal-impressos-shell .gpx-volume-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  margin-top: 42px;
+  padding-top: 34px;
+  border-top: 1px solid rgba(255, 255, 255, .14);
+}
+
+.senegal-impressos-shell .gpx-volume-cta strong {
+  max-width: 720px;
+  font-size: 19px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+/* Públicos */
+.senegal-impressos-shell .gpx-audiences {
+  padding: 108px 0;
+  background: var(--gpx-paper);
+}
+
+.senegal-impressos-shell .gpx-audiences-layout {
+  display: grid;
+  grid-template-columns: .78fr 1.22fr;
+  gap: 76px;
+}
+
+.senegal-impressos-shell .gpx-audience-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.senegal-impressos-shell .gpx-audience-card {
+  min-height: 180px;
+  padding: 27px;
+  border: 1px solid var(--gpx-line);
+  background: var(--gpx-white);
+}
+
+.senegal-impressos-shell .gpx-audience-card svg {
+  width: 30px;
+  height: 30px;
+  fill: none;
+  stroke: var(--gpx-accent);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.7;
+}
+
+.senegal-impressos-shell .gpx-audience-card h3 {
+  margin: 24px 0 0;
+  color: var(--gpx-ink);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.senegal-impressos-shell .gpx-audience-card p {
+  margin: 7px 0 0;
+  color: var(--gpx-muted);
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+/* Processo */
+.senegal-impressos-shell .gpx-process {
+  padding: 105px 0;
+  background: var(--gpx-white);
+}
+
+.senegal-impressos-shell .gpx-process-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 34px;
+  margin-top: 55px;
+}
+
+.senegal-impressos-shell .gpx-process-step {
+  position: relative;
+  padding-top: 22px;
+  border-top: 5px solid var(--gpx-blue);
+}
+
+.senegal-impressos-shell .gpx-process-step::after {
+  position: absolute;
+  top: -5px;
+  right: -34px;
+  width: 34px;
+  height: 5px;
+  background: #dfe5e0;
+  content: '';
+}
+
+.senegal-impressos-shell .gpx-process-step:last-child::after {
+  display: none;
+}
+
+.senegal-impressos-shell .gpx-process-step span {
+  color: var(--gpx-accent);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.senegal-impressos-shell .gpx-process-step h3 {
+  margin: 15px 0 0;
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.senegal-impressos-shell .gpx-process-step p {
+  margin: 8px 0 0;
+  color: var(--gpx-muted);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+/* FAQ */
+.senegal-impressos-shell .gpx-faq {
+  padding: 105px 0;
+  background: var(--gpx-paper);
+}
+
+.senegal-impressos-shell .gpx-faq-layout {
+  display: grid;
+  grid-template-columns: .72fr 1.28fr;
+  gap: 78px;
+}
+
+.senegal-impressos-shell .gpx-faq-list {
+  border-top: 1px solid #cfd7d1;
+}
+
+.senegal-impressos-shell .gpx-faq details {
+  border-bottom: 1px solid #cfd7d1;
+}
+
+.senegal-impressos-shell .gpx-faq summary {
+  position: relative;
+  padding: 23px 48px 23px 0;
+  color: var(--gpx-ink);
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 700;
+  list-style: none;
+}
+
+.senegal-impressos-shell .gpx-faq summary::-webkit-details-marker {
+  display: none;
+}
+
+.senegal-impressos-shell .gpx-faq summary::before,
+.senegal-impressos-shell .gpx-faq summary::after {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  width: 18px;
+  height: 2px;
+  background: var(--gpx-blue);
+  content: '';
+  transition: transform .2s ease;
+}
+
+.senegal-impressos-shell .gpx-faq summary::after {
+  transform: rotate(90deg);
+}
+
+.senegal-impressos-shell .gpx-faq details[open] summary::after {
+  transform: rotate(0);
+}
+
+.senegal-impressos-shell .gpx-faq details p {
+  max-width: 710px;
+  margin: -4px 0 0;
+  padding: 0 48px 24px 0;
+  color: var(--gpx-muted);
+  font-size: 13px;
+  line-height: 1.75;
+}
+
+/* CTA */
+.senegal-impressos-shell .gpx-final-cta {
+  position: relative;
+  padding: 105px 0;
+  overflow: hidden;
+  background: var(--gpx-accent);
+  color: var(--gpx-white);
+}
+
+.senegal-impressos-shell .gpx-final-cta::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 38%;
+  height: 100%;
+  background: var(--gpx-blue);
+  content: '';
+}
+
+.senegal-impressos-shell .gpx-final-inner {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 80px;
+}
+
+.senegal-impressos-shell .gpx-final-cta h2 {
+  max-width: 790px;
+  margin: 0;
+  color: var(--gpx-white);
+  font-size: clamp(36px, 4.5vw, 60px);
+  font-weight: 800;
+  letter-spacing: -2px;
+  line-height: 1.08;
+}
+
+.senegal-impressos-shell .gpx-final-cta p {
+  max-width: 690px;
+  margin: 18px 0 0;
+  color: rgba(255, 255, 255, .86);
+  font-size: 15px;
+}
+
+.senegal-impressos-shell .gpx-final-cta .gpx-btn {
+  min-width: 230px;
+  background: var(--gpx-white);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, .15);
+  color: var(--gpx-blue);
+}
+
+.senegal-impressos-shell .gpx-final-cta .gpx-btn:hover {
+  background: var(--gpx-paper);
+}
+
+/* Footer */
+.senegal-impressos-shell .gpx-footer {
+  padding: 48px 0 24px;
+  background: #101713;
+  color: var(--gpx-white);
+}
+
+.senegal-impressos-shell .gpx-footer-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  padding-bottom: 38px;
+}
+
+.senegal-impressos-shell .gpx-footer-copy {
+  max-width: 500px;
+  color: rgba(255, 255, 255, .58);
+  font-size: 12px;
+  text-align: right;
+}
+
+.senegal-impressos-shell .gpx-footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  padding-top: 22px;
+  border-top: 1px solid rgba(255, 255, 255, .1);
+  color: rgba(255, 255, 255, .46);
+  font-size: 11px;
+}
+
+.senegal-impressos-shell .gpx-footer-bottom a {
+  color: rgba(255, 255, 255, .75);
+}
+
+.senegal-impressos-shell .gpx-mobile-cta {
+  display: none;
+}
+
+/* Animacao */
+.senegal-impressos-shell.gpx-js .gpx-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .7s ease, transform .7s cubic-bezier(.2, .7, .2, 1);
+}
+
+.senegal-impressos-shell.gpx-js .gpx-reveal.gpx-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 1080px) {
+  .senegal-impressos-shell .gpx-nav {
+    gap: 18px;
+  }
+
+  .senegal-impressos-shell .gpx-hero-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(360px, .82fr);
+    gap: 42px;
+  }
+
+  .senegal-impressos-shell .gpx-price-stamp {
+    left: -22px;
+  }
+
+  .senegal-impressos-shell .gpx-hero-inset {
+    right: -20px;
+  }
+
+  .senegal-impressos-shell .gpx-product-grid {
+    gap: 48px;
+  }
+
+  .senegal-impressos-shell .gpx-audiences-layout,
+  .senegal-impressos-shell .gpx-faq-layout {
+    gap: 48px;
+  }
+}
+
+@media (max-width: 860px) {
+  .senegal-impressos-shell .gpx-container {
+    width: min(100% - 36px, 720px);
+  }
+
+  .senegal-impressos-shell .gpx-menu-toggle {
+    display: inline-flex;
+  }
+
+  .senegal-impressos-shell .gpx-nav {
+    position: absolute;
+    top: 82px;
+    right: 0;
+    left: 0;
+    display: none;
+    align-items: stretch;
+    flex-direction: column;
+    gap: 0;
+    padding: 14px 18px 20px;
+    border-top: 1px solid rgba(255, 255, 255, .1);
+    background: var(--gpx-blue-dark);
+    box-shadow: 0 20px 35px rgba(0, 0, 0, .2);
+  }
+
+  .senegal-impressos-shell .gpx-nav.gpx-open {
+    display: flex;
+  }
+
+  .senegal-impressos-shell .gpx-nav a:not(.gpx-btn) {
+    padding: 13px 5px;
+    border-bottom: 1px solid rgba(255, 255, 255, .08);
+  }
+
+  .senegal-impressos-shell .gpx-nav a:not(.gpx-btn)::after {
+    display: none;
+  }
+
+  .senegal-impressos-shell .gpx-nav .gpx-btn {
+    margin-top: 14px;
+  }
+
+  .senegal-impressos-shell .gpx-hero::before {
+    top: auto;
+    width: 100%;
+    height: 34%;
+  }
+
+  .senegal-impressos-shell .gpx-hero-grid {
+    min-height: auto;
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding-top: 54px;
+    padding-bottom: 82px;
+  }
+
+  .senegal-impressos-shell .gpx-hero-copy {
+    padding: 0;
+  }
+
+  .senegal-impressos-shell .gpx-hero h1 {
+    max-width: 720px;
+  }
+
+  .senegal-impressos-shell .gpx-hero-media {
+    width: calc(100% - 42px);
+    margin: 12px auto 0;
+  }
+
+  .senegal-impressos-shell .gpx-hero-main {
+    aspect-ratio: 1.25 / 1;
+  }
+
+  .senegal-impressos-shell .gpx-price-stamp {
+    top: 24px;
+    left: -22px;
+  }
+
+  .senegal-impressos-shell .gpx-hero-inset {
+    right: -24px;
+    bottom: -34px;
+    width: 35%;
+  }
+
+  .senegal-impressos-shell .gpx-assurance-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .senegal-impressos-shell .gpx-assurance-lead {
+    grid-column: 1 / -1;
+    min-height: auto;
+  }
+
+  .senegal-impressos-shell .gpx-products-head {
+    padding: 84px 0 54px;
+  }
+
+  .senegal-impressos-shell .gpx-products-head-inner {
+    align-items: start;
+    flex-direction: column;
+    gap: 26px;
+  }
+
+  .senegal-impressos-shell .gpx-product {
+    padding: 70px 0;
+  }
+
+  .senegal-impressos-shell .gpx-product-grid,
+  .senegal-impressos-shell .gpx-volumes-head,
+  .senegal-impressos-shell .gpx-audiences-layout,
+  .senegal-impressos-shell .gpx-faq-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .senegal-impressos-shell .gpx-product.gpx-reverse .gpx-product-media {
+    order: 0;
+  }
+
+  .senegal-impressos-shell .gpx-product-photo {
+    aspect-ratio: 1.25 / 1;
+  }
+
+  .senegal-impressos-shell .gpx-product.gpx-reverse .gpx-photo-index {
+    right: -18px;
+    left: auto;
+  }
+
+  .senegal-impressos-shell .gpx-volume-grid {
+    gap: 12px;
+  }
+
+  .senegal-impressos-shell .gpx-volume-card {
+    min-height: 240px;
+    padding: 24px;
+  }
+
+  .senegal-impressos-shell .gpx-final-cta::before {
+    top: auto;
+    width: 100%;
+    height: 34%;
+  }
+
+  .senegal-impressos-shell .gpx-final-inner {
+    grid-template-columns: 1fr;
+    gap: 38px;
+  }
+
+  .senegal-impressos-shell .gpx-final-cta .gpx-btn {
+    width: fit-content;
+  }
+}
+
+@media (max-width: 620px) {
+  .senegal-impressos-shell {
+    padding-bottom: 74px;
+  }
+
+  .senegal-impressos-shell .gpx-container {
+    width: calc(100% - 30px);
+  }
+
+  .senegal-impressos-shell .gpx-header-inner {
+    min-height: 72px;
+  }
+
+  .senegal-impressos-shell .gpx-logo-img {
+    height: 44px;
+  }
+
+  .senegal-impressos-shell .gpx-nav {
+    top: 72px;
+  }
+
+  .senegal-impressos-shell .gpx-section-title,
+  .senegal-impressos-shell .gpx-hero h1,
+  .senegal-impressos-shell .gpx-final-cta h2 {
+    letter-spacing: -1.5px;
+  }
+
+  .senegal-impressos-shell .gpx-hero-grid {
+    padding-top: 44px;
+    padding-bottom: 70px;
+  }
+
+  .senegal-impressos-shell .gpx-hero h1 {
+    font-size: clamp(39px, 12vw, 54px);
+  }
+
+  .senegal-impressos-shell .gpx-hero-copy > p {
+    font-size: 15px;
+  }
+
+  .senegal-impressos-shell .gpx-hero-actions,
+  .senegal-impressos-shell .gpx-product-bottom {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .senegal-impressos-shell .gpx-hero-actions .gpx-btn,
+  .senegal-impressos-shell .gpx-product-bottom .gpx-btn {
+    width: 100%;
+  }
+
+  .senegal-impressos-shell .gpx-product-bottom small {
+    max-width: none;
+    text-align: center;
+  }
+
+  .senegal-impressos-shell .gpx-price-box-head {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+    padding: 14px;
+  }
+
+  .senegal-impressos-shell .gpx-price-table th,
+  .senegal-impressos-shell .gpx-price-table td {
+    padding: 11px 7px;
+  }
+
+  .senegal-impressos-shell .gpx-price-table th {
+    font-size: 8px;
+    letter-spacing: .15px;
+  }
+
+  .senegal-impressos-shell .gpx-price-table td {
+    font-size: 11px;
+  }
+
+  .senegal-impressos-shell .gpx-hero-proof {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0;
+    margin-top: 30px;
+  }
+
+  .senegal-impressos-shell .gpx-hero-proof div {
+    min-width: 0;
+    padding: 12px 7px;
+    border-right: 1px solid var(--gpx-line);
+  }
+
+  .senegal-impressos-shell .gpx-hero-proof div:last-child {
+    border-right: 0;
+  }
+
+  .senegal-impressos-shell .gpx-hero-proof strong {
+    font-size: 11px;
+    line-height: 1.25;
+    overflow-wrap: break-word;
+  }
+
+  .senegal-impressos-shell .gpx-hero-proof span {
+    margin-top: 5px;
+    font-size: 10px;
+    line-height: 1.35;
+  }
+
+  .senegal-impressos-shell .gpx-hero-media {
+    width: calc(100% - 16px);
+  }
+
+  .senegal-impressos-shell .gpx-hero-main {
+    aspect-ratio: .92 / 1;
+    border-width: 7px;
+  }
+
+  .senegal-impressos-shell .gpx-price-stamp {
+    top: 16px;
+    left: -8px;
+    width: 150px;
+    padding: 13px 14px;
+  }
+
+  .senegal-impressos-shell .gpx-price-stamp strong {
+    font-size: 17px;
+  }
+
+  .senegal-impressos-shell .gpx-hero-inset {
+    right: -8px;
+    bottom: -30px;
+    width: 43%;
+    border-width: 6px;
+  }
+
+  .senegal-impressos-shell .gpx-assurance-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .senegal-impressos-shell .gpx-assurance-lead,
+  .senegal-impressos-shell .gpx-assurance-item {
+    min-height: auto;
+    padding: 24px 20px;
+    border-right: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, .11);
+  }
+
+  .senegal-impressos-shell .gpx-products-head {
+    padding: 74px 0 46px;
+  }
+
+  .senegal-impressos-shell .gpx-products-note {
+    padding-left: 17px;
+  }
+
+  .senegal-impressos-shell .gpx-product {
+    padding: 58px 0;
+  }
+
+  .senegal-impressos-shell .gpx-product-grid {
+    gap: 46px;
+  }
+
+  .senegal-impressos-shell .gpx-product-photo {
+    aspect-ratio: .96 / 1;
+  }
+
+  .senegal-impressos-shell .gpx-photo-index {
+    right: -7px;
+    bottom: -18px;
+    width: 70px;
+    height: 70px;
+    border-width: 6px;
+    font-size: 20px;
+  }
+
+  .senegal-impressos-shell .gpx-product.gpx-reverse .gpx-photo-index {
+    right: -7px;
+  }
+
+  .senegal-impressos-shell .gpx-product-copy h3 {
+    font-size: 33px;
+    letter-spacing: -1.1px;
+  }
+
+  .senegal-impressos-shell .gpx-specs {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .senegal-impressos-shell .gpx-volumes,
+  .senegal-impressos-shell .gpx-audiences,
+  .senegal-impressos-shell .gpx-process,
+  .senegal-impressos-shell .gpx-faq,
+  .senegal-impressos-shell .gpx-final-cta {
+    padding: 76px 0;
+  }
+
+  .senegal-impressos-shell .gpx-volume-grid,
+  .senegal-impressos-shell .gpx-audience-grid,
+  .senegal-impressos-shell .gpx-process-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .senegal-impressos-shell .gpx-volume-card {
+    min-height: auto;
+  }
+
+  .senegal-impressos-shell .gpx-volume-card h3 {
+    margin-top: 28px;
+  }
+
+  .senegal-impressos-shell .gpx-volume-cta,
+  .senegal-impressos-shell .gpx-footer-top,
+  .senegal-impressos-shell .gpx-footer-bottom {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .senegal-impressos-shell .gpx-volume-cta .gpx-btn,
+  .senegal-impressos-shell .gpx-final-cta .gpx-btn {
+    width: 100%;
+  }
+
+  .senegal-impressos-shell .gpx-audience-card {
+    min-height: auto;
+  }
+
+  .senegal-impressos-shell .gpx-process-step::after {
+    display: none;
+  }
+
+  .senegal-impressos-shell .gpx-faq summary {
+    padding-right: 38px;
+  }
+
+  .senegal-impressos-shell .gpx-faq details p {
+    padding-right: 10px;
+  }
+
+  .senegal-impressos-shell .gpx-footer-copy {
+    text-align: left;
+  }
+
+  .senegal-impressos-shell .gpx-mobile-cta {
+    position: fixed;
+    z-index: 9999;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: block;
+    padding: 9px 12px;
+    border-top: 1px solid rgba(255, 255, 255, .14);
+    background: rgba(18, 61, 41, .97);
+    backdrop-filter: blur(8px);
+  }
+
+  .senegal-impressos-shell .gpx-mobile-cta .gpx-btn {
+    width: 100%;
+    min-height: 51px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .senegal-impressos-shell *,
+  .senegal-impressos-shell *::before,
+  .senegal-impressos-shell *::after {
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+</style>
+
+<div class="senegal-impressos-shell">
+  <header class="gpx-header">
+    <div class="gpx-container gpx-header-inner">
+      <a class="gpx-logo" href="#gpx-inicio" aria-label="Senegal Indústria Gráfica">
+        <img class="gpx-logo-img" src="https://senegal.impressao.site/wp-content/uploads/2026/06/Design-sem-nome-36.png" alt="Senegal Indústria Gráfica">
+      </a>
+
+      <button class="gpx-menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
+      </button>
+
+      <nav class="gpx-nav" aria-label="Navegação da página">
+        <a href="#gpx-produtos">Produtos</a>
+        <a href="#gpx-tiragens">Tiragens</a>
+        <a href="#gpx-publicos">Para quem é</a>
+        <a href="#gpx-duvidas">Dúvidas</a>
+        <a class="gpx-btn gpx-whatsapp" href="https://wp.respondechat.com.br/redirect/122c49967" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.13h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.24 8.24 0 0 1-1.26-4.39c0-4.54 3.7-8.24 8.24-8.24 2.2 0 4.27.86 5.83 2.42a8.19 8.19 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.13-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43-.14 0-.31-.01-.48-.01-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.11-.22-.17-.47-.29Z"/></svg>
+          Pedir orçamento
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="gpx-hero" id="gpx-inicio">
+      <div class="gpx-container gpx-hero-grid">
+        <div class="gpx-hero-copy gpx-reveal">
+          <span class="gpx-kicker">Impressos para campanha e divulgação</span>
+          <h1>Impressos para sua campanha pelo <span>melhor preço e entrega rápida</span></h1>
+          <p>Santinhos, panfletos, jornais, impressos A4 e botões adesivos com cores vivas, prontos para distribuir. Produção para tiragens de mil a um milhão, com padrão profissional e valor competitivo.</p>
+
+          <div class="gpx-hero-actions">
+            <a class="gpx-btn gpx-whatsapp" href="https://wp.respondechat.com.br/redirect/122c49967" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.13h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.24 8.24 0 0 1-1.26-4.39c0-4.54 3.7-8.24 8.24-8.24 2.2 0 4.27.86 5.83 2.42a8.19 8.19 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.13-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43-.14 0-.31-.01-.48-.01-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.11-.22-.17-.47-.29Z"/></svg>
+              Cotar minha tiragem
+            </a>
+            <a class="gpx-btn gpx-btn-outline" href="#gpx-produtos">Ver produtos e preços</a>
+          </div>
+
+          <div class="gpx-hero-proof" aria-label="Diferenciais da produção">
+            <div><strong>Alta tiragem</strong><span>De 1.000 a 1.000.000</span></div>
+            <div><strong>Cores vivas 4×4</strong><span>Frente e verso</span></div>
+            <div><strong>Todo o Brasil</strong><span>Envio para o país todo</span></div>
+          </div>
+        </div>
+
+        <div class="gpx-hero-media gpx-reveal">
+          <div class="gpx-hero-main">
+            <!-- Troque por: <img src="URL-DA-SUA-FOTO" alt="Impressos para campanha"> -->
+            <svg viewBox="0 0 560 600" role="img" aria-label="Impressos coloridos para campanha" preserveAspectRatio="xMidYMid slice">
+              <defs>
+                <linearGradient id="heroBg" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="#21633f"/>
+                  <stop offset="1" stop-color="#123d29"/>
+                </linearGradient>
+                <linearGradient id="heroSheet" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#ffffff"/>
+                  <stop offset="1" stop-color="#eef3ef"/>
+                </linearGradient>
+              </defs>
+              <rect width="560" height="600" fill="url(#heroBg)"/>
+              <g opacity=".5" fill="none" stroke="#ffffff" stroke-width="1">
+                <path d="M40 26h26M53 13v26" opacity=".35"/>
+                <path d="M494 26h26M507 13v26" opacity=".35"/>
+                <path d="M40 574h26M53 561v26" opacity=".35"/>
+                <path d="M494 574h26M507 561v26" opacity=".35"/>
+              </g>
+              <g opacity=".12" fill="#ffffff" font-family="Poppins, Arial, sans-serif" font-weight="800">
+                <text x="60" y="360" font-size="240">4×4</text>
+              </g>
+              <!-- flyer 1 (fundo) -->
+              <g transform="rotate(-11 220 320)">
+                <rect x="120" y="150" width="220" height="300" rx="8" fill="url(#heroSheet)"/>
+                <rect x="120" y="150" width="220" height="86" rx="8" fill="#1f5c3d"/>
+                <rect x="140" y="176" width="120" height="14" rx="7" fill="#ffffff"/>
+                <rect x="140" y="200" width="80" height="10" rx="5" fill="#8bbd9d"/>
+                <rect x="140" y="256" width="180" height="120" rx="5" fill="#dfe5e0"/>
+                <circle cx="200" cy="316" r="28" fill="#e8833a"/>
+                <rect x="140" y="392" width="180" height="9" rx="4" fill="#ccd6cc"/>
+                <rect x="140" y="408" width="140" height="9" rx="4" fill="#ccd6cc"/>
+                <rect x="140" y="424" width="180" height="9" rx="4" fill="#ccd6cc"/>
+              </g>
+              <!-- flyer 2 (frente) -->
+              <g transform="rotate(7 320 330)">
+                <rect x="250" y="170" width="230" height="312" rx="8" fill="url(#heroSheet)"/>
+                <rect x="250" y="170" width="230" height="96" rx="8" fill="#e8833a"/>
+                <rect x="272" y="196" width="150" height="16" rx="8" fill="#ffffff"/>
+                <rect x="272" y="224" width="96" height="11" rx="5" fill="#f7dcc4"/>
+                <circle cx="440" cy="216" r="20" fill="#ffffff" opacity=".85"/>
+                <rect x="272" y="288" width="186" height="118" rx="5" fill="#eaefe8"/>
+                <path d="M300 372l34-40 26 26 30-34 42 48z" fill="#1f5c3d" opacity=".55"/>
+                <circle cx="322" cy="330" r="15" fill="#ffc721"/>
+                <rect x="272" y="420" width="186" height="10" rx="5" fill="#1f5c3d"/>
+                <rect x="272" y="438" width="140" height="10" rx="5" fill="#ccd6cc"/>
+                <rect x="272" y="456" width="120" height="10" rx="5" fill="#ccd6cc"/>
+              </g>
+              <!-- barra CMYK -->
+              <g>
+                <rect x="250" y="500" width="46" height="26" fill="#2d8659"/>
+                <rect x="296" y="500" width="46" height="26" fill="#d4742e"/>
+                <rect x="342" y="500" width="46" height="26" fill="#ffc721"/>
+                <rect x="388" y="500" width="46" height="26" fill="#171b18"/>
+              </g>
+              <!-- pontos flutuantes -->
+              <circle cx="90" cy="120" r="12" fill="#2d8659"/>
+              <circle cx="470" cy="118" r="9" fill="#ffc721"/>
+              <circle cx="120" cy="520" r="10" fill="#d4742e"/>
+            </svg>
+          </div>
+
+          <div class="gpx-price-stamp">
+            <small>A partir de</small>
+            <strong>R$ 0,0129 / un</strong>
+          </div>
+
+          <div class="gpx-hero-inset">
+            <!-- Troque por: <img src="URL-DA-SUA-FOTO" alt="Botões adesivos"> -->
+            <svg viewBox="0 0 300 366" role="img" aria-label="Botões adesivos redondos" preserveAspectRatio="xMidYMid slice">
+              <rect width="300" height="366" fill="#f7f5ef"/>
+              <g stroke="#ccd6cc" stroke-dasharray="4 5" fill="none">
+                <circle cx="86" cy="92" r="58"/>
+                <circle cx="214" cy="92" r="58"/>
+                <circle cx="86" cy="256" r="58"/>
+                <circle cx="214" cy="256" r="58"/>
+              </g>
+              <circle cx="86" cy="92" r="50" fill="#1f5c3d"/>
+              <circle cx="86" cy="92" r="18" fill="#ffc721"/>
+              <circle cx="214" cy="92" r="50" fill="#e8833a"/>
+              <path d="M214 70l6 16h17l-14 10 5 17-14-10-14 10 5-17-14-10h17z" fill="#fff"/>
+              <circle cx="86" cy="256" r="50" fill="#2d8659"/>
+              <rect x="66" y="246" width="40" height="8" rx="4" fill="#fff"/>
+              <rect x="66" y="262" width="28" height="8" rx="4" fill="#fff"/>
+              <circle cx="214" cy="256" r="50" fill="#d4742e"/>
+              <circle cx="214" cy="256" r="26" fill="none" stroke="#fff" stroke-width="6"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="gpx-assurance" aria-label="Vantagens Senegal">
+      <div class="gpx-container gpx-assurance-grid">
+        <div class="gpx-assurance-lead"><strong>Impressão offset e couché em alta tiragem</strong></div>
+        <div class="gpx-assurance-item"><strong>Cores 4×4 vivas</strong><span>Impressão frente e verso com fidelidade e acabamento refilado.</span></div>
+        <div class="gpx-assurance-item"><strong>De 1.000 a 1.000.000</strong><span>Tiragens pequenas, médias e grandes para qualquer campanha.</span></div>
+        <div class="gpx-assurance-item"><strong>Especificação clara</strong><span>Papel, formato, cores e acabamento definidos em cada produto.</span></div>
+      </div>
+    </section>
+
+    <div class="gpx-products-head" id="gpx-produtos">
+      <div class="gpx-container gpx-products-head-inner">
+        <div class="gpx-reveal">
+          <span class="gpx-kicker">Nossos produtos</span>
+          <h2 class="gpx-section-title">Impressos prontos para <span>distribuir e divulgar</span></h2>
+        </div>
+        <p class="gpx-products-note gpx-reveal">Todos os valores são <strong>por tiragem fechada</strong>. Informe o produto e a quantidade para receber a cotação exata da sua arte.</p>
+      </div>
+    </div>
+
+    <!-- Produto · Santinho 7x10 -->
+    <section class="gpx-product">
+      <div class="gpx-container gpx-product-grid">
+        <div class="gpx-product-media gpx-reveal">
+          <div class="gpx-product-photo">
+            <!-- Troque por: <img src="URL-DA-SUA-FOTO" alt="Santinho 7 x 10 cm"> -->
+            <svg viewBox="0 0 600 540" role="img" aria-label="Santinho de campanha 7 x 10 cm" preserveAspectRatio="xMidYMid slice">
+              <defs>
+                <linearGradient id="p0bg" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="#eef3ef"/><stop offset="1" stop-color="#dfe5e0"/>
+                </linearGradient>
+              </defs>
+              <rect width="600" height="540" fill="url(#p0bg)"/>
+              <circle cx="70" cy="70" r="10" fill="#2d8659"/>
+              <circle cx="540" cy="70" r="8" fill="#e8833a"/>
+              <g transform="rotate(-6 300 300)">
+                <rect x="188" y="66" width="224" height="408" rx="8" fill="#ffffff"/>
+                <rect x="188" y="66" width="224" height="150" fill="#1f5c3d"/>
+                <circle cx="300" cy="148" r="50" fill="#e7ece8"/>
+                <path d="M300 126a20 20 0 0 1 20 20c0 8-5 15-12 18 17 5 24 18 24 30h-64c0-12 7-25 24-30-7-3-12-10-12-18a20 20 0 0 1 20-20z" fill="#1f5c3d" opacity=".55"/>
+                <rect x="212" y="248" width="176" height="16" rx="8" fill="#171b18"/>
+                <rect x="212" y="276" width="118" height="12" rx="6" fill="#ccd6cc"/>
+                <rect x="212" y="314" width="176" height="48" rx="6" fill="#e8833a"/>
+                <rect x="230" y="330" width="96" height="18" rx="9" fill="#ffffff"/>
+                <g><rect x="212" y="384" width="44" height="20" fill="#2d8659"/><rect x="256" y="384" width="44" height="20" fill="#e8833a"/><rect x="300" y="384" width="44" height="20" fill="#ffc721"/><rect x="344" y="384" width="44" height="20" fill="#171b18"/></g>
+              </g>
+              <circle cx="92" cy="468" r="12" fill="#e8833a"/>
+            </svg>
+          </div>
+          <span class="gpx-photo-index">01</span>
+        </div>
+
+        <div class="gpx-product-copy gpx-reveal">
+          <div class="gpx-product-labels">
+            <span>Santinho de campanha</span>
+            <span>Formato 7 × 10 cm</span>
+            <span>Alta tiragem</span>
+          </div>
+          <h3>Santinho 7 × 10 cm em 4×4 cores</h3>
+          <p>O santinho tradicional de campanha, no formato de bolso e impresso frente e verso em cores vivas. O queridinho da panfletagem — quanto maior a tiragem, menor o custo por unidade.</p>
+
+          <div class="gpx-specs">
+            <div class="gpx-spec"><span>Tamanho</span><strong>7 × 10 cm</strong></div>
+            <div class="gpx-spec"><span>Papel</span><strong>Offset 75 g/m²</strong></div>
+            <div class="gpx-spec"><span>Cores</span><strong>4×4 (frente e verso)</strong></div>
+            <div class="gpx-spec"><span>Acabamento</span><strong>Refilado</strong></div>
+            <div class="gpx-spec"><span>Tiragem mínima</span><strong>25.000 unidades</strong></div>
+            <div class="gpx-spec"><span>Aplicação</span><strong>Campanhas e panfletagem</strong></div>
+          </div>
+
+          <div class="gpx-price-from">
+            <span class="gpx-price-from-label">A partir de</span>
+            <strong class="gpx-price-from-value">R$ 0,0129</strong>
+            <span class="gpx-price-from-tag">4 × 4 cores · por unidade</span>
+          </div>
+
+          <div class="gpx-product-bottom">
+            <a class="gpx-btn gpx-whatsapp" href="https://wp.respondechat.com.br/redirect/122c49967" target="_blank" rel="noopener">Consultar tabela</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Produto 01 -->
+    <section class="gpx-product">
+      <div class="gpx-container gpx-product-grid">
+        <div class="gpx-product-media gpx-reveal">
+          <div class="gpx-product-photo">
+            <!-- Troque por: <img src="URL-DA-SUA-FOTO" alt="Santinho / Santão 10 x 13,6 cm"> -->
+            <svg viewBox="0 0 600 540" role="img" aria-label="Santinhos empilhados" preserveAspectRatio="xMidYMid slice">
+              <defs>
+                <linearGradient id="p1bg" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="#eef3ef"/><stop offset="1" stop-color="#dfe5e0"/>
+                </linearGradient>
+              </defs>
+              <rect width="600" height="540" fill="url(#p1bg)"/>
+              <circle cx="70" cy="70" r="10" fill="#2d8659"/>
+              <circle cx="540" cy="70" r="8" fill="#ffc721"/>
+              <!-- pilha de santinhos -->
+              <g transform="rotate(-8 300 300)">
+                <rect x="150" y="120" width="230" height="312" rx="6" fill="#ccd6cc"/>
+                <rect x="164" y="108" width="230" height="312" rx="6" fill="#e0e6de"/>
+                <rect x="178" y="96" width="230" height="312" rx="6" fill="#ffffff"/>
+                <rect x="178" y="96" width="230" height="70" fill="#1f5c3d"/>
+                <rect x="198" y="120" width="150" height="14" rx="7" fill="#fff"/>
+                <rect x="198" y="142" width="90" height="9" rx="4" fill="#8bbd9d"/>
+                <circle cx="293" cy="250" r="52" fill="#eaefe8"/>
+                <path d="M293 214a26 26 0 0 1 26 26c0 10-6 18-14 22 22 6 30 24 30 40h-84c0-16 8-34 30-40-8-4-14-12-14-22a26 26 0 0 1 26-26z" fill="#1f5c3d" opacity=".55"/>
+                <rect x="210" y="332" width="166" height="11" rx="5" fill="#171b18"/>
+                <rect x="228" y="352" width="130" height="9" rx="4" fill="#ccd6cc"/>
+                <g><rect x="196" y="380" width="46" height="20" fill="#2d8659"/><rect x="242" y="380" width="46" height="20" fill="#d4742e"/><rect x="288" y="380" width="46" height="20" fill="#ffc721"/><rect x="334" y="380" width="46" height="20" fill="#171b18"/></g>
+              </g>
+              <circle cx="90" cy="470" r="12" fill="#e8833a"/>
+            </svg>
+          </div>
+          <span class="gpx-photo-index">01</span>
+        </div>
+
+        <div class="gpx-product-copy gpx-reveal">
+          <div class="gpx-product-labels">
+            <span>Santinho de campanha</span>
+            <span>Santão 4×4</span>
+            <span>Alta tiragem</span>
+          </div>
+          <h3>Santão 10 × 13,6 cm em 4×4 cores</h3>
+          <p>O clássico santinho de campanha em formato grande, com cores vivas na frente e no verso. Feito para grandes distribuições, com o menor custo unitário à medida que a tiragem cresce.</p>
+
+          <div class="gpx-specs">
+            <div class="gpx-spec"><span>Tamanho</span><strong>10 × 13,6 cm</strong></div>
+            <div class="gpx-spec"><span>Papel</span><strong>Offset 75 g/m²</strong></div>
+            <div class="gpx-spec"><span>Cores</span><strong>4×4 (frente e verso)</strong></div>
+            <div class="gpx-spec"><span>Acabamento</span><strong>Refilado</strong></div>
+            <div class="gpx-spec"><span>Tiragem mínima</span><strong>25.000 unidades</strong></div>
+            <div class="gpx-spec"><span>Aplicação</span><strong>Campanhas e divulgação</strong></div>
+          </div>
+
+          <div class="gpx-price-from">
+            <span class="gpx-price-from-label">A partir de</span>
+            <strong class="gpx-price-from-value">R$ 0,0286</strong>
+            <span class="gpx-price-from-tag">4 × 4 cores · por unidade</span>
+          </div>
+
+          <div class="gpx-product-bottom">
+            <a class="gpx-btn gpx-whatsapp" href="https://wp.respondechat.com.br/redirect/122c49967" target="_blank" rel="noopener">Consultar tabela</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Produto 02 -->
+    <section class="gpx-product gpx-reverse">
+      <div class="gpx-container gpx-product-grid">
+        <div class="gpx-product-media gpx-reveal">
+          <div class="gpx-product-photo">
+            <!-- Troque por: <img src="URL-DA-SUA-FOTO" alt="Panfleto A5 15 x 21 cm"> -->
+            <svg viewBox="0 0 600 540" role="img" aria-label="Panfleto A5 colorido" preserveAspectRatio="xMidYMid slice">
+              <defs>
+                <linearGradient id="p2bg" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="#1f5c3d"/><stop offset="1" stop-color="#16452d"/>
+                </linearGradient>
+              </defs>
+              <rect width="600" height="540" fill="url(#p2bg)"/>
+              <g opacity=".08" fill="#ffffff" font-family="Poppins, Arial, sans-serif" font-weight="800"><text x="30" y="470" font-size="150">A5</text></g>
+              <!-- panfleto principal -->
+              <g transform="rotate(4 300 270)">
+                <rect x="196" y="86" width="250" height="356" rx="7" fill="#ffffff"/>
+                <rect x="196" y="86" width="250" height="130" rx="7" fill="#e8833a"/>
+                <rect x="220" y="116" width="150" height="18" rx="9" fill="#fff"/>
+                <rect x="220" y="146" width="110" height="12" rx="6" fill="#f7dcc4"/>
+                <rect x="220" y="176" width="80" height="22" rx="11" fill="#ffc721"/>
+                <rect x="220" y="240" width="202" height="120" rx="6" fill="#eaefe8"/>
+                <circle cx="270" cy="300" r="30" fill="#2d8659"/>
+                <path d="M320 340l40-46 30 30 32-24v40z" fill="#1f5c3d" opacity=".5"/>
+                <rect x="220" y="378" width="202" height="10" rx="5" fill="#1f5c3d"/>
+                <rect x="220" y="396" width="160" height="10" rx="5" fill="#ccd6cc"/>
+                <rect x="220" y="414" width="120" height="10" rx="5" fill="#ccd6cc"/>
+              </g>
+              <circle cx="90" cy="110" r="12" fill="#ffc721"/>
+              <circle cx="520" cy="150" r="10" fill="#2d8659"/>
+              <circle cx="500" cy="440" r="13" fill="#d4742e"/>
+            </svg>
+          </div>
+          <span class="gpx-photo-index">02</span>
+        </div>
+
+        <div class="gpx-product-copy gpx-reveal">
+          <div class="gpx-product-labels">
+            <span>Panfleto A5</span>
+            <span>Folheto Couché</span>
+            <span>Divulgação</span>
+          </div>
+          <h3>Panfleto 15 × 21 cm · Couché 90g em 4×4</h3>
+          <p>O folheto ideal para panfletagem, promoções e divulgação. Papel couché 90g com cores intensas dos dois lados, entregando um material bonito com ótimo custo por unidade.</p>
+
+          <div class="gpx-specs">
+            <div class="gpx-spec"><span>Tamanho</span><strong>15 × 21 cm (A5)</strong></div>
+            <div class="gpx-spec"><span>Papel</span><strong>Couché 90 g/m²</strong></div>
+            <div class="gpx-spec"><span>Cores</span><strong>4×4 (frente e verso)</strong></div>
+            <div class="gpx-spec"><span>Acabamento</span><strong>Refilado</strong></div>
+            <div class="gpx-spec"><span>Tiragem mínima</span><strong>1.000 unidades</strong></div>
+            <div class="gpx-spec"><span>Aplicação</span><strong>Panfletagem e promoções</strong></div>
+          </div>
+
+          <div class="gpx-price-from">
+            <span class="gpx-price-from-label">A partir de</span>
+            <strong class="gpx-price-from-value">R$ 0,070</strong>
+            <span class="gpx-price-from-tag">4 × 4 cores · por unidade</span>
+          </div>
+
+          <div class="gpx-product-bottom">
+            <a class="gpx-btn gpx-whatsapp" href="https://wp.respondechat.com.br/redirect/122c49967" target="_blank" rel="noopener">Consultar tabela</a>
+            <small>Atendimento para pequenas, médias e grandes tiragens.</small>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Produto 03 -->
+    <section class="gpx-product">
+      <div class="gpx-container gpx-product-grid">
+        <div class="gpx-product-media gpx-reveal">
+          <div class="gpx-product-photo">
+            <!-- Troque por: <img src="URL-DA-SUA-FOTO" alt="Impresso A4 4x4 Couché"> -->
+            <svg viewBox="0 0 600 540" role="img" aria-label="Impresso A4 colorido" preserveAspectRatio="xMidYMid slice">
+              <defs>
+                <linearGradient id="p3bg" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="#eef3ef"/><stop offset="1" stop-color="#dfe5e0"/>
+                </linearGradient>
+              </defs>
+              <rect width="600" height="540" fill="url(#p3bg)"/>
+              <circle cx="70" cy="70" r="9" fill="#d4742e"/>
+              <circle cx="540" cy="480" r="12" fill="#2d8659"/>
+              <!-- folha A4 -->
+              <g transform="rotate(3 300 270)">
+                <rect x="205" y="70" width="238" height="336" rx="6" fill="#ffffff"/>
+                <rect x="230" y="98" width="46" height="46" rx="8" fill="#1f5c3d"/>
+                <rect x="230" y="112" width="20" height="18" fill="#ffc721"/>
+                <rect x="290" y="104" width="120" height="13" rx="6" fill="#1f5c3d"/>
+                <rect x="290" y="126" width="90" height="10" rx="5" fill="#ccd6cc"/>
+                <rect x="230" y="168" width="213" height="96" rx="5" fill="#e8833a" opacity=".9"/>
+                <rect x="250" y="188" width="120" height="14" rx="7" fill="#fff"/>
+                <rect x="250" y="212" width="90" height="10" rx="5" fill="#f7dcc4"/>
+                <rect x="250" y="232" width="70" height="14" rx="7" fill="#ffc721"/>
+                <!-- colunas de texto -->
+                <g fill="#ccd6cc">
+                  <rect x="230" y="288" width="100" height="8" rx="4"/><rect x="230" y="304" width="100" height="8" rx="4"/><rect x="230" y="320" width="86" height="8" rx="4"/><rect x="230" y="336" width="100" height="8" rx="4"/>
+                  <rect x="344" y="288" width="100" height="8" rx="4"/><rect x="344" y="304" width="80" height="8" rx="4"/><rect x="344" y="320" width="100" height="8" rx="4"/><rect x="344" y="336" width="70" height="8" rx="4"/>
+                </g>
+                <!-- mini gráfico -->
+                <g><rect x="230" y="360" width="16" height="26" fill="#2d8659"/><rect x="252" y="352" width="16" height="34" fill="#1f5c3d"/><rect x="274" y="366" width="16" height="20" fill="#d4742e"/><rect x="296" y="346" width="16" height="40" fill="#ffc721"/></g>
+              </g>
+            </svg>
+          </div>
+          <span class="gpx-photo-index">03</span>
+        </div>
+
+        <div class="gpx-product-copy gpx-reveal">
+          <div class="gpx-product-labels">
+            <span>Impresso A4</span>
+            <span>Couché 90g</span>
+            <span>4×4 cores</span>
+          </div>
+          <h3>Impresso A4 · Couché 90g em 4×4 cores</h3>
+          <p>Folha A4 impressa frente e verso em papel couché 90g. Perfeita para cardápios, informativos, materiais de venda e apresentações que precisam de acabamento profissional.</p>
+
+          <div class="gpx-specs">
+            <div class="gpx-spec"><span>Tamanho</span><strong>21 × 29,7 cm (A4)</strong></div>
+            <div class="gpx-spec"><span>Papel</span><strong>Couché 90 g/m²</strong></div>
+            <div class="gpx-spec"><span>Cores</span><strong>4×4 (frente e verso)</strong></div>
+            <div class="gpx-spec"><span>Acabamento</span><strong>Refilado</strong></div>
+            <div class="gpx-spec"><span>Tiragem mínima</span><strong>1.000 unidades</strong></div>
+            <div class="gpx-spec"><span>Aplicação</span><strong>Informativos e materiais</strong></div>
+          </div>
+
+          <div class="gpx-price-from">
+            <span class="gpx-price-from-label">A partir de</span>
+            <strong class="gpx-price-from-value">R$ 0,136</strong>
+            <span class="gpx-price-from-tag">4 × 4 cores · por unidade</span>
+          </div>
+
+          <div class="gpx-product-bottom">
+            <a class="gpx-btn gpx-whatsapp" href="https://wp.respondechat.com.br/redirect/122c49967" target="_blank" rel="noopener">Consultar tabela</a>
+            <small>Ideal para cardápios, informativos e apresentações.</small>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Produto 04 -->
+    <section class="gpx-product gpx-reverse">
+      <div class="gpx-container gpx-product-grid">
+        <div class="gpx-product-media gpx-reveal">
+          <div class="gpx-product-photo">
+            <!-- Troque por: <img src="URL-DA-SUA-FOTO" alt="Jornal 42 x 30 cm 4 páginas"> -->
+            <svg viewBox="0 0 600 540" role="img" aria-label="Jornal dobrado colorido" preserveAspectRatio="xMidYMid slice">
+              <defs>
+                <linearGradient id="p4bg" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="#123d29"/><stop offset="1" stop-color="#1c5238"/>
+                </linearGradient>
+              </defs>
+              <rect width="600" height="540" fill="url(#p4bg)"/>
+              <g opacity=".08" fill="#fff" font-family="Poppins, Arial, sans-serif" font-weight="800"><text x="340" y="130" font-size="90">4 pág.</text></g>
+              <!-- jornal -->
+              <g transform="rotate(-4 300 290)">
+                <rect x="140" y="120" width="320" height="330" rx="4" fill="#f8faf6"/>
+                <line x1="300" y1="120" x2="300" y2="450" stroke="#d5dbd6" stroke-width="2"/>
+                <!-- masthead -->
+                <rect x="160" y="140" width="280" height="4" fill="#1f5c3d"/>
+                <rect x="230" y="152" width="140" height="20" rx="4" fill="#1f5c3d"/>
+                <rect x="160" y="184" width="280" height="4" fill="#1f5c3d"/>
+                <!-- foto -->
+                <rect x="160" y="204" width="130" height="90" rx="3" fill="#e8833a"/>
+                <circle cx="200" cy="250" r="20" fill="#ffc721"/>
+                <path d="M240 294l-20-24-16 16-14-12v20z" fill="#1f5c3d" opacity=".5"/>
+                <!-- headline + text left -->
+                <rect x="160" y="306" width="130" height="10" rx="4" fill="#171b18"/>
+                <g fill="#ccd6cc"><rect x="160" y="326" width="130" height="7" rx="3"/><rect x="160" y="340" width="130" height="7" rx="3"/><rect x="160" y="354" width="110" height="7" rx="3"/><rect x="160" y="368" width="130" height="7" rx="3"/><rect x="160" y="382" width="90" height="7" rx="3"/></g>
+                <!-- right column -->
+                <rect x="312" y="204" width="128" height="10" rx="4" fill="#171b18"/>
+                <g fill="#ccd6cc"><rect x="312" y="224" width="128" height="7" rx="3"/><rect x="312" y="238" width="128" height="7" rx="3"/><rect x="312" y="252" width="100" height="7" rx="3"/></g>
+                <rect x="312" y="274" width="128" height="70" rx="3" fill="#2d8659"/>
+                <g fill="#ccd6cc"><rect x="312" y="356" width="128" height="7" rx="3"/><rect x="312" y="370" width="110" height="7" rx="3"/><rect x="312" y="384" width="128" height="7" rx="3"/></g>
+              </g>
+              <circle cx="100" cy="110" r="12" fill="#d4742e"/>
+              <circle cx="510" cy="470" r="11" fill="#ffc721"/>
+            </svg>
+          </div>
+          <span class="gpx-photo-index">04</span>
+        </div>
+
+        <div class="gpx-product-copy gpx-reveal">
+          <div class="gpx-product-labels">
+            <span>Jornal tabloide</span>
+            <span>4 páginas</span>
+            <span>Offset 75g</span>
+          </div>
+          <h3>Jornal 42 × 30 cm · 4 páginas em 4×4</h3>
+          <p>Jornal aberto 42 × 30 cm, dobrado no tamanho A4 com 4 páginas em cores. Excelente para prestação de contas, informativos de campanha e comunicação de grande alcance.</p>
+
+          <div class="gpx-specs">
+            <div class="gpx-spec"><span>Formato aberto</span><strong>42 × 30 cm</strong></div>
+            <div class="gpx-spec"><span>Fechado</span><strong>A4 · 4 páginas</strong></div>
+            <div class="gpx-spec"><span>Papel</span><strong>Offset 75 g/m²</strong></div>
+            <div class="gpx-spec"><span>Cores</span><strong>4×4 (frente e verso)</strong></div>
+            <div class="gpx-spec"><span>Acabamento</span><strong>Dobrado</strong></div>
+            <div class="gpx-spec"><span>Tiragem mínima</span><strong>1.000 unidades</strong></div>
+          </div>
+
+          <div class="gpx-price-from">
+            <span class="gpx-price-from-label">A partir de</span>
+            <strong class="gpx-price-from-value">R$ 0,290</strong>
+            <span class="gpx-price-from-tag">4 × 4 cores · por unidade</span>
+          </div>
+
+          <div class="gpx-product-bottom">
+            <a class="gpx-btn gpx-whatsapp" href="https://wp.respondechat.com.br/redirect/122c49967" target="_blank" rel="noopener">Consultar tabela</a>
+            <small>Aberto 42 × 30 cm, dobrado em A4.</small>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Produto 05 -->
+    <section class="gpx-product">
+      <div class="gpx-container gpx-product-grid">
+        <div class="gpx-product-media gpx-reveal">
+          <div class="gpx-product-photo">
+            <!-- Troque por: <img src="URL-DA-SUA-FOTO" alt="Botões 7 cm em adesivo"> -->
+            <svg viewBox="0 0 600 540" role="img" aria-label="Botões redondos em adesivo" preserveAspectRatio="xMidYMid slice">
+              <defs>
+                <linearGradient id="p5bg" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="#eef3ef"/><stop offset="1" stop-color="#dfe5e0"/>
+                </linearGradient>
+              </defs>
+              <rect width="600" height="540" fill="url(#p5bg)"/>
+              <!-- folha de adesivos -->
+              <rect x="120" y="70" width="360" height="400" rx="10" fill="#ffffff"/>
+              <g stroke="#ccd6cc" stroke-dasharray="4 6" fill="none">
+                <circle cx="215" cy="165" r="78"/><circle cx="385" cy="165" r="78"/>
+                <circle cx="215" cy="375" r="78"/><circle cx="385" cy="375" r="78"/>
+              </g>
+              <!-- boton 1 azul -->
+              <circle cx="215" cy="165" r="68" fill="#1f5c3d"/>
+              <circle cx="215" cy="165" r="24" fill="#ffc721"/>
+              <path d="M215 141l6 16h17l-14 10 5 17-14-10-14 10 5-17-14-10h17z" fill="#fff" transform="translate(0 12)"/>
+              <!-- boton 2 coral -->
+              <circle cx="385" cy="165" r="68" fill="#e8833a"/>
+              <rect x="352" y="150" width="66" height="12" rx="6" fill="#fff"/>
+              <rect x="352" y="172" width="46" height="12" rx="6" fill="#f7dcc4"/>
+              <!-- boton 3 ciano -->
+              <circle cx="215" cy="375" r="68" fill="#2d8659"/>
+              <circle cx="215" cy="375" r="34" fill="none" stroke="#fff" stroke-width="8"/>
+              <circle cx="215" cy="375" r="12" fill="#fff"/>
+              <!-- boton 4 magenta -->
+              <circle cx="385" cy="375" r="68" fill="#d4742e"/>
+              <path d="M385 345l30 30-30 30-30-30z" fill="#fff"/>
+              <circle cx="70" cy="80" r="10" fill="#ffc721"/>
+              <circle cx="530" cy="470" r="12" fill="#1f5c3d"/>
+            </svg>
+          </div>
+          <span class="gpx-photo-index">05</span>
+        </div>
+
+        <div class="gpx-product-copy gpx-reveal">
+          <div class="gpx-product-labels">
+            <span>Botão / bóton</span>
+            <span>Adesivo redondo</span>
+            <span>7 cm de diâmetro</span>
+          </div>
+          <h3>Botões 7 cm de diâmetro em adesivo · 4×0</h3>
+          <p>Discos adesivos de 7 cm impressos em 4 cores, prontos para aplicar em bótons, brindes e ações promocionais. Um item de campanha barato, colorido e de alto giro.</p>
+
+          <div class="gpx-specs">
+            <div class="gpx-spec"><span>Diâmetro</span><strong>7 cm</strong></div>
+            <div class="gpx-spec"><span>Material</span><strong>Papel adesivo</strong></div>
+            <div class="gpx-spec"><span>Cores</span><strong>4×0 (só frente)</strong></div>
+            <div class="gpx-spec"><span>Formato</span><strong>Redondo</strong></div>
+            <div class="gpx-spec"><span>Tiragem mínima</span><strong>1.000 unidades</strong></div>
+            <div class="gpx-spec"><span>Aplicação</span><strong>Bótons e brindes</strong></div>
+          </div>
+
+          <div class="gpx-price-from">
+            <span class="gpx-price-from-label">A partir de</span>
+            <strong class="gpx-price-from-value">R$ 0,080</strong>
+            <span class="gpx-price-from-tag">4 × 0 cores · por unidade</span>
+          </div>
+
+          <div class="gpx-product-bottom">
+            <a class="gpx-btn gpx-whatsapp" href="https://wp.respondechat.com.br/redirect/122c49967" target="_blank" rel="noopener">Consultar tabela</a>
+            <small>Perfeito para bótons, brindes e ações promocionais.</small>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="gpx-audiences" id="gpx-publicos">
+      <div class="gpx-container gpx-audiences-layout">
+        <div class="gpx-reveal">
+          <span class="gpx-kicker">Feito para quem divulga em escala</span>
+          <h2 class="gpx-section-title">Impressos que impulsionam <span>a sua campanha</span></h2>
+          <p class="gpx-section-copy">Você cuida da arte, da estratégia e da distribuição. A Senegal entrega a impressão com especificação padronizada, cores vivas e preço competitivo em qualquer volume.</p>
+        </div>
+
+        <div class="gpx-audience-grid">
+          <div class="gpx-audience-card gpx-reveal">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20v-6M4 14l14-4V4L4 8M18 10l3-1"/><circle cx="4" cy="20" r="0.6"/></svg>
+            <h3>Candidatos e campanhas</h3>
+            <p>Santinhos, jornais e panfletos para toda a jornada de divulgação eleitoral.</p>
+          </div>
+          <div class="gpx-audience-card gpx-reveal">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18M8 18v3M16 18v3"/></svg>
+            <h3>Agências e gráficas</h3>
+            <p>Terceirize a impressão em alta tiragem e amplie o portfólio sem produzir tudo.</p>
+          </div>
+          <div class="gpx-audience-card gpx-reveal">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9l1-4h16l1 4M4 9v11h16V9M9 20v-6h6v6"/></svg>
+            <h3>Comércio e eventos</h3>
+            <p>Folhetos, A4 e adesivos para promoções, lançamentos e ações no ponto de venda.</p>
+          </div>
+          <div class="gpx-audience-card gpx-reveal">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18M5 8l7-5 7 5M5 8v10h14V8"/></svg>
+            <h3>Igrejas e instituições</h3>
+            <p>Comunicados, informativos e materiais de eventos com tiragem e preço sob medida.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="gpx-volumes" id="gpx-tiragens">
+      <div class="gpx-container">
+        <div class="gpx-volumes-head">
+          <div class="gpx-reveal">
+            <span class="gpx-kicker">Economia em qualquer volume</span>
+            <h2 class="gpx-section-title">De 1.000 tiragens a centenas de milhares, <span>o melhor preço</span></h2>
+          </div>
+          <p class="gpx-volumes-intro gpx-reveal">Você não precisa escolher entre quantidade e competitividade. Solicite a cotação para o volume que faz sentido para a sua campanha.</p>
+        </div>
+
+        <div class="gpx-volume-grid">
+          <article class="gpx-volume-card gpx-reveal">
+            <span class="gpx-volume-number">01</span>
+            <h3>Tiragens iniciais</h3>
+            <p>Para testar uma arte, atender uma ação pontual ou começar a divulgação com investimento controlado.</p>
+          </article>
+          <article class="gpx-volume-card gpx-reveal">
+            <span class="gpx-volume-number">02</span>
+            <h3>Tiragens intermediárias</h3>
+            <p>Para campanhas ativas e distribuição recorrente, com preço unitário cada vez mais competitivo.</p>
+          </article>
+          <article class="gpx-volume-card gpx-reveal">
+            <span class="gpx-volume-number">03</span>
+            <h3>Grandes tiragens</h3>
+            <p>Para cobertura em escala e o menor custo por unidade, chegando a centenas de milhares ou ao milhão.</p>
+          </article>
+        </div>
+
+        <div class="gpx-volume-cta gpx-reveal">
+          <strong>Diga qual produto e a quantidade desejada. A Senegal prepara a melhor condição para o seu pedido.</strong>
+          <a class="gpx-btn gpx-whatsapp" href="https://wp.respondechat.com.br/redirect/122c49967" target="_blank" rel="noopener">Solicitar cotação</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="gpx-faq" id="gpx-duvidas">
+      <div class="gpx-container gpx-faq-layout">
+        <div class="gpx-reveal">
+          <span class="gpx-kicker">Dúvidas frequentes</span>
+          <h2 class="gpx-section-title">Tudo o que você precisa <span>saber</span></h2>
+        </div>
+
+        <div class="gpx-faq-list gpx-reveal">
+          <details>
+            <summary>Quais impressos a Senegal produz?</summary>
+            <p>Santinho 7 × 10 cm e santão 10 × 13,6 cm em offset 75g, panfleto A5 15 × 21 cm em couché 90g, impresso A4 em couché 90g, jornal 42 × 30 cm com 4 páginas em offset 75g e botões de 7 cm em adesivo. Todos em cores vivas 4×4 (o botão em 4×0).</p>
+          </details>
+          <details>
+            <summary>Qual é a tiragem mínima?</summary>
+            <p>Panfleto, impresso A4, jornal e botões começam em 1.000 unidades. O santinho 7 × 10 cm e o santão começam em 25.000 unidades. Informe a quantidade desejada para receber a melhor condição.</p>
+          </details>
+          <details>
+            <summary>O que significa 4×4 e 4×0 cores?</summary>
+            <p>4×4 é impressão colorida na frente e no verso. 4×0 é impressão colorida somente na frente, como no caso do botão adesivo.</p>
+          </details>
+          <details>
+            <summary>Como envio a arte para impressão?</summary>
+            <p>Envie o arquivo fechado em alta resolução (PDF/X ou imagem em 300 dpi) com as medidas do produto e sangria. Se precisar, orientamos o fechamento correto do arquivo antes da produção.</p>
+          </details>
+          <details>
+            <summary>Os valores incluem frete?</summary>
+            <p>Os preços das tabelas são por tiragem fechada, com a arte final aprovada. O frete é calculado à parte, conforme a quantidade e a região de entrega.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="gpx-final-cta">
+      <div class="gpx-container gpx-final-inner">
+        <div class="gpx-reveal">
+          <h2>Feche sua tiragem de impressos pelo melhor preço</h2>
+          <p>Envie o produto e a quantidade desejada. Atendemos campanhas, agências, comércios e eventos — de mil a um milhão de unidades.</p>
+        </div>
+        <a class="gpx-btn gpx-whatsapp gpx-reveal" href="https://wp.respondechat.com.br/redirect/122c49967" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.13h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.24 8.24 0 0 1-1.26-4.39c0-4.54 3.7-8.24 8.24-8.24 2.2 0 4.27.86 5.83 2.42a8.19 8.19 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.13-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43-.14 0-.31-.01-.48-.01-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.11-.22-.17-.47-.29Z"/></svg>
+          Pedir orçamento pelo WhatsApp
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="gpx-footer">
+    <div class="gpx-container">
+      <div class="gpx-footer-top">
+        <a class="gpx-logo" href="#gpx-inicio" aria-label="Voltar ao início">
+          <img class="gpx-logo-img" src="https://senegal.impressao.site/wp-content/uploads/2026/06/Design-sem-nome-36.png" alt="Senegal Indústria Gráfica">
+        </a>
+        <p class="gpx-footer-copy">Impressos para campanha, divulgação e eventos em alta tiragem, com cores vivas, especificação profissional e preço competitivo.</p>
+      </div>
+      <div class="gpx-footer-bottom">
+        <span>Senegal Indústria Gráfica. Todos os direitos reservados.</span>
+        <a href="https://senegalgrafica.com.br/" target="_blank" rel="noopener">senegalgrafica.com.br</a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="gpx-mobile-cta" aria-label="Atalho para orçamento">
+    <a class="gpx-btn gpx-whatsapp" href="https://wp.respondechat.com.br/redirect/122c49967" target="_blank" rel="noopener">Pedir orçamento pelo WhatsApp</a>
+  </div>
+</div>
+
+<script>
+(function () {
+  var roots = document.querySelectorAll('.senegal-impressos-shell');
+  var root = roots[roots.length - 1];
+  if (!root) return;
+
+  root.classList.add('gpx-js');
+
+  /* --- Troca as artes SVG pelas fotos informadas em window.GPX_IMAGENS --- */
+  var cfg = window.GPX_IMAGENS || {};
+  var alts = [
+    'Santão / santinho de campanha',
+    'Panfleto A5 de campanha',
+    'Impresso A4 de campanha',
+    'Jornal de campanha, 4 páginas',
+    'Botões 7 cm em adesivo'
+  ];
+  function setImg(box, url, alt) {
+    if (!box || !url) return;
+    var safe = String(url).replace(/"/g, '&quot;');
+    box.innerHTML = '<img src="' + safe + '" alt="' + alt + '" loading="lazy">';
+  }
+  var photos = root.querySelectorAll('main .gpx-product .gpx-product-photo');
+  photos.forEach(function (box, i) {
+    setImg(box, cfg['produto' + (i + 1)], alts[i] || 'Impresso de campanha');
+  });
+  setImg(root.querySelector('.gpx-hero-main'), cfg.hero, 'Impressos para campanha');
+  setImg(root.querySelector('.gpx-hero-inset'), cfg.heroInset, 'Botões adesivos de campanha');
+
+  /* --- Numera (01, 02, ...) e alterna o lado (zigue-zague) dos produtos --- */
+  root.querySelectorAll('main .gpx-product').forEach(function (sec, i) {
+    var idx = sec.querySelector('.gpx-photo-index');
+    if (idx) idx.textContent = ('0' + (i + 1)).slice(-2);
+    sec.classList.toggle('gpx-reverse', i % 2 === 1);
+  });
+
+  var toggle = root.querySelector('.gpx-menu-toggle');
+  var nav = root.querySelector('.gpx-nav');
+
+  if (toggle && nav) {
+    toggle.addEventListener('click', function () {
+      var isOpen = nav.classList.toggle('gpx-open');
+      toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      toggle.setAttribute('aria-label', isOpen ? 'Fechar menu' : 'Abrir menu');
+    });
+  }
+
+  root.querySelectorAll('a[href^="#"]').forEach(function (link) {
+    link.addEventListener('click', function (event) {
+      var target = root.querySelector(link.getAttribute('href'));
+      if (!target) return;
+      event.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      if (nav) nav.classList.remove('gpx-open');
+      if (toggle) {
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.setAttribute('aria-label', 'Abrir menu');
+      }
+    });
+  });
+
+  var revealItems = root.querySelectorAll('.gpx-reveal');
+  if ('IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('gpx-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    revealItems.forEach(function (item) { observer.observe(item); });
+  } else {
+    revealItems.forEach(function (item) { item.classList.add('gpx-visible'); });
+  }
+})();
+</script>
