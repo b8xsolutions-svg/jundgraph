@@ -6,11 +6,26 @@
   Mesma identidade visual e cores da marca Senegal (verde + laranja),
   com PRODUTOS NOVOS (santinho, panfleto, impresso A4, jornal e botão adesivo).
 
-  As imagens são artes vetoriais (SVG) embutidas no próprio código: nada é
-  carregado de fora, então o bloco funciona offline e nunca "quebra".
-  Para trocar por uma FOTO sua, basta substituir o <svg>...</svg> de cada
-  bloco por: <img src="URL-DA-SUA-FOTO" alt="descrição">.
+  ====================  COMO COLOCAR AS SUAS FOTOS  ====================
+  1) Suba as imagens na Biblioteca de Mídia do WordPress.
+  2) Copie o link (URL) de cada uma e cole abaixo, entre as aspas.
+  3) Pronto! Enquanto a URL estiver vazia, aparece a arte vetorial (SVG),
+     então o site nunca fica com "imagem quebrada".
+  =====================================================================
 -->
+
+<script>
+/* >>> COLE AQUI AS URLs DAS SUAS IMAGENS (deixe vazio para usar a arte padrão) <<< */
+window.GPX_IMAGENS = {
+  produto1: "",  /* 01 · Santão / santinho   -> foto: MARINA COSTA 45222            */
+  produto2: "",  /* 02 · Panfleto A5         -> foto: MARIA EDUARDA "O Futuro..."   */
+  produto3: "",  /* 03 · Impresso A4         -> foto: ROBERTO ALMEIDA 22123         */
+  produto4: "",  /* 04 · Jornal 4 páginas    -> foto: RAFAEL ALMEIDA (folder aberto)*/
+  produto5: "",  /* 05 · Botões adesivos     -> foto: MARIA SOUZA 45789 (redondos)  */
+  hero:      "", /* opcional: imagem grande do topo                                 */
+  heroInset: ""  /* opcional: imagem pequena do topo                                */
+};
+</script>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
@@ -2343,6 +2358,27 @@ body {
   if (!root) return;
 
   root.classList.add('gpx-js');
+
+  /* --- Troca as artes SVG pelas fotos informadas em window.GPX_IMAGENS --- */
+  var cfg = window.GPX_IMAGENS || {};
+  var alts = [
+    'Santão / santinho de campanha',
+    'Panfleto A5 de campanha',
+    'Impresso A4 de campanha',
+    'Jornal de campanha, 4 páginas',
+    'Botões 7 cm em adesivo'
+  ];
+  function setImg(box, url, alt) {
+    if (!box || !url) return;
+    var safe = String(url).replace(/"/g, '&quot;');
+    box.innerHTML = '<img src="' + safe + '" alt="' + alt + '" loading="lazy">';
+  }
+  var photos = root.querySelectorAll('main .gpx-product .gpx-product-photo');
+  photos.forEach(function (box, i) {
+    setImg(box, cfg['produto' + (i + 1)], alts[i] || 'Impresso de campanha');
+  });
+  setImg(root.querySelector('.gpx-hero-main'), cfg.hero, 'Impressos para campanha');
+  setImg(root.querySelector('.gpx-hero-inset'), cfg.heroInset, 'Botões adesivos de campanha');
 
   var toggle = root.querySelector('.gpx-menu-toggle');
   var nav = root.querySelector('.gpx-nav');
