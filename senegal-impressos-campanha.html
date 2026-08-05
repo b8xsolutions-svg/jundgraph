@@ -788,6 +788,48 @@ body {
   line-height: 1.5;
 }
 
+/* Destaque "A partir de" (substitui a tabela) */
+.senegal-impressos-shell .gpx-price-from {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 14px;
+  margin: 30px 0;
+  padding: 20px 24px;
+  border: 1px solid var(--gpx-line);
+  border-left: 5px solid var(--gpx-accent);
+  border-radius: 6px;
+  background: var(--gpx-white);
+  box-shadow: 0 14px 32px rgba(23, 27, 24, .07);
+}
+
+.senegal-impressos-shell .gpx-price-from-label {
+  color: var(--gpx-muted);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+}
+
+.senegal-impressos-shell .gpx-price-from-value {
+  color: var(--gpx-blue);
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -1px;
+  line-height: 1;
+}
+
+.senegal-impressos-shell .gpx-price-from-tag {
+  flex: 1 1 auto;
+  min-width: 120px;
+  text-align: right;
+  color: var(--gpx-muted);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .3px;
+  text-transform: uppercase;
+}
+
 .senegal-impressos-shell .gpx-product-bottom {
   display: flex;
   align-items: center;
@@ -1739,7 +1781,7 @@ body {
 
           <div class="gpx-price-stamp">
             <small>A partir de</small>
-            <strong>R$ 0,0286 / un</strong>
+            <strong>R$ 0,0129 / un</strong>
           </div>
 
           <div class="gpx-hero-inset">
@@ -1836,31 +1878,14 @@ body {
             <div class="gpx-spec"><span>Aplicação</span><strong>Campanhas e panfletagem</strong></div>
           </div>
 
-          <div class="gpx-price-box" aria-label="Tabela de preços do santinho 7 por 10 centímetros">
-            <div class="gpx-price-box-head">
-              <strong>Santinho 7 × 10 cm · Offset 75g</strong>
-              <span>4 × 4 cores</span>
-            </div>
-            <table class="gpx-price-table">
-              <thead>
-                <tr><th>Quantidade</th><th>Valor unitário</th><th>Valor total</th></tr>
-              </thead>
-              <tbody>
-                <tr><td>25.000</td><td>R$ 0,0292</td><td>R$ 730,00</td></tr>
-                <tr><td>50.000</td><td>R$ 0,0214</td><td>R$ 1.070,00</td></tr>
-                <tr><td>100.000</td><td>R$ 0,0170</td><td>R$ 1.700,00</td></tr>
-                <tr><td>200.000</td><td>R$ 0,0145</td><td>R$ 2.890,00</td></tr>
-                <tr><td>250.000</td><td>R$ 0,0136</td><td>R$ 3.410,00</td></tr>
-                <tr><td>300.000</td><td>R$ 0,0137</td><td>R$ 4.100,00</td></tr>
-                <tr><td>500.000</td><td>R$ 0,0137</td><td>R$ 6.870,00</td></tr>
-                <tr><td>1.000.000</td><td>R$ 0,0129</td><td>R$ 12.900,00</td></tr>
-              </tbody>
-            </table>
-            <p class="gpx-price-note">Valores por tiragem fechada, arte final aprovada. Consulte condições de frete para a sua região.</p>
+          <div class="gpx-price-from">
+            <span class="gpx-price-from-label">A partir de</span>
+            <strong class="gpx-price-from-value">R$ 0,0129</strong>
+            <span class="gpx-price-from-tag">4 × 4 cores · por unidade</span>
           </div>
 
           <div class="gpx-product-bottom">
-            <a class="gpx-btn gpx-whatsapp" href="https://wp.respondechat.com.br/redirect/122c49967" target="_blank" rel="noopener">Cotar santinho 7×10</a>
+            <a class="gpx-btn gpx-whatsapp" href="https://wp.respondechat.com.br/redirect/122c49967" target="_blank" rel="noopener">Consultar tabela</a>
             <small>Quanto maior a tiragem, menor o valor unitário.</small>
           </div>
         </div>
@@ -1920,31 +1945,14 @@ body {
             <div class="gpx-spec"><span>Aplicação</span><strong>Campanhas e divulgação</strong></div>
           </div>
 
-          <div class="gpx-price-box" aria-label="Tabela de preços do Santão 10 por 13,6 centímetros">
-            <div class="gpx-price-box-head">
-              <strong>Santão 10 × 13,6 cm · Offset 75g</strong>
-              <span>4 × 4 cores</span>
-            </div>
-            <table class="gpx-price-table">
-              <thead>
-                <tr><th>Quantidade</th><th>Valor unitário</th><th>Valor total</th></tr>
-              </thead>
-              <tbody>
-                <tr><td>25.000</td><td>R$ 0,0456</td><td>R$ 1.140,00</td></tr>
-                <tr><td>50.000</td><td>R$ 0,0380</td><td>R$ 1.900,00</td></tr>
-                <tr><td>100.000</td><td>R$ 0,0323</td><td>R$ 3.230,00</td></tr>
-                <tr><td>200.000</td><td>R$ 0,0303</td><td>R$ 6.050,00</td></tr>
-                <tr><td>250.000</td><td>R$ 0,0298</td><td>R$ 7.450,00</td></tr>
-                <tr><td>300.000</td><td>R$ 0,0295</td><td>R$ 8.850,00</td></tr>
-                <tr><td>500.000</td><td>R$ 0,0288</td><td>R$ 14.416,00</td></tr>
-                <tr><td>1.000.000</td><td>R$ 0,0286</td><td>R$ 28.621,00</td></tr>
-              </tbody>
-            </table>
-            <p class="gpx-price-note">Valores por tiragem fechada, arte final aprovada. Consulte condições de frete para a sua região.</p>
+          <div class="gpx-price-from">
+            <span class="gpx-price-from-label">A partir de</span>
+            <strong class="gpx-price-from-value">R$ 0,0286</strong>
+            <span class="gpx-price-from-tag">4 × 4 cores · por unidade</span>
           </div>
 
           <div class="gpx-product-bottom">
-            <a class="gpx-btn gpx-whatsapp" href="https://wp.respondechat.com.br/redirect/122c49967" target="_blank" rel="noopener">Cotar santão 4×4</a>
+            <a class="gpx-btn gpx-whatsapp" href="https://wp.respondechat.com.br/redirect/122c49967" target="_blank" rel="noopener">Consultar tabela</a>
             <small>Quanto maior a tiragem, menor o valor unitário.</small>
           </div>
         </div>
@@ -2005,30 +2013,14 @@ body {
             <div class="gpx-spec"><span>Aplicação</span><strong>Panfletagem e promoções</strong></div>
           </div>
 
-          <div class="gpx-price-box" aria-label="Tabela de preços do panfleto 15 por 21 centímetros">
-            <div class="gpx-price-box-head">
-              <strong>Panfleto 15 × 21 cm · Couché 90g</strong>
-              <span>4 × 4 cores</span>
-            </div>
-            <table class="gpx-price-table">
-              <thead>
-                <tr><th>Quantidade</th><th>Valor unitário</th><th>Valor total</th></tr>
-              </thead>
-              <tbody>
-                <tr><td>1.000</td><td>R$ 0,480</td><td>R$ 480,00</td></tr>
-                <tr><td>2.500</td><td>R$ 0,230</td><td>R$ 575,00</td></tr>
-                <tr><td>5.000</td><td>R$ 0,149</td><td>R$ 745,00</td></tr>
-                <tr><td>10.000</td><td>R$ 0,105</td><td>R$ 1.050,00</td></tr>
-                <tr><td>25.000</td><td>R$ 0,084</td><td>R$ 2.090,00</td></tr>
-                <tr><td>50.000</td><td>R$ 0,075</td><td>R$ 3.750,00</td></tr>
-                <tr><td>100.000</td><td>R$ 0,070</td><td>R$ 7.000,00</td></tr>
-              </tbody>
-            </table>
-            <p class="gpx-price-note">Valores por tiragem fechada, arte final aprovada. Consulte condições de frete para a sua região.</p>
+          <div class="gpx-price-from">
+            <span class="gpx-price-from-label">A partir de</span>
+            <strong class="gpx-price-from-value">R$ 0,070</strong>
+            <span class="gpx-price-from-tag">4 × 4 cores · por unidade</span>
           </div>
 
           <div class="gpx-product-bottom">
-            <a class="gpx-btn gpx-whatsapp" href="https://wp.respondechat.com.br/redirect/122c49967" target="_blank" rel="noopener">Cotar panfleto A5</a>
+            <a class="gpx-btn gpx-whatsapp" href="https://wp.respondechat.com.br/redirect/122c49967" target="_blank" rel="noopener">Consultar tabela</a>
             <small>Atendimento para pequenas, médias e grandes tiragens.</small>
           </div>
         </div>
@@ -2092,30 +2084,14 @@ body {
             <div class="gpx-spec"><span>Aplicação</span><strong>Informativos e materiais</strong></div>
           </div>
 
-          <div class="gpx-price-box" aria-label="Tabela de preços do impresso A4">
-            <div class="gpx-price-box-head">
-              <strong>Impresso A4 · Couché 90g</strong>
-              <span>4 × 4 cores</span>
-            </div>
-            <table class="gpx-price-table">
-              <thead>
-                <tr><th>Quantidade</th><th>Valor unitário</th><th>Valor total</th></tr>
-              </thead>
-              <tbody>
-                <tr><td>1.000</td><td>R$ 0,540</td><td>R$ 540,00</td></tr>
-                <tr><td>2.500</td><td>R$ 0,300</td><td>R$ 750,00</td></tr>
-                <tr><td>5.000</td><td>R$ 0,218</td><td>R$ 1.090,00</td></tr>
-                <tr><td>10.000</td><td>R$ 0,176</td><td>R$ 1.760,00</td></tr>
-                <tr><td>25.000</td><td>R$ 0,149</td><td>R$ 3.720,00</td></tr>
-                <tr><td>50.000</td><td>R$ 0,140</td><td>R$ 6.990,00</td></tr>
-                <tr><td>100.000</td><td>R$ 0,136</td><td>R$ 13.550,00</td></tr>
-              </tbody>
-            </table>
-            <p class="gpx-price-note">Valores por tiragem fechada, arte final aprovada. Consulte condições de frete para a sua região.</p>
+          <div class="gpx-price-from">
+            <span class="gpx-price-from-label">A partir de</span>
+            <strong class="gpx-price-from-value">R$ 0,136</strong>
+            <span class="gpx-price-from-tag">4 × 4 cores · por unidade</span>
           </div>
 
           <div class="gpx-product-bottom">
-            <a class="gpx-btn gpx-whatsapp" href="https://wp.respondechat.com.br/redirect/122c49967" target="_blank" rel="noopener">Cotar impresso A4</a>
+            <a class="gpx-btn gpx-whatsapp" href="https://wp.respondechat.com.br/redirect/122c49967" target="_blank" rel="noopener">Consultar tabela</a>
             <small>Ideal para cardápios, informativos e apresentações.</small>
           </div>
         </div>
@@ -2182,30 +2158,14 @@ body {
             <div class="gpx-spec"><span>Tiragem mínima</span><strong>1.000 unidades</strong></div>
           </div>
 
-          <div class="gpx-price-box" aria-label="Tabela de preços do jornal 42 por 30 centímetros">
-            <div class="gpx-price-box-head">
-              <strong>Jornal 42 × 30 cm · 4 páginas</strong>
-              <span>4 × 4 cores</span>
-            </div>
-            <table class="gpx-price-table">
-              <thead>
-                <tr><th>Quantidade</th><th>Valor unitário</th><th>Valor total</th></tr>
-              </thead>
-              <tbody>
-                <tr><td>1.000</td><td>R$ 0,960</td><td>R$ 960,00</td></tr>
-                <tr><td>2.500</td><td>R$ 0,544</td><td>R$ 1.360,00</td></tr>
-                <tr><td>5.000</td><td>R$ 0,420</td><td>R$ 2.100,00</td></tr>
-                <tr><td>10.000</td><td>R$ 0,352</td><td>R$ 3.520,00</td></tr>
-                <tr><td>25.000</td><td>R$ 0,311</td><td>R$ 7.780,00</td></tr>
-                <tr><td>50.000</td><td>R$ 0,298</td><td>R$ 14.900,00</td></tr>
-                <tr><td>100.000</td><td>R$ 0,290</td><td>R$ 29.000,00</td></tr>
-              </tbody>
-            </table>
-            <p class="gpx-price-note">Valor unitário calculado sobre a tiragem fechada. Consulte condições de frete para a sua região.</p>
+          <div class="gpx-price-from">
+            <span class="gpx-price-from-label">A partir de</span>
+            <strong class="gpx-price-from-value">R$ 0,290</strong>
+            <span class="gpx-price-from-tag">4 × 4 cores · por unidade</span>
           </div>
 
           <div class="gpx-product-bottom">
-            <a class="gpx-btn gpx-whatsapp" href="https://wp.respondechat.com.br/redirect/122c49967" target="_blank" rel="noopener">Cotar jornal 4 páginas</a>
+            <a class="gpx-btn gpx-whatsapp" href="https://wp.respondechat.com.br/redirect/122c49967" target="_blank" rel="noopener">Consultar tabela</a>
             <small>Aberto 42 × 30 cm, dobrado em A4.</small>
           </div>
         </div>
@@ -2271,30 +2231,14 @@ body {
             <div class="gpx-spec"><span>Aplicação</span><strong>Bótons e brindes</strong></div>
           </div>
 
-          <div class="gpx-price-box" aria-label="Tabela de preços dos botões 7 centímetros em adesivo">
-            <div class="gpx-price-box-head">
-              <strong>Botão 7 cm em adesivo</strong>
-              <span>4 × 0 cores</span>
-            </div>
-            <table class="gpx-price-table">
-              <thead>
-                <tr><th>Quantidade</th><th>Valor unitário</th><th>Valor total</th></tr>
-              </thead>
-              <tbody>
-                <tr><td>1.000</td><td>R$ 0,660</td><td>R$ 660,00</td></tr>
-                <tr><td>2.500</td><td>R$ 0,360</td><td>R$ 900,00</td></tr>
-                <tr><td>5.000</td><td>R$ 0,270</td><td>R$ 1.350,00</td></tr>
-                <tr><td>10.000</td><td>R$ 0,230</td><td>R$ 2.300,00</td></tr>
-                <tr><td>25.000</td><td>R$ 0,120</td><td>R$ 3.000,00</td></tr>
-                <tr><td>50.000</td><td>R$ 0,100</td><td>R$ 5.000,00</td></tr>
-                <tr><td>100.000</td><td>R$ 0,080</td><td>R$ 8.000,00</td></tr>
-              </tbody>
-            </table>
-            <p class="gpx-price-note">Valores por tiragem fechada, arte final aprovada. Consulte condições de frete para a sua região.</p>
+          <div class="gpx-price-from">
+            <span class="gpx-price-from-label">A partir de</span>
+            <strong class="gpx-price-from-value">R$ 0,080</strong>
+            <span class="gpx-price-from-tag">4 × 0 cores · por unidade</span>
           </div>
 
           <div class="gpx-product-bottom">
-            <a class="gpx-btn gpx-whatsapp" href="https://wp.respondechat.com.br/redirect/122c49967" target="_blank" rel="noopener">Cotar botões adesivos</a>
+            <a class="gpx-btn gpx-whatsapp" href="https://wp.respondechat.com.br/redirect/122c49967" target="_blank" rel="noopener">Consultar tabela</a>
             <small>Perfeito para bótons, brindes e ações promocionais.</small>
           </div>
         </div>
