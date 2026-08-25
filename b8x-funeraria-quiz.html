@@ -46,6 +46,7 @@
 #b8x-fun .bx-lead strong{font-weight:700;}
 #b8x-fun .bx-lead em{font-style:italic;}
 #b8x-fun .bx-lead.bx-gap{margin-bottom:22px;}
+#b8x-fun .bx-manual{color:var(--bx-text);font-weight:700;text-decoration:underline;}
 #b8x-fun .bx-q{font-size:22px;font-weight:600;line-height:1.4;margin-bottom:26px;display:flex;align-items:flex-start;gap:10px;}
 #b8x-fun .bx-q .bx-req{color:var(--bx-muted);font-weight:400;font-size:18px;margin-left:auto;}
 
@@ -263,7 +264,14 @@
   function finish(){
     if(sent) return; sent = true;
     submit();
-    setTimeout(function(){ window.location.href = B8X.THANKYOU_URL; }, 350);
+    // Confirmação visível + redirecionamento
+    var sc = screens[step];
+    sc.innerHTML =
+      '<div class="bx-q">✓ Recebido! Redirecionando…</div>' +
+      '<p class="bx-lead">Se não for redirecionado automaticamente, ' +
+      '<a class="bx-manual" href="' + B8X.THANKYOU_URL + '">clique aqui para continuar</a>.</p>';
+    progress.style.width = '100%';
+    setTimeout(function(){ window.location.href = B8X.THANKYOU_URL; }, 600);
   }
 
   function submit(){
