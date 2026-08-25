@@ -16,6 +16,19 @@
   -webkit-font-smoothing:antialiased;
 }
 #b8x-fun *,#b8x-fun *::before,#b8x-fun *::after{box-sizing:border-box;margin:0;padding:0;}
+#b8x-fun img{max-width:100%;display:block;}
+
+/* ---------- Barra preta com a logo (estilo thank-you) ---------- */
+#b8x-fun .bx-topbar{
+  background:#000;display:flex;align-items:center;justify-content:center;
+  padding:18px 16px;
+}
+#b8x-fun .bx-logo{
+  font-weight:800;font-size:30px;line-height:1;letter-spacing:-.02em;
+  color:#ffffff;user-select:none;
+}
+#b8x-fun .bx-logo span{color:#6DB4E5;}
+#b8x-fun .bx-topbar img{height:34px;width:auto;}
 
 #b8x-fun .bx-screen{
   max-width:660px;margin:0 auto;padding:64px 28px 48px;
@@ -50,13 +63,22 @@
 </style>
 
 <div id="b8x-fun">
+
+  <!-- ===== BARRA PRETA COM A LOGO =====
+    Para usar o arquivo original da logo, troque o <div class="bx-logo">
+    por:  <img src="URL-DA-LOGO.png" alt="b8x">   (faça upload da logo na
+    Biblioteca de Mídia do WordPress e cole o link aqui). -->
+  <div class="bx-topbar">
+    <div class="bx-logo" aria-label="b8x">b<span>8</span>x</div>
+  </div>
+
   <section class="bx-screen">
     <p class="bx-lead bx-gap"><strong>🕊️ Temos uma metodologia de marketing e tráfego pago exclusiva para o setor funerário há mais de 7 anos.</strong></p>
     <p class="bx-lead">🔥 Pare de queimar dinheiro com gestor de tráfego inexperiente</p>
-    <p class="bx-lead">🧠 Tráfego pago que, há mais de 7 anos, já gerou milhões em vendas para muitas funerárias.</p>
-    <p class="bx-lead">📊 Anúncios e páginas validadas para o segmento, não tem teste</p>
+    <p class="bx-lead">🧠 Tráfego pago que, há mais de 7 anos, já gerou milhões em vendas para muitas funerárias, planos e cemitérios.</p>
+    <p class="bx-lead">📊 Anúncios no Google e Meta e sites validados para o segmento, não tem teste</p>
     <p class="bx-lead bx-gap">🚀 Funil de vendas e IA no WhatsApp, funciona no piloto automático</p>
-    <p class="bx-lead bx-gap"><em>➡️ Exclusivo para funerárias com faturamento mensal acima de R$ 70.000,00 e que investem ou pretendem investir mais de R$ 2.500,00 em anúncios.</em></p>
+    <p class="bx-lead bx-gap"><em>➡️ Exclusivo para empresas com faturamento mensal acima de R$ 70.000,00 e que investem ou pretendem investir mais de R$ 2.500,00 em anúncios.</em></p>
     <div class="bx-actions">
       <button type="button" class="bx-btn" id="bx-start">Quero Vender Mais</button>
       <span class="bx-hint">Pressione <b>Enter ↵</b></span>
