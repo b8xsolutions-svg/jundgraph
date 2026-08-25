@@ -1,0 +1,80 @@
+<!-- ============================================================
+  B8X — CAPA DO QUIZ (SETOR FUNERÁRIO)
+  Primeira lâmina / apresentação. Mesma lógica da versão da gráfica.
+  Cole em um widget "HTML" do Elementor ou num Snippet de HTML (WPCode).
+============================================================ -->
+<style>
+#b8x-fun{
+  --bx-black:#111111;
+  --bx-text:#1a1a1a;
+  --bx-muted:#8a8a8a;
+  --bx-white:#ffffff;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  color:var(--bx-text);
+  background:var(--bx-white);
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+#b8x-fun *,#b8x-fun *::before,#b8x-fun *::after{box-sizing:border-box;margin:0;padding:0;}
+
+#b8x-fun .bx-screen{
+  max-width:660px;margin:0 auto;padding:64px 28px 48px;
+  min-height:560px;display:flex;flex-direction:column;justify-content:center;
+  animation:bx-in .45s cubic-bezier(.22,.61,.36,1) both;
+}
+@keyframes bx-in{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+@media (prefers-reduced-motion:reduce){#b8x-fun .bx-screen{animation:none;}}
+
+#b8x-fun .bx-lead{font-size:19px;line-height:1.55;margin:0 0 16px;}
+#b8x-fun .bx-lead strong{font-weight:700;}
+#b8x-fun .bx-lead.bx-gap{margin-bottom:22px;}
+
+#b8x-fun .bx-actions{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:8px;}
+#b8x-fun .bx-btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  background:var(--bx-black);color:var(--bx-white);
+  font-family:inherit;font-weight:700;font-size:16px;
+  padding:15px 26px;border:0;cursor:pointer;
+  transition:opacity .18s ease,transform .12s ease;
+}
+#b8x-fun .bx-btn:hover{opacity:.86;}
+#b8x-fun .bx-btn:active{transform:translateY(1px);}
+#b8x-fun .bx-hint{font-size:14px;color:var(--bx-muted);}
+#b8x-fun .bx-hint b{color:var(--bx-text);font-weight:600;}
+
+@media (max-width:560px){
+  #b8x-fun .bx-screen{padding:48px 20px 40px;min-height:520px;}
+  #b8x-fun .bx-lead{font-size:18px;}
+}
+</style>
+
+<div id="b8x-fun">
+  <section class="bx-screen">
+    <p class="bx-lead">🕊️ Temos uma metodologia de marketing e tráfego pago <strong>exclusiva para o setor funerário desde 2015.</strong></p>
+    <p class="bx-lead bx-gap"><strong>Mais contratos e vendas todos os meses!</strong></p>
+    <p class="bx-lead">🔥 Pare de queimar dinheiro com gestor de tráfego inexperiente.</p>
+    <p class="bx-lead">🧠 Tráfego pago que, há 10 anos, já gerou milhões em vendas para empresas do setor.</p>
+    <p class="bx-lead">📊 Anúncios e páginas validadas para o segmento, não tem teste.</p>
+    <p class="bx-lead bx-gap">🚀 Funil de vendas e IA no WhatsApp, funciona no piloto automático.</p>
+    <p class="bx-lead bx-gap">↪️ Exclusivo para funerárias e planos funerários com faturamento mensal acima de R$ 70.000,00 e que investem ou pretendem investir mais de R$ 2.500,00 em anúncios.</p>
+    <div class="bx-actions">
+      <button type="button" class="bx-btn" id="bx-start">Quero Mais Contratos</button>
+      <span class="bx-hint">Pressione <b>Enter ↵</b></span>
+    </div>
+  </section>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var btn = document.getElementById('bx-start');
+  if(!btn) return;
+  // Ação da capa: quando o restante do quiz existir, troque este comportamento
+  // pelo avanço para a próxima lâmina. Por enquanto, apenas um destaque visual.
+  function start(){ /* próximo passo do quiz vai aqui */ }
+  btn.addEventListener('click', start);
+  document.getElementById('b8x-fun').addEventListener('keydown', function(e){
+    if(e.key === 'Enter'){ e.preventDefault(); start(); }
+  });
+})();
+</script>
