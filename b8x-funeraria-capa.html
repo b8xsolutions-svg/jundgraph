@@ -86,6 +86,23 @@
 <script>
 (function(){
   "use strict";
+
+  // Fallback da logo: se a imagem não carregar, mostra o wordmark "b8x" em texto.
+  (function(){
+    var img = document.querySelector('#b8x-fun .bx-topbar img');
+    if(!img) return;
+    function swap(){
+      if(!img.parentNode) return;
+      var d = document.createElement('div');
+      d.className = 'bx-logo';
+      d.setAttribute('aria-label','b8x');
+      d.innerHTML = 'b<span>8</span>x';
+      img.replaceWith(d);
+    }
+    img.addEventListener('error', swap);
+    if(img.complete && img.naturalWidth === 0) swap();
+  })();
+
   var btn = document.getElementById('bx-start');
   if(!btn) return;
   // Ação da capa: quando o restante do quiz existir, troque este comportamento
