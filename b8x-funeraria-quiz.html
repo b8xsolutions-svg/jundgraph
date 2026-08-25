@@ -89,6 +89,8 @@
 #b8x-fun .bx-btn:active{transform:translateY(1px);}
 #b8x-fun .bx-btn:disabled{opacity:.4;cursor:not-allowed;}
 #b8x-fun .bx-btn.bx-ok{padding:13px 22px;}
+#b8x-fun .bx-btn.bx-btn-ghost{background:var(--bx-white);color:var(--bx-black);border:2px solid var(--bx-black);padding:13px 24px;}
+#b8x-fun .bx-btn.bx-btn-ghost:hover{background:var(--bx-black);color:#fff;opacity:1;}
 #b8x-fun .bx-hint{font-size:14px;color:var(--bx-muted);}
 #b8x-fun .bx-hint b{color:var(--bx-text);font-weight:600;}
 #b8x-fun .bx-err{color:#d13b3b;font-size:14px;margin-top:10px;min-height:18px;}
@@ -181,6 +183,16 @@
       </div>
     </section>
 
+    <!-- ===== LÂMINA 6 — INVESTIMENTO (só para "Até R$ 70 mil") ===== -->
+    <section class="bx-screen" data-step="5">
+      <div class="bx-q">Olá <span data-nome>José</span>! O valor de investimento em anúncios mais o serviço da B8X é a partir de R$ 2.500,00.</div>
+      <p class="bx-lead bx-gap">Você deseja investir na sua empresa?</p>
+      <div class="bx-actions">
+        <button type="button" class="bx-btn" data-invest="sim">Sim, quero investir</button>
+        <button type="button" class="bx-btn bx-btn-ghost" data-invest="nao">Agora não</button>
+      </div>
+    </section>
+
   </div>
 </div>
 
@@ -202,7 +214,8 @@
   var progress = document.getElementById('bx-progress');
   var TOTAL = screens.length;
   var step = 0, sent = false;
-  var data = { nome:'', whatsapp:'', instagram:'', faturamento:'' };
+  var data = { nome:'', whatsapp:'', instagram:'', faturamento:'', investir:'' };
+  var STEP_INVEST = 5; // índice da lâmina de investimento (branch "Até R$ 70 mil")
 
   var digits = function(s){ return (s||'').replace(/\D/g,''); };
 
@@ -274,6 +287,18 @@
     setTimeout(function(){ window.location.href = B8X.THANKYOU_URL; }, 600);
   }
 
+  // "Agora não" na lâmina de investimento: agradece, sem redirecionar
+  function declineThanks(){
+    if(sent) return; sent = true;
+    data.investir = 'nao';
+    submit();
+    var sc = screens[step];
+    sc.innerHTML = '<div class="bx-q" id="bx-ty-q"></div><p class="bx-lead" id="bx-ty-p"></p>';
+    document.getElementById('bx-ty-q').textContent = 'Obrigado, ' + (data.nome || '') + '! 🙏';
+    document.getElementById('bx-ty-p').textContent = 'Agradecemos o seu interesse. Quando decidir investir no crescimento da sua empresa, a B8X estará à disposição para te ajudar.';
+    progress.style.width = '100%';
+  }
+
   function submit(){
     try{ localStorage.setItem('b8x_fun_'+Date.now(), JSON.stringify(data)); }catch(e){}
     var fd = new FormData();
@@ -282,14 +307,30 @@
     fd.append('whatsapp', data.whatsapp);
     fd.append('instagram', data.instagram);
     fd.append('faturamento_faixa', data.faturamento);
+    fd.append('deseja_investir', data.investir);
     fd.append('origem', (window.location && window.location.href) || '');
     try{ fetch(B8X.AJAX, { method:'POST', body:fd, credentials:'same-origin', keepalive:true }).catch(function(){}); }catch(e){}
   }
 
   /* ---------- Eventos ---------- */
   root.addEventListener('click', function(e){
+    // Faturamento: "Até R$ 70 mil" vai para a lâmina de investimento; demais concluem
     var opt = e.target.closest('[data-fat]');
-    if(opt){ e.preventDefault(); data.faturamento = opt.getAttribute('data-fat'); finish(); return; }
+    if(opt){
+      e.preventDefault();
+      data.faturamento = opt.getAttribute('data-fat');
+      if(data.faturamento === 'Até R$ 70 mil'){ show(STEP_INVEST); }
+      else { data.investir = 'sim'; finish(); }
+      return;
+    }
+    // Lâmina de investimento: Sim -> thank-you / Não -> agradecimento
+    var inv = e.target.closest('[data-invest]');
+    if(inv){
+      e.preventDefault();
+      if(inv.getAttribute('data-invest') === 'sim'){ data.investir = 'sim'; finish(); }
+      else { declineThanks(); }
+      return;
+    }
     var b = e.target.closest('[data-next]');
     if(b){ e.preventDefault(); next(); }
   });
@@ -297,7 +338,7 @@
   root.addEventListener('keydown', function(e){
     if(e.key === 'Enter'){
       var s = screens[step].getAttribute('data-step');
-      if(s === '4') return; // na tela de faturamento, escolhe clicando
+      if(s === '4' || s === '5') return; // escolhe clicando
       e.preventDefault(); next();
     }
   });
