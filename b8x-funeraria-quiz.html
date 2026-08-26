@@ -302,7 +302,7 @@
   function submit(){
     try{ localStorage.setItem('b8x_fun_'+Date.now(), JSON.stringify(data)); }catch(e){}
     var fd = new FormData();
-    fd.append('action', 'b8x_save_lead');
+    fd.append('action', 'b8x_save_lead_fun');
     fd.append('nome', data.nome);
     fd.append('whatsapp', data.whatsapp);
     fd.append('instagram', data.instagram);
