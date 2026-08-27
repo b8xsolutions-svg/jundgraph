@@ -17,6 +17,19 @@
 @keyframes b8xMarquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 @keyframes b8xPulse{0%,100%{opacity:.55}50%{opacity:1}}
 @media (prefers-reduced-motion:reduce){#b8-ty-root [style*="b8xMarquee"]{animation:none!important}}
+@media (max-width:768px){
+  #b8-ty-root [style*="minmax(340px,1fr)"],
+  #b8-ty-root [style*="minmax(320px,1fr)"],
+  #b8-ty-root [style*="minmax(300px,1fr)"],
+  #b8-ty-root [style*="minmax(280px,1fr)"],
+  #b8-ty-root [style*="minmax(min(100%,420px),1fr)"]{grid-template-columns:1fr !important}
+  #b8-ty-root h1{font-size:26px !important;line-height:1.2 !important}
+  #b8-ty-root h2{font-size:24px !important;line-height:1.2 !important}
+  #b8-ty-root [style*="R$ 1.200"]{font-size:38px !important}
+}
+@media (max-width:430px){
+  #b8-ty-root [style*="repeat(3,1fr)"]{grid-template-columns:1fr 1fr !important}
+}
 #b8-ty-root .b8h1:hover{background:#7FD6F4 !important;color:#12151C !important}
 #b8-ty-root .b8h2:hover{background:#7FD6F4 !important}
 #b8-ty-root .b8h3:hover{border-color:rgba(53,190,238,.45) !important}
@@ -42,7 +55,7 @@
     <div style="position:absolute;top:60px;right:-80px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(53,190,238,.16),transparent 65%)"></div>
     <div style="position:relative;max-width:1160px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:clamp(32px,5vw,64px);align-items:center">
       <div>
-        <div style="display:flex;align-items:center;gap:18px;margin-bottom:20px">
+        <div style="display:flex;align-items:center;gap:18px;margin-bottom:20px;flex-wrap:wrap">
           <div style="flex:0 0 auto;width:30px;height:52px;background:repeating-linear-gradient(-45deg,#35BEEE 0 2px,transparent 2px 7px);opacity:.5"></div>
           <div>
             <div style="display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(53,190,238,.4);color:#35BEEE;font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;padding:7px 14px;border-radius:999px;margin-bottom:10px">Agradecemos pelo seu interesse</div>
@@ -83,7 +96,7 @@
           <span style="font-size:clamp(38px,4.4vw,52px);font-weight:800;letter-spacing:-.03em;line-height:1">R$ 1.200</span>
           <span style="font-size:16px;font-weight:600;color:#A7ADBC">/mês</span>
         </div>
-        <p style="margin:0 0 22px;font-size:14.5px;line-height:1.6;color:#A7ADBC">Serviço da B8X: gestão de tráfego com CRM e IA. Mais o investimento em anúncios no Google ou Meta. Para um orçamento próximo da sua realidade, clique no link abaixo e fale com a Paloma.</p>
+        <p style="margin:0 0 22px;font-size:14.5px;line-height:1.6;color:#A7ADBC">Serviço da B8X: gestão de tráfego com CRM IA. Mais o investimento em anúncios no Google ou Meta. Para um orçamento próximo da sua realidade, clique no link abaixo e fale com a Paloma.</p>
         <a href="https://api.whatsapp.com/send?phone=551151787180&text=Ol%C3%A1%2C%20Paloma!%20Vim%20pela%20p%C3%A1gina%20da%20B8X%20e%20quero%20falar%20sobre%20marketing%20e%20tr%C3%A1fego%20para%20o%20setor%20funer%C3%A1rio." target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;gap:12px;background:#35BEEE;color:#12151C;font-size:17px;font-weight:700;padding:18px 24px;border-radius:14px;box-shadow:0 14px 30px -12px rgba(53,190,238,.7)" class="b8h2">Falar com a Paloma no WhatsApp →</a>
         <div style="display:flex;align-items:center;gap:14px;margin-top:20px">
           <img src="https://b8x.com.br/wp-content/uploads/2026/08/Screenshot-2026-08-27-at-16-29-59-274-WhatsApp.png" alt="Paloma — consultora comercial da B8X" loading="lazy" style="width:52px;height:52px;flex:0 0 auto;border-radius:50%;object-fit:cover;display:block">
