@@ -107,11 +107,9 @@
 
 <div id="sg">
 
-  <!-- ===== BARRA PRETA COM A LOGO (fixa no topo) =====
-    Para usar a imagem da logo, troque o <div class="bx-logo"> abaixo por:
-    <img src="URL-DA-LOGO.png" alt="Sanchez Growth"> -->
+  <!-- ===== BARRA PRETA COM A LOGO (fixa no topo) ===== -->
   <div class="bx-topbar">
-    <div class="bx-logo" aria-label="Sanchez Growth">Sanchez <span>Growth</span></div>
+    <img src="https://horizons-cdn.hostinger.com/0868eb09-0c0a-4879-a682-0fc80d78b58b/c10eac3e-4775-4135-9d4a-982c8da62a32xxx-8BOPQ.png" alt="Sanchez Growth">
   </div>
 
   <div class="bx-stage">
@@ -209,7 +207,7 @@
      CONFIG — edite aqui
   ============================================================ */
   var SG = {
-    THANKYOU_URL: "https://sanchezgrowth.com.br/obrigado",  // <-- TROQUE pela URL final da Sanchez
+    THANKYOU_URL: "https://sanchezgrowth.vendasbr.site/obrigado",  // página de obrigado da Sanchez
     AJAX: "/wp-admin/admin-ajax.php"                         // endpoint (opcional, se usar PHP)
   };
 
@@ -223,6 +221,15 @@
   var STEP_INVEST = 5;
 
   var digits = function(s){ return (s||'').replace(/\D/g,''); };
+
+  /* logo: fallback em texto se a imagem não carregar */
+  (function(){
+    var img = root.querySelector('.bx-topbar img');
+    if(!img) return;
+    function swap(){ if(!img.parentNode) return; var d=document.createElement('div'); d.className='bx-logo'; d.setAttribute('aria-label','Sanchez Growth'); d.innerHTML='Sanchez <span>Growth</span>'; img.replaceWith(d); }
+    img.addEventListener('error', swap);
+    if(img.complete && img.naturalWidth === 0) swap();
+  })();
 
   function show(i){
     if(i<0) i=0; if(i>TOTAL-1) i=TOTAL-1;
