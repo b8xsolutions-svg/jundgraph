@@ -1,0 +1,521 @@
+<!-- ============================================================
+  B8X — QUIZ / JORNADA "MÉTODO AGENDA ELÉTRICA"
+  Cole este bloco inteiro em um widget "HTML" do Elementor
+  (ou em um bloco "HTML personalizado" do editor do WordPress).
+
+  ➜ Para GRAVAR os leads no WordPress, instale também o snippet
+    PHP do arquivo  b8x-lead-storage.php  (instruções lá dentro).
+
+  ➜ CONFIGURE ABAIXO (procure por "CONFIG"):
+     • THANKYOU_URL -> página para onde o lead é levado ao concluir
+     • AJAX         -> normalmente "/wp-admin/admin-ajax.php" (não mexa)
+     • Parâmetros do funil (custo por lead, ticket, etc.)
+============================================================ -->
+<style>
+/* ---------- Escopo isolado: tudo vive dentro de #b8x-quiz ---------- */
+#b8x-quiz{
+  --bx-black:#111111;
+  --bx-text:#1a1a1a;
+  --bx-muted:#8a8a8a;
+  --bx-line:#d9d9d9;
+  --bx-white:#ffffff;
+  --bx-soft:#f4f4f2;
+  --bx-green:#25D366;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  color:var(--bx-text);
+  background:var(--bx-white);
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+  position:relative;
+}
+#b8x-quiz *,#b8x-quiz *::before,#b8x-quiz *::after{box-sizing:border-box;margin:0;padding:0;}
+#b8x-quiz img{max-width:100%;display:block;}
+
+/* ---------- Palco / telas ---------- */
+#b8x-quiz .bx-stage{
+  position:relative;
+  min-height:560px;
+  background:var(--bx-white);
+  overflow:hidden;
+}
+#b8x-quiz .bx-screen{
+  display:none;
+  padding:64px 28px 48px;
+  max-width:660px;
+  margin:0 auto;
+  min-height:560px;
+  flex-direction:column;
+  justify-content:center;
+}
+#b8x-quiz .bx-screen.is-active{
+  display:flex;
+  animation:bx-in .45s cubic-bezier(.22,.61,.36,1) both;
+}
+@keyframes bx-in{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+@media (prefers-reduced-motion:reduce){#b8x-quiz .bx-screen.is-active{animation:none;}}
+
+/* ---------- Tipografia ---------- */
+#b8x-quiz .bx-lead{font-size:19px;line-height:1.55;margin:0 0 16px;}
+#b8x-quiz .bx-lead strong{font-weight:700;}
+#b8x-quiz .bx-lead.bx-gap{margin-bottom:22px;}
+#b8x-quiz .bx-q{
+  font-size:22px;font-weight:600;line-height:1.4;margin-bottom:26px;
+  display:flex;align-items:flex-start;gap:10px;
+}
+#b8x-quiz .bx-q .bx-req{color:var(--bx-muted);font-weight:400;font-size:18px;margin-left:auto;}
+
+/* ---------- Inputs ---------- */
+#b8x-quiz .bx-field{margin-bottom:26px;}
+#b8x-quiz .bx-input{
+  width:100%;border:0;border-bottom:2px solid var(--bx-line);
+  background:transparent;font-size:26px;color:var(--bx-text);
+  padding:8px 2px;font-family:inherit;
+}
+#b8x-quiz .bx-input::placeholder{color:#c4c4c4;}
+#b8x-quiz .bx-input:focus{outline:none;border-bottom-color:var(--bx-black);}
+
+#b8x-quiz .bx-phone{display:flex;align-items:center;gap:12px;border-bottom:2px solid var(--bx-line);padding-bottom:2px;}
+#b8x-quiz .bx-phone:focus-within{border-bottom-color:var(--bx-black);}
+#b8x-quiz .bx-phone .bx-flag{display:flex;align-items:center;gap:6px;font-size:22px;white-space:nowrap;padding:8px 0;}
+#b8x-quiz .bx-phone .bx-flag b{font-weight:600;font-size:22px;}
+#b8x-quiz .bx-phone .bx-input{border-bottom:0;flex:1;}
+
+/* ---------- Botões ---------- */
+#b8x-quiz .bx-actions{display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+#b8x-quiz .bx-btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  background:var(--bx-black);color:var(--bx-white);
+  font-family:inherit;font-weight:700;font-size:16px;
+  padding:15px 26px;border:0;cursor:pointer;
+  transition:opacity .18s ease,transform .12s ease;
+}
+#b8x-quiz .bx-btn:hover{opacity:.86;}
+#b8x-quiz .bx-btn:active{transform:translateY(1px);}
+#b8x-quiz .bx-btn:disabled{opacity:.4;cursor:not-allowed;}
+#b8x-quiz .bx-btn.bx-ok{padding:13px 22px;}
+#b8x-quiz .bx-hint{font-size:14px;color:var(--bx-muted);}
+#b8x-quiz .bx-hint b{color:var(--bx-text);font-weight:600;}
+#b8x-quiz .bx-err{color:#d13b3b;font-size:14px;margin-top:10px;min-height:18px;}
+
+/* ---------- Progresso ---------- */
+#b8x-quiz .bx-progress{position:absolute;top:0;left:0;height:4px;background:var(--bx-black);width:0;transition:width .4s ease;z-index:5;}
+
+/* ---------- Simulador ---------- */
+#b8x-quiz .bx-sim-input{
+  display:flex;align-items:baseline;gap:6px;border-bottom:2px solid var(--bx-line);padding-bottom:4px;margin-bottom:8px;
+}
+#b8x-quiz .bx-sim-input:focus-within{border-bottom-color:var(--bx-black);}
+#b8x-quiz .bx-sim-input .bx-cur{font-size:24px;font-weight:600;color:var(--bx-muted);}
+#b8x-quiz .bx-sim-input .bx-input{border-bottom:0;font-size:34px;font-weight:700;}
+#b8x-quiz .bx-slider{width:100%;margin:18px 0 8px;accent-color:var(--bx-black);height:4px;}
+#b8x-quiz .bx-slider-scale{display:flex;justify-content:space-between;font-size:12px;color:var(--bx-muted);margin-bottom:26px;}
+
+#b8x-quiz .bx-highlight{
+  background:var(--bx-black);color:var(--bx-white);padding:22px 20px;text-align:center;margin-bottom:22px;
+}
+#b8x-quiz .bx-highlight .bx-hl-lbl{font-size:13px;text-transform:uppercase;letter-spacing:.08em;opacity:.7;}
+#b8x-quiz .bx-highlight .bx-hl-num{font-size:40px;font-weight:800;line-height:1.15;margin-top:4px;}
+#b8x-quiz .bx-highlight .bx-hl-sub{font-size:13px;opacity:.7;margin-top:6px;}
+/* legenda dos termos */
+#b8x-quiz .bx-legend{font-size:12.5px;color:var(--bx-muted);line-height:1.55;margin:-6px 0 20px;}
+#b8x-quiz .bx-legend b{color:var(--bx-text);font-weight:700;}
+
+/* aviso em destaque */
+#b8x-quiz .bx-notice{
+  border:2px solid var(--bx-black);background:var(--bx-soft);
+  padding:16px 18px;margin-top:18px;
+  font-size:13.5px;line-height:1.6;color:var(--bx-text);
+}
+#b8x-quiz .bx-notice b{font-weight:800;}
+
+/* caixa de caso real */
+#b8x-quiz .bx-case{
+  border:1px solid var(--bx-line);border-left:4px solid var(--bx-black);
+  background:var(--bx-white);padding:14px 16px;margin-top:12px;
+  font-size:13.5px;line-height:1.6;color:var(--bx-text);
+}
+#b8x-quiz .bx-case-tag{
+  display:inline-block;background:var(--bx-black);color:#fff;
+  font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;
+  padding:3px 9px;margin-bottom:9px;
+}
+#b8x-quiz .bx-case b{font-weight:800;}
+#b8x-quiz .bx-case-intro{margin-bottom:12px;}
+#b8x-quiz .bx-case-table{width:100%;border-collapse:collapse;font-size:14px;margin-bottom:12px;}
+#b8x-quiz .bx-case-table td{padding:8px 2px;border-bottom:1px solid var(--bx-line);vertical-align:baseline;}
+#b8x-quiz .bx-case-table td:last-child{text-align:right;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap;padding-left:12px;}
+#b8x-quiz .bx-case-table tr:last-child td{border-bottom:0;}
+#b8x-quiz .bx-case-hl td{border-top:2px solid var(--bx-black);border-bottom:0;padding-top:11px;font-weight:800;}
+#b8x-quiz .bx-case-foot{margin-top:2px;}
+
+/* ---------- Tabela do ROI ---------- */
+#b8x-quiz .bx-table{width:100%;border-collapse:collapse;margin-bottom:16px;font-size:15px;}
+#b8x-quiz .bx-table td{padding:11px 2px;border-bottom:1px solid var(--bx-line);vertical-align:baseline;}
+#b8x-quiz .bx-table td:last-child{text-align:right;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap;padding-left:14px;}
+#b8x-quiz .bx-table tr:last-child td{border-bottom:0;}
+#b8x-quiz .bx-table .bx-table-sub td{border-top:2px solid var(--bx-black);border-bottom:0;padding-top:13px;font-weight:700;}
+#b8x-quiz .bx-note-inline{color:var(--bx-muted);font-weight:400;font-size:12.5px;}
+#b8x-quiz .bx-highlight-split{display:flex;gap:20px;text-align:left;}
+#b8x-quiz .bx-highlight-split > div{flex:1;}
+#b8x-quiz .bx-highlight-split .bx-hl-num{font-size:32px;margin-top:2px;}
+
+/* ---------- Caixa de investimento (destacada) ---------- */
+#b8x-quiz .bx-cost{background:var(--bx-soft);border:1px solid var(--bx-line);padding:16px 18px;margin-bottom:16px;}
+#b8x-quiz .bx-cost-title{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--bx-muted);margin-bottom:8px;}
+#b8x-quiz .bx-cost-row{display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:6px 0;font-size:15px;}
+#b8x-quiz .bx-cost-row b{font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap;}
+#b8x-quiz .bx-cost-total{border-top:2px solid var(--bx-black);margin-top:6px;padding-top:12px;font-size:16px;font-weight:700;}
+#b8x-quiz .bx-cost-total b{font-size:19px;}
+
+/* ---------- Linha de confirmação do investimento ---------- */
+#b8x-quiz .bx-invest-line{font-size:21px;font-weight:600;margin-bottom:16px;line-height:1.4;}
+#b8x-quiz .bx-invest-line b{font-weight:800;}
+
+/* ---------- Responsivo ---------- */
+@media (max-width:560px){
+  #b8x-quiz .bx-screen{padding:48px 20px 40px;min-height:520px;}
+  #b8x-quiz .bx-q{font-size:20px;}
+  #b8x-quiz .bx-input{font-size:22px;}
+  #b8x-quiz .bx-highlight .bx-hl-num{font-size:34px;}
+  #b8x-quiz .bx-highlight-split{flex-direction:column;gap:14px;}
+  #b8x-quiz .bx-highlight-split .bx-hl-num{font-size:28px;}
+}
+</style>
+
+<div id="b8x-quiz">
+  <div class="bx-progress" id="bx-progress"></div>
+  <div class="bx-stage">
+
+    <!-- ===== TELA 1 — APRESENTAÇÃO ===== -->
+    <section class="bx-screen is-active" data-step="0">
+      <p class="bx-lead">⚡ Método Agenda Elétrica, <strong>tráfego pago validado para eletricistas desde 2015.</strong></p>
+      <p class="bx-lead bx-gap"><strong>Tenha de 5 a 20 pedidos extras por dia!</strong></p>
+      <p class="bx-lead">🔥 Pare de queimar dinheiro com profissional inexperiente.</p>
+      <p class="bx-lead">🥷 Não fique refém do Get Ninja e indicações.</p>
+      <p class="bx-lead">🏢 Clientes de alto padrão e instalação de carregadores elétricos.</p>
+      <p class="bx-lead bx-gap">🚀 Anúncios e páginas validados com dezenas de eletricistas. Não começamos do zero.</p>
+      <p class="bx-lead bx-gap">↪️ Exclusivo para eletricistas que investem ou pretendem investir pelo menos R$ 1.790,00 em anúncios e o serviço de gestão de tráfego.</p>
+      <div class="bx-actions">
+        <button type="button" class="bx-btn" data-next>Quero Mais Pedidos</button>
+        <span class="bx-hint">Pressione <b>Enter ↵</b></span>
+      </div>
+    </section>
+
+    <!-- ===== TELA 2 — NOME ===== -->
+    <section class="bx-screen" data-step="1">
+      <div class="bx-q">Qual seu nome? <span class="bx-req">*</span></div>
+      <div class="bx-field">
+        <input type="text" class="bx-input" id="bx-nome" placeholder="José" autocomplete="given-name" />
+      </div>
+      <div class="bx-actions">
+        <button type="button" class="bx-btn bx-ok" data-next>OK</button>
+        <span class="bx-hint">Pressione <b>Enter ↵</b></span>
+      </div>
+      <div class="bx-err" data-err></div>
+    </section>
+
+    <!-- ===== TELA 3 — WHATSAPP ===== -->
+    <section class="bx-screen" data-step="2">
+      <div class="bx-q"><span data-nome>José</span>, qual seu WhatsApp por gentileza? <span class="bx-req">*</span></div>
+      <div class="bx-field">
+        <div class="bx-phone">
+          <span class="bx-flag">🇧🇷 <b>+55</b> ▾</span>
+          <input type="tel" class="bx-input" id="bx-whats" placeholder="(11) 99711-1122" inputmode="numeric" autocomplete="tel" />
+        </div>
+      </div>
+      <div class="bx-actions">
+        <button type="button" class="bx-btn bx-ok" data-next>OK</button>
+        <span class="bx-hint">Pressione <b>Enter ↵</b></span>
+      </div>
+      <div class="bx-err" data-err></div>
+    </section>
+
+    <!-- ===== TELA 4 — EMPRESA ===== -->
+    <section class="bx-screen" data-step="3">
+      <div class="bx-q"><span data-nome>José</span>, qual o nome da sua empresa de elétrica?</div>
+      <div class="bx-field">
+        <input type="text" class="bx-input" id="bx-empresa" placeholder="Marins Elétrica Ltda" autocomplete="organization" />
+      </div>
+      <div class="bx-actions">
+        <button type="button" class="bx-btn bx-ok" data-next>OK</button>
+        <span class="bx-hint">Pressione <b>Enter ↵</b></span>
+      </div>
+      <div class="bx-err" data-err></div>
+    </section>
+
+    <!-- ===== TELA 5 — SIMULADOR / ROI ===== -->
+    <section class="bx-screen" data-step="4">
+      <div class="bx-q"><span data-nome>José</span>, quanto você pode investir por mês em anúncios no Google?</div>
+      <div class="bx-field">
+        <div class="bx-sim-input">
+          <span class="bx-cur">R$</span>
+          <input type="text" class="bx-input" id="bx-invest" value="1.000" inputmode="numeric" />
+        </div>
+        <input type="range" class="bx-slider" id="bx-slider" min="1000" max="20000" step="500" value="1000" />
+        <div class="bx-slider-scale"><span>Mínimo R$ 1.000</span><span>R$ 20.000</span></div>
+      </div>
+
+      <table class="bx-table">
+        <tbody>
+          <tr><td>Custo por lead</td><td id="bx-r-custo">R$ 13</td></tr>
+          <tr><td>Leads no mês</td><td id="bx-r-leads">76</td></tr>
+          <tr><td>Vendas fechadas <span class="bx-note-inline">(1 a cada 3 leads)</span></td><td id="bx-r-serv">25</td></tr>
+          <tr><td>Ticket médio</td><td id="bx-r-ticket">R$ 350</td></tr>
+        </tbody>
+      </table>
+
+      <p class="bx-legend"><b>Lead</b> = pessoa interessada no serviço chamando no WhatsApp. &nbsp;·&nbsp; <b>Ticket médio</b> = valor médio dos serviços prestados.</p>
+
+      <!-- Caixa destacada com o investimento mensal -->
+      <div class="bx-cost">
+        <div class="bx-cost-title">Seu investimento por mês</div>
+        <div class="bx-cost-row"><span>Google Ads</span><b id="bx-c-ads">R$ 1.000/mês</b></div>
+        <div class="bx-cost-row"><span>Serviço B8X <span class="bx-note-inline">(a partir de)</span></span><b id="bx-c-b8x">R$ 790/mês</b></div>
+        <div class="bx-cost-row bx-cost-total"><span>Total</span><b id="bx-c-total">R$ 1.790/mês</b></div>
+      </div>
+
+      <div class="bx-highlight bx-highlight-split">
+        <div>
+          <div class="bx-hl-lbl">Faturamento estimado / mês</div>
+          <div class="bx-hl-num" id="bx-r-fat">R$ 8.750</div>
+        </div>
+        <div>
+          <div class="bx-hl-lbl">Retorno (ROI) *</div>
+          <div class="bx-hl-num" id="bx-r-roi">4,9x</div>
+        </div>
+      </div>
+
+      <p class="bx-invest-line">Está disposto a investir <b id="bx-confirm">R$ 1.790,00</b> por mês?</p>
+
+      <div class="bx-actions">
+        <button type="button" class="bx-btn" data-finish>Sim, quero conhecer o Método Agenda Elétrica</button>
+        <span class="bx-hint">Pressione <b>Enter ↵</b></span>
+      </div>
+
+      <div class="bx-case">
+        <span class="bx-case-tag">Caso real — Malben</span>
+        <p class="bx-case-intro">A <b>Malben</b> investe <b>R$ 5.000/mês</b> no Google Ads + <b>R$ 1.290/mês</b> na gestão de tráfego da B8X — total de <b>R$ 6.290/mês</b>.</p>
+        <table class="bx-case-table">
+          <tbody>
+            <tr><td>Leads no mês</td><td>~ 384</td></tr>
+            <tr><td>Vendas fechadas <span class="bx-note-inline">(1 a cada 2,5 leads)</span></td><td>~ 153</td></tr>
+            <tr><td>Ticket médio</td><td>R$ 450</td></tr>
+            <tr class="bx-case-hl"><td>Faturamento estimado</td><td>~ R$ 68.850/mês</td></tr>
+          </tbody>
+        </table>
+        <p class="bx-case-foot">E ainda fecha serviços de <b>carro elétrico por cerca de R$ 2.000,00</b> cada — elevando ainda mais o faturamento.</p>
+      </div>
+
+      <div class="bx-notice">
+        <p>* <b>Estes valores não são garantia da B8X.</b> O trabalho de vendas e fechamento é feito pela sua própria empresa — a B8X é responsável pelo tráfego e pela geração de leads. Os números representam apenas uma <b>média dos clientes atuais</b> da B8X para <b>serviços elétricos residenciais e prediais</b> (não para carro elétrico), com custo por lead de R$ 13, 1 venda a cada 3 leads e ticket médio de R$ 350 — e podem variar conforme região, ticket e execução. Temos também cases em <b>elétrica comercial, industrial e painéis elétricos</b>, mas são números diferentes, mercados diferentes.</p>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ============================================================
+     CONFIG — edite aqui
+  ============================================================ */
+  var B8X = {
+    // Endpoint do WordPress (admin-ajax). Deixe assim na maioria dos casos.
+    AJAX: "/wp-admin/admin-ajax.php",
+    // Para onde o lead é levado ao concluir (página de obrigado da B8X):
+    THANKYOU_URL: "https://b8x.com.br/thank-you/",
+    // Parâmetros do simulador (média dos clientes atuais da B8X):
+    CUSTO_LEAD: 13,        // R$ por lead
+    LEADS_POR_SERVICO: 3,  // a cada 3 leads, 1 venda
+    TICKET: 350,           // ticket médio R$
+    SERVICO_B8X: 790,      // valor do serviço da B8X (a partir de)
+    INVEST_MIN: 1000       // investimento mínimo no Google Ads
+  };
+
+  var root   = document.getElementById('b8x-quiz');
+  if(!root) return;
+  var screens = Array.prototype.slice.call(root.querySelectorAll('.bx-screen'));
+  var progress = document.getElementById('bx-progress');
+  var step = 0;
+  var TOTAL = screens.length;
+  var sent = false;
+
+  var data = { nome:'', whatsapp:'', empresa:'', investimento:0, leads:0, servicos:0, faturamento:0 };
+
+  var brl = function(n){ return 'R$ ' + Math.round(n).toLocaleString('pt-BR'); };
+  var brlFull = function(n){ return 'R$ ' + Number(n).toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2}); };
+  var digits = function(s){ return (s||'').replace(/\D/g,''); };
+
+  /* ---------- Navegação ---------- */
+  function show(i){
+    if(i<0) i=0; if(i>TOTAL-1) i=TOTAL-1;
+    screens[step].classList.remove('is-active');
+    step = i;
+    screens[step].classList.add('is-active');
+    progress.style.width = ((step)/(TOTAL-1)*100) + '%';
+    // foca o primeiro input da tela
+    var inp = screens[step].querySelector('.bx-input');
+    if(inp){ setTimeout(function(){ try{inp.focus();}catch(e){} }, 120); }
+    // atualiza nome nas telas
+    if(data.nome){
+      Array.prototype.forEach.call(root.querySelectorAll('[data-nome]'), function(el){ el.textContent = data.nome; });
+    }
+  }
+
+  function setErr(msg){
+    var el = screens[step].querySelector('[data-err]');
+    if(el) el.textContent = msg || '';
+  }
+
+  /* ---------- Validação por passo ---------- */
+  function validateCurrent(){
+    setErr('');
+    var s = screens[step].getAttribute('data-step');
+    if(s === '1'){
+      var v = document.getElementById('bx-nome').value.trim();
+      if(v.length < 2){ setErr('Por favor, digite seu nome.'); return false; }
+      data.nome = v; return true;
+    }
+    if(s === '2'){
+      var d = digits(document.getElementById('bx-whats').value);
+      if(d.length < 10){ setErr('Digite um WhatsApp válido com DDD.'); return false; }
+      data.whatsapp = '+55 ' + document.getElementById('bx-whats').value.trim(); return true;
+    }
+    if(s === '3'){
+      data.empresa = document.getElementById('bx-empresa').value.trim();
+      return true; // opcional
+    }
+    if(s === '4'){
+      calc(); return true;
+    }
+    return true;
+  }
+
+  function next(){
+    if(!validateCurrent()) return;
+    show(step+1);
+  }
+
+  /* ---------- Máscara de telefone BR ---------- */
+  function maskPhone(v){
+    var d = digits(v).slice(0,11);
+    if(d.length === 0) return '';
+    if(d.length <= 2) return '(' + d;
+    if(d.length <= 6) return '(' + d.slice(0,2) + ') ' + d.slice(2);
+    if(d.length <= 10) return '(' + d.slice(0,2) + ') ' + d.slice(2,6) + '-' + d.slice(6);
+    return '(' + d.slice(0,2) + ') ' + d.slice(2,7) + '-' + d.slice(7);
+  }
+
+  /* ---------- Simulador ---------- */
+  function calc(){
+    var invest = parseInt(digits(document.getElementById('bx-invest').value) || '0', 10);
+    if(invest < 0) invest = 0;
+    var leads = Math.floor(invest / B8X.CUSTO_LEAD);
+    var vendas = Math.floor(leads / B8X.LEADS_POR_SERVICO);
+    var faturamento = vendas * B8X.TICKET;
+    var investTotal = invest + B8X.SERVICO_B8X;
+    var roi = investTotal > 0 ? (faturamento / investTotal) : 0;
+
+    data.investimento = invest;
+    data.leads = leads;
+    data.servicos = vendas;
+    data.faturamento = faturamento;
+    data.investimentoTotal = investTotal;
+
+    document.getElementById('bx-r-custo').textContent  = brl(B8X.CUSTO_LEAD);
+    document.getElementById('bx-r-leads').textContent  = leads.toLocaleString('pt-BR');
+    document.getElementById('bx-r-serv').textContent   = vendas.toLocaleString('pt-BR');
+    document.getElementById('bx-r-ticket').textContent = brl(B8X.TICKET);
+    document.getElementById('bx-c-ads').textContent    = brl(invest) + '/mês';
+    document.getElementById('bx-c-b8x').textContent    = brl(B8X.SERVICO_B8X) + '/mês';
+    document.getElementById('bx-c-total').textContent  = brl(investTotal) + '/mês';
+    document.getElementById('bx-r-fat').textContent    = brl(faturamento);
+    document.getElementById('bx-r-roi').textContent    = roi ? ((Math.round(roi*10)/10).toLocaleString('pt-BR') + 'x') : '—';
+    document.getElementById('bx-confirm').textContent  = brlFull(investTotal);
+  }
+
+  /* ---------- Conclusão: grava lead e redireciona ---------- */
+  function finish(btn){
+    calc();
+    if(btn){ btn.disabled = true; btn.textContent = 'Enviando...'; }
+    submit();
+    // pequeno atraso para o envio sair antes do redirecionamento
+    setTimeout(function(){ window.location.href = B8X.THANKYOU_URL; }, 350);
+  }
+
+  /* ---------- Envio para o WordPress ---------- */
+  function submit(){
+    if(sent) return; sent = true;
+    // backup local (caso o endpoint não esteja instalado)
+    try{ localStorage.setItem('b8x_lead_'+Date.now(), JSON.stringify(data)); }catch(e){}
+
+    var fd = new FormData();
+    fd.append('action', 'b8x_save_lead');
+    fd.append('nome', data.nome);
+    fd.append('whatsapp', data.whatsapp);
+    fd.append('empresa', data.empresa);
+    fd.append('investimento', data.investimento);
+    fd.append('leads', data.leads);
+    fd.append('servicos', data.servicos);
+    fd.append('faturamento', data.faturamento);
+    fd.append('servico_b8x', B8X.SERVICO_B8X);
+    fd.append('investimento_total', data.investimentoTotal || (data.investimento + B8X.SERVICO_B8X));
+    fd.append('origem', (window.location && window.location.href) || '');
+
+    try{
+      // keepalive garante o envio mesmo com o redirecionamento em seguida
+      fetch(B8X.AJAX, { method:'POST', body:fd, credentials:'same-origin', keepalive:true })
+        .then(function(r){ return r.text(); })
+        .catch(function(){ /* silencioso: não bloqueia a experiência do lead */ });
+    }catch(e){}
+  }
+
+  /* ---------- Eventos ---------- */
+  root.addEventListener('click', function(e){
+    var f = e.target.closest('[data-finish]');
+    if(f){ e.preventDefault(); finish(f); return; }
+    var b = e.target.closest('[data-next]');
+    if(b){ e.preventDefault(); next(); }
+  });
+
+  root.addEventListener('keydown', function(e){
+    if(e.key === 'Enter'){
+      e.preventDefault();
+      if(step === TOTAL-1){
+        finish(screens[step].querySelector('[data-finish]'));
+      } else {
+        next();
+      }
+    }
+  });
+
+  // máscara de telefone ao digitar
+  var whats = document.getElementById('bx-whats');
+  if(whats){ whats.addEventListener('input', function(){ this.value = maskPhone(this.value); }); }
+
+  // simulador: input <-> slider
+  var invest = document.getElementById('bx-invest');
+  var slider = document.getElementById('bx-slider');
+  if(invest){
+    invest.addEventListener('input', function(){
+      var d = digits(this.value);
+      this.value = d ? parseInt(d,10).toLocaleString('pt-BR') : '';
+      var n = parseInt(d||'0',10);
+      if(slider && n>=slider.min && n<=slider.max) slider.value = n;
+      calc();
+    });
+  }
+  if(slider){
+    slider.addEventListener('input', function(){
+      invest.value = parseInt(this.value,10).toLocaleString('pt-BR');
+      calc();
+    });
+  }
+
+  // estado inicial
+  progress.style.width = '0%';
+  calc();
+})();
+</script>
